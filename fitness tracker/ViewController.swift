@@ -14,17 +14,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
 
-    var coordinates: [CLLocationCoordinate2D] = []
+//    var coordinates: [CLLocationCoordinate2D] = []
+    var coordinates: [CLLocation] = []
+    
+    var distance : Double = 0
+    
     
     @IBOutlet weak var map: MKMapView!
     
-    @IBOutlet weak var currentLatitude: UILabel!
-    @IBOutlet weak var currentLogitude: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     
+    @IBOutlet weak var distanceInMilesLabel: UILabel!
+    
+    @IBAction func addLocation(_ sender: Any) {
+        locationManager.startUpdatingLocation()
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TO DO: add checks that location is enabled and accurate location found!
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -34,8 +44,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         // location updates may be pasued if the user does not move a significant distance over a period of time
         locationManager.activityType = .fitness
+        
         // looks for GPS coordinates of iphone. This method is asynchronous!
-        locationManager.startUpdatingLocation()
+//        locationManager.startUpdatingLocation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,9 +66,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
             
-            // Change coordinates on screen
-            currentLatitude.text = "Latitdue = " + String(format: "%.4f", latitude)
-            currentLogitude.text = "Longitude = " + String(format: "%.4f", longitude)
+            coordinates.append(location)
             
             // Zooming map to user location
             let span : MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
@@ -65,18 +74,51 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let region : MKCoordinateRegion = MKCoordinateRegionMake(userLocation, span)
             map.setRegion(region, animated: true)
             
+            
+//            coordinates.append(userLocation)
+            
             // Create coordinate
-            let startAnnotation = MKPointAnnotation()
-            startAnnotation.title = "Start"
-            startAnnotation.coordinate = userLocation
-            self.map.addAnnotation(startAnnotation)
+//            let startAnnotation = MKPointAnnotation()
+//            startAnnotation.title = "Start"
+//            startAnnotation.coordinate = userLocation
+//            self.map.addAnnotation(startAnnotation)
             //        self.map.userTrackingMode
-//            self.map.showsUserLocation = true
+            self.map.showsUserLocation = true
+            
+            addPin()
+            updateDistance()
+            addLineToMap()
         }
         
     }
-
-
-
+    
+    func addPin() {
+        // Create coordinate
+        let pin = MKPointAnnotation()
+        let pinNumber = coordinates.count
+        pin.title = "Pin #\(pinNumber)"
+        
+        let locationCoordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(coordinates[pinNumber - 1].coordinate.latitude, coordinates[pinNumber - 1].coordinate.longitude)
+        pin.coordinate = locationCoordinate
+        self.map.addAnnotation(pin)
+    }
+    
+    func updateDistance() {
+        let pinNumber = coordinates.count
+    
+        if pinNumber > 1 {
+            let lastLocation = coordinates[pinNumber - 2]
+            let newLocation = coordinates[pinNumber - 1]
+            
+            let distanceBetweenLastTwoPins: CLLocationDistance = newLocation.distance(from: lastLocation)
+            
+            distance += distanceBetweenLastTwoPins
+            distanceLabel.text = "Distance(m): " + String(format: "%.1f", distanceBetweenLastTwoPins)
+        }
+        
+        let distanceInMiles = distance * 0.000621371192
+        
+        distanceInMilesLabel.text = "Distance(mi): " + String(format: "%.2f", distanceInMiles)
+    }
+    
 }
-
