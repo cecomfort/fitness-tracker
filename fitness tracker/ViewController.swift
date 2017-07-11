@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-    
+
     let locationManager = CLLocationManager()
 
 //    var coordinates: [CLLocationCoordinate2D] = []
@@ -121,4 +121,51 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         distanceInMilesLabel.text = "Distance(mi): " + String(format: "%.2f", distanceInMiles)
     }
     
+    func addLineToMap() {
+        var mapCoordinates: [CLLocationCoordinate2D] = []
+        
+        for mapCoordinate in coordinates {
+            mapCoordinates.append(CLLocationCoordinate2DMake(mapCoordinate.coordinate.latitude, mapCoordinate.coordinate.longitude))
+        }
+        
+        // create polyLine
+        let polyLine = MKPolyline(coordinates: &mapCoordinates, count: mapCoordinates.count)
+        
+        // add polyLine to map
+        self.map.add(polyLine, level: MKOverlayLevel.aboveRoads)
+        
+        func map(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+
+            let polyLineRenderer = MKPolylineRenderer(overlay: overlay)
+            polyLineRenderer.strokeColor = UIColor.blue
+//            UIColor(rgba: overlay.color);
+            polyLineRenderer.lineWidth = 2.0
+            return polyLineRenderer
+            
+        }
+        
+    }
+    
+//    func map(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+//        if overlay.isKindOfClass(MKPolyline) {
+//            // draw the track
+//            let polyLine = overlay
+//            let polyLineRenderer = MKPolylineRenderer(overlay: polyLine)
+//            polyLineRenderer.strokeColor = UIColor.blueColor()
+//            polyLineRenderer.lineWidth = 2.0
+//            
+//            return polyLineRenderer
+//        }
+//        
+//        return nil
+//    }
+    
+
+
+
 }
+
+// Change coordinates on screen
+//currentLatitude.text = "Latitdue = " + String(format: "%.4f", latitude)
+//currentLogitude.text = "Longitude = " + String(format: "%.4f", longitude)
+
