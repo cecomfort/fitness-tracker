@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogPracticeTVC: UITableViewController {
+class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var date: UITextField!
     @IBOutlet weak var style: UITextField!
@@ -51,6 +51,30 @@ class LogPracticeTVC: UITableViewController {
         
         
 //        tableView.backgroundColor = UIColor.clear
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+//        tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+        
+        // enable done button in keyboard
+        self.date.delegate = self
+    }
+    
+    // Enable done button functionality
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        self.view.endEditing(true)
+        textField.resignFirstResponder()
+        return false
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,6 +98,8 @@ class LogPracticeTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
     }
+    
+  
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

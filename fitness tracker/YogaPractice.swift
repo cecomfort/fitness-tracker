@@ -20,5 +20,7 @@ class YogaPractice {
     }
     
     
+    // NSKeyedArchiver -> lets you turn object into binary object 
+    // NSCoder turns obj in to NSData
     
 }
