@@ -9,6 +9,27 @@
 import UIKit
 
 class LogPracticeTVC: UITableViewController {
+    
+    @IBOutlet weak var date: UITextField!
+    @IBOutlet weak var style: UITextField!
+    @IBOutlet weak var duration: UITextField!
+    @IBOutlet weak var timeOfDay: UITextField!
+    @IBOutlet weak var location: UITextField!
+    @IBOutlet weak var instructor: UITextField!
+    @IBOutlet weak var focus: UITextField!
+    @IBOutlet weak var notes: UITextView!
+    
+    @IBAction func savePractice(_ sender: Any) {
+        print("button pressed")
+        // TO DO: check whether or not create object ?
+        let practice = YogaPractice(classDate: date.text!, classStyle: style.text!, classDuration: duration.text!)
+        print(practice)
+        
+        print(practice.date)
+        print(practice.style)
+        print(practice.duration)
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +50,7 @@ class LogPracticeTVC: UITableViewController {
         self.view.sendSubview(toBack: imageView)
         
         
-        tableView.backgroundColor = UIColor.clear
+//        tableView.backgroundColor = UIColor.clear
     }
 
     override func didReceiveMemoryWarning() {

@@ -292,7 +292,32 @@
                             <outlet property="delegate" destination="cwQ-em-Sgg" id="Z0H-e3-ESx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Log Practice" id="BTQ-c0-sB8"/>
+                    <navigationItem key="navigationItem" title="Log Practice" id="BTQ-c0-sB8">
+                        <barButtonItem key="rightBarButtonItem" title="Save" style="plain" id="Qyl-dP-Swv">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gfq-hi-5o9">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="savePractice:" destination="cwQ-em-Sgg" eventType="touchUpInside" id="HR4-2y-tLn"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="savePractice:" destination="cwQ-em-Sgg" id="yg0-kY-THy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="date" destination="y5z-XO-GZw" id="JNG-i2-nRh"/>
+                        <outlet property="duration" destination="qAl-r0-uYb" id="1Vm-uo-O0U"/>
+                        <outlet property="focus" destination="rBQ-1z-YUw" id="YQJ-pd-bnu"/>
+                        <outlet property="instructor" destination="QyL-ad-269" id="V2Q-Vv-4f3"/>
+                        <outlet property="location" destination="yR0-Pq-1lN" id="8P4-gE-ti5"/>
+                        <outlet property="notes" destination="VoM-T3-3wG" id="ydq-0g-1jF"/>
+                        <outlet property="style" destination="kbS-l2-N0F" id="ogS-oY-4BW"/>
+                        <outlet property="timeOfDay" destination="Flw-Wg-VGP" id="Tg4-FW-lUH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4O3-UD-464" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -15,6 +15,7 @@
 		E86D3A2B1F0DA15A00DE63C7 /* fitness_trackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A2A1F0DA15A00DE63C7 /* fitness_trackerTests.swift */; };
 		E86D3A361F0DA15A00DE63C7 /* fitness_trackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A351F0DA15A00DE63C7 /* fitness_trackerUITests.swift */; };
 		E8834F641F157AB10047BC27 /* LogPracticeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8834F631F157AB10047BC27 /* LogPracticeTVC.swift */; };
+		E8834F661F15A7BE0047BC27 /* YogaPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8834F651F15A7BE0047BC27 /* YogaPractice.swift */; };
 		E8ABA4FF1F0F105E002AF422 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ABA4FE1F0F105E002AF422 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		E86D3A351F0DA15A00DE63C7 /* fitness_trackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fitness_trackerUITests.swift; sourceTree = "<group>"; };
 		E86D3A371F0DA15A00DE63C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8834F631F157AB10047BC27 /* LogPracticeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogPracticeTVC.swift; sourceTree = "<group>"; };
+		E8834F651F15A7BE0047BC27 /* YogaPractice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YogaPractice.swift; sourceTree = "<group>"; };
 		E8ABA4FE1F0F105E002AF422 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -136,6 +138,7 @@
 		E8834F601F1579100047BC27 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E8834F651F15A7BE0047BC27 /* YogaPractice.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8834F661F15A7BE0047BC27 /* YogaPractice.swift in Sources */,
 				E8834F641F157AB10047BC27 /* LogPracticeTVC.swift in Sources */,
 				E86D3A181F0DA15900DE63C7 /* ViewController.swift in Sources */,
 				E86D3A161F0DA15900DE63C7 /* AppDelegate.swift in Sources */,
