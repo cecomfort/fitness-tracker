@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import os.log
 
 class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
+    var store = DataStore.sharedInstance
     
     @IBOutlet weak var date: UITextField!
     @IBOutlet weak var style: UITextField!
@@ -18,27 +20,76 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var instructor: UITextField!
     @IBOutlet weak var focus: UITextField!
     @IBOutlet weak var notes: UITextView!
-    
-    @IBAction func savePractice(_ sender: Any) {
-        print("button pressed")
-        // TO DO: check whether or not create object ?
-        let practice = YogaPractice(classDate: date.text!, classStyle: style.text!, classDuration: duration.text!)
-        print(practice)
-        
-        print(practice.date)
-        print(practice.style)
-        print(practice.duration)
-    }
 
+    @IBAction func save(_ sender: Any) {
+        print(date.text!)
+        print(style.text!)
+        print(duration.text!)
+        
+        if let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!) {
+            print(newPractice.style)
+            store.addPractice(item: newPractice)
+        }
+    }
+//    @IBAction func addPractice(_ sender: Any) {
+//        print(date.text!)
+//        print(style.text!)
+//        print(duration.text!)
+//    }
+//    @IBAction func save(_ sender: UIBarButtonItem) {
+//        print(date.text!)
+//        print(style.text!)
+//        print(duration.text!)
+//
+////        if date.text != "" && style.text != "" && duration.text != "" {
+////            let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!)
+////            store.addPractice(item: newPractice)
+////        }
+//        
+//        if let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!) {
+//            store.addPractice(item: newPractice)
+//        }
+//    }
+    
+//    @IBAction func addPractice(_ sender: Any) {
+
+//        if date.text != "" && style.text != "" && duration.text != "" {
+//            let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!)
+//            store.addPractice(item: newPractice)
+//        }
+        
+//        if let newPractice = YogaPractice(date: "07.17.7", style: style.text!, duration: "1 hr") {
+//            store.addPractice(item: newPractice)
+//        }
+//        let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: Double(duration.text!)!, time: timeOfDay.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!, cardioLevel: 4, strengthBuildingLevel: 4, stretchingLevel: 4)
+//        
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(newPractice, toFile: YogaPractice.ArchiveURL.path)
+//        if isSuccessfulSave {
+//            os_log("Practice successfully saved.", log: OSLog.default, type: .debug)
+//        } else {
+//            os_log("Failed to save practice...", log: OSLog.default, type: .error)
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+//        let newPractice = YogaPractice(date: "08.08.18", style: "Yin", duration: "1 hr")
+//        print("before saving")
+//        print(newPractice!.style)
+//        
+//        store.addPractice(item: newPractice!)
+//        guard let pratices = NSKeyedUnarchiver.unarchiveObject(withFile:DataStore.filePath) as? [YogaPractice] else { return }
+//        print(pratices)
+        
+        
+//        print("DPR: in viewDidLoad")
+//        NSKeyedArchiver.archiveRootObject("this is a test", toFile: filePath)
+//        
+//
+//        guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? String else { return }
+//        print(data)
+        
         
         // modify background image
         let imageView = UIImageView(frame: self.view.frame)
@@ -54,10 +105,6 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        
-        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-//        tap.cancelsTouchesInView = false
-        
         view.addGestureRecognizer(tap)
         
         // enable done button in keyboard

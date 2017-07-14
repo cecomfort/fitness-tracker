@@ -13,7 +13,7 @@
         <scene sceneID="IZT-jE-jga">
             <objects>
                 <tableViewController id="cwQ-em-Sgg" customClass="LogPracticeTVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="static" style="plain" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6zY-Oh-wOk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="static" style="plain" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6zY-Oh-wOk">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -294,18 +294,9 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Log Practice" id="BTQ-c0-sB8">
-                        <barButtonItem key="rightBarButtonItem" title="Save" style="plain" id="Qyl-dP-Swv">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gfq-hi-5o9">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="savePractice:" destination="cwQ-em-Sgg" eventType="touchUpInside" id="HR4-2y-tLn"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="blU-FY-Fwc">
                             <connections>
-                                <action selector="savePractice:" destination="cwQ-em-Sgg" id="yg0-kY-THy"/>
+                                <action selector="save:" destination="cwQ-em-Sgg" id="9bc-63-W33"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -322,7 +313,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4O3-UD-464" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3919.1999999999998" y="-1605.2473763118442"/>
+            <point key="canvasLocation" x="3710" y="-1605"/>
         </scene>
         <!--Track Run-->
         <scene sceneID="tne-QT-ifu">
@@ -386,7 +377,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nc0-4L-Qcq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Running" id="Ubx-ug-vjd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ob4-pk-aFX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ob4-pk-aFX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -397,7 +388,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcg-64-dc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2865" y="-904"/>
+            <point key="canvasLocation" x="2835" y="-804"/>
         </scene>
         <!--Yoga-->
         <scene sceneID="j2h-oe-b9q">
@@ -405,7 +396,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OYP-PA-7vy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Yoga" id="oYa-V7-UrT"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vOx-Ey-z1O">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vOx-Ey-z1O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -418,23 +409,101 @@
             </objects>
             <point key="canvasLocation" x="2920.8000000000002" y="-1605.2473763118442"/>
         </scene>
+        <!--Fitness Log-->
+        <scene sceneID="Hku-bg-TVf">
+            <objects>
+                <tableViewController id="yWB-iV-owK" customClass="WorkoutLogTVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" id="sdz-5b-JUH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutCell" rowHeight="54" id="Ah8-WN-ApT" customClass="WorkoutCell" customModule="fitness_tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="54"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ah8-WN-ApT" id="rpv-zs-G6S">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ab-NK-nCa">
+                                            <rect key="frame" x="13" y="16" width="64" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cl7-MV-xxO">
+                                            <rect key="frame" x="154" y="16" width="67" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGS-Jg-p51">
+                                            <rect key="frame" x="266" y="16" width="66" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="5Ab-NK-nCa" id="8ew-xa-oOt"/>
+                                    <outlet property="durationLabel" destination="dGS-Jg-p51" id="cYN-qg-bgc"/>
+                                    <outlet property="typeLabel" destination="cl7-MV-xxO" id="E7p-9y-5W1"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yWB-iV-owK" id="yvp-sL-QXf"/>
+                            <outlet property="delegate" destination="yWB-iV-owK" id="fAb-Ds-f07"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Fitness Log" id="2pA-wg-eTW"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VKp-CN-u3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3917.5999999999999" y="-2369.8650674662672"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="I5P-mS-5e6">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="o9F-jJ-7XN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zyp-aW-NO1">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="OYP-PA-7vy" kind="relationship" relationship="viewControllers" id="UCL-vx-WtE"/>
                         <segue destination="Nc0-4L-Qcq" kind="relationship" relationship="viewControllers" id="xjH-u7-Zrj"/>
+                        <segue destination="R3e-9X-36P" kind="relationship" relationship="viewControllers" id="ToO-K8-atG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hkB-Bj-gm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1981.5999999999999" y="-1605.2473763118442"/>
+        </scene>
+        <!--Log-->
+        <scene sceneID="aNT-TT-uos">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R3e-9X-36P" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Log" id="BmW-vy-PEy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hVs-P1-FbL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yWB-iV-owK" kind="relationship" relationship="rootViewController" id="yWx-dz-cCG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UXS-XZ-8LZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2921" y="-2369"/>
         </scene>
     </scenes>
 </document>
