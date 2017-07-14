@@ -10,8 +10,10 @@ import UIKit
 
 class WorkoutLogTVC: UITableViewController {
     
+    
     //MARK: Properties
      var store = DataStore.sharedInstance
+     var deleteWorkoutIndexPath: IndexPath? = nil
     
 //    @IBOutlet weak var dateLabel: UILabel!
 //    @IBOutlet weak var typeLabel: UILabel!
@@ -68,16 +70,45 @@ class WorkoutLogTVC: UITableViewController {
 
         return cell
      }
+    
+    // MARK: Delete Workout
  
-    // delete table view cell
+    // swipe to delete table view cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            store.deletePractice(index: indexPath.row)
-//            store.yogaPractices.remove(at: indexPath.row) // delete from file
-            self.tableView.deleteRows(at: [indexPath], with: .automatic) // delete cell from view
-//            tableView.reloadData()
+            deleteWorkoutIndexPath = indexPath
+            confirmDelete()
+//            store.deletePractice(index: indexPath.row) // delete from file
+//            self.tableView.deleteRows(at: [indexPath], with: .automatic) // delete cell from view
             
         }
+    }
+    
+    // Alert asking to confirm delete action
+    func confirmDelete() {
+        let alert = UIAlertController(title: "Delete Workout", message: "Are you sure you want to permanently delete this workout?", preferredStyle: .actionSheet)
+        let DeleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handleDeleteWorkout)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelDeleteWorkout)
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // Actually deletion of workout
+    func handleDeleteWorkout(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteWorkoutIndexPath {
+            tableView.beginUpdates()
+            store.deletePractice(index: indexPath.row) // delete from file
+            self.tableView.deleteRows(at: [indexPath], with: .automatic) // delete cell from view
+            deleteWorkoutIndexPath = nil
+            tableView.endUpdates()
+        }
+    }
+    
+    // Cancelation of deletion
+    func cancelDeleteWorkout(alertAction: UIAlertAction!) {
+        deleteWorkoutIndexPath = nil
     }
 
 
