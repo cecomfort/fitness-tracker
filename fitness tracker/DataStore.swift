@@ -39,6 +39,11 @@ class DataStore: NSObject, NSCoding {
         NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
     }
     
+    func deletePractice(index: Int) {
+        self.yogaPractices.remove(at: index)
+        NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
+    }
+    
     private static func loadData() -> DataStore {
         if let data = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataStore {
             return data

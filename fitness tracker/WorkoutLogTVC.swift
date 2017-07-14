@@ -72,7 +72,8 @@ class WorkoutLogTVC: UITableViewController {
     // delete table view cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            store.yogaPractices.remove(at: indexPath.row) // delete from file
+            store.deletePractice(index: indexPath.row)
+//            store.yogaPractices.remove(at: indexPath.row) // delete from file
             self.tableView.deleteRows(at: [indexPath], with: .automatic) // delete cell from view
 //            tableView.reloadData()
             
