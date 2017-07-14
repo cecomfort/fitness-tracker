@@ -29,8 +29,25 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
         if let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!) {
             print(newPractice.style)
             store.addPractice(item: newPractice)
+            clearTextFields()
         }
     }
+    
+    
+    // better way to do this? -> loop?
+    func clearTextFields() {
+        date.text = ""
+        style.text = ""
+        duration.text = ""
+        timeOfDay.text = ""
+        location.text = ""
+        instructor.text = ""
+        focus.text = ""
+        notes.text = ""
+    }
+    
+
+    
 //    @IBAction func addPractice(_ sender: Any) {
 //        print(date.text!)
 //        print(style.text!)
@@ -73,6 +90,7 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+   
         
 //        let newPractice = YogaPractice(date: "08.08.18", style: "Yin", duration: "1 hr")
 //        print("before saving")
@@ -118,6 +136,7 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
         return false
     }
     
+    
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -158,13 +177,13 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
     }
     */
 
-    /*
+
     // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        // Return false if you do not want the specified item to be editable.
+//        return true
+//    }
+
 
     /*
     // Override to support editing the table view.
