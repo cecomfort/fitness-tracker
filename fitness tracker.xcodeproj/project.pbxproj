@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80BFBA01F1AA6C100C68DC8 /* TrackRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFB9F1F1AA6C100C68DC8 /* TrackRunVC.swift */; };
+		E80BFBA81F1ADFC100C68DC8 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFBA71F1ADFC100C68DC8 /* Stopwatch.swift */; };
 		E86D3A161F0DA15900DE63C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */; };
 		E86D3A181F0DA15900DE63C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A171F0DA15900DE63C7 /* ViewController.swift */; };
 		E86D3A1B1F0DA15900DE63C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86D3A191F0DA15900DE63C7 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E80BFB9F1F1AA6C100C68DC8 /* TrackRunVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackRunVC.swift; sourceTree = "<group>"; };
+		E80BFBA71F1ADFC100C68DC8 /* Stopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stopwatch.swift; path = ../Stopwatch.swift; sourceTree = "<group>"; };
 		E86D3A121F0DA15900DE63C7 /* fitness tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fitness tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E86D3A171F0DA15900DE63C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,8 +120,6 @@
 				E8834F621F1579250047BC27 /* Controller */,
 				E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */,
 				E86D3A171F0DA15900DE63C7 /* ViewController.swift */,
-				E86D3A1C1F0DA15900DE63C7 /* Assets.xcassets */,
-				E86D3A1E1F0DA15900DE63C7 /* LaunchScreen.storyboard */,
 				E86D3A211F0DA15900DE63C7 /* Info.plist */,
 			);
 			path = "fitness tracker";
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				E8834F651F15A7BE0047BC27 /* YogaPractice.swift */,
+				E80BFBA71F1ADFC100C68DC8 /* Stopwatch.swift */,
 				E8834F691F16F0B40047BC27 /* DataStore.swift */,
 			);
 			name = Model;
@@ -153,7 +156,9 @@
 		E8834F611F15791A0047BC27 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E86D3A1C1F0DA15900DE63C7 /* Assets.xcassets */,
 				E86D3A191F0DA15900DE63C7 /* Main.storyboard */,
+				E86D3A1E1F0DA15900DE63C7 /* LaunchScreen.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 		E8834F621F1579250047BC27 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E80BFB9F1F1AA6C100C68DC8 /* TrackRunVC.swift */,
 				E8B80A501F18432200F915E9 /* WorkoutCell.swift */,
 				E8B80A4E1F1841D500F915E9 /* WorkoutLogTVC.swift */,
 				E8834F631F157AB10047BC27 /* LogPracticeTVC.swift */,
@@ -315,8 +321,10 @@
 				E8B80A511F18432200F915E9 /* WorkoutCell.swift in Sources */,
 				E8834F641F157AB10047BC27 /* LogPracticeTVC.swift in Sources */,
 				E8B80A4F1F1841D500F915E9 /* WorkoutLogTVC.swift in Sources */,
+				E80BFBA81F1ADFC100C68DC8 /* Stopwatch.swift in Sources */,
 				E86D3A181F0DA15900DE63C7 /* ViewController.swift in Sources */,
 				E8834F6A1F16F0B40047BC27 /* DataStore.swift in Sources */,
+				E80BFBA01F1AA6C100C68DC8 /* TrackRunVC.swift in Sources */,
 				E86D3A161F0DA15900DE63C7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
