@@ -20,6 +20,7 @@ class TrackRunVC: UIViewController {
     @IBOutlet weak var paceLabel: UILabel!
     @IBOutlet weak var mileageLabel: UILabel!
     @IBOutlet weak var startStopLabel: UIButton!
+    @IBOutlet weak var finishLabel: UIButton!
 
     //MARK: Additional View setup
     override func viewDidLoad() {
@@ -27,6 +28,7 @@ class TrackRunVC: UIViewController {
         
         startStopLabel.setTitle("Start", for: .normal)
         timerLabel.text = "0:00"
+        finishLabel.isHidden = true
         
     }
 
@@ -35,9 +37,11 @@ class TrackRunVC: UIViewController {
         if startStopLabel.currentTitle == "Start" {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TrackRunVC.updateTimerLabel), userInfo: nil, repeats: true)
             startStopLabel.setTitle("Pause", for: .normal)
+            finishLabel.isHidden = true
         } else if startStopLabel.currentTitle == "Pause" {
             timer.invalidate()
             startStopLabel.setTitle("Start", for: .normal)
+            finishLabel.isHidden = false
         }
     }
     
@@ -48,7 +52,9 @@ class TrackRunVC: UIViewController {
 
     
     @IBAction func finishRun(_ sender: Any) {
-
+        stopwatch.reset()
+        timerLabel.text = stopwatch.convertTimeToString()
+        finishLabel.isHidden = true
     }
 
     /*

@@ -444,6 +444,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Track Run" id="gSQ-ka-Xk6"/>
                     <connections>
+                        <outlet property="finishLabel" destination="9Ca-zn-bke" id="fpX-j6-VbD"/>
                         <outlet property="mileageLabel" destination="Vk3-3Z-hxH" id="vOz-ys-88V"/>
                         <outlet property="paceLabel" destination="tfz-pS-bAt" id="euK-OS-V00"/>
                         <outlet property="startStopLabel" destination="f07-Kv-eaw" id="pOi-b9-vd9"/>
