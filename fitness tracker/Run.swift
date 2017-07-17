@@ -13,6 +13,7 @@ class Run {
     var duration : Int16 = 0
     var timestamp : Date = Date()
     var locations : [[String:Double]] = []
+//    var splits : [Double] //or method
 }
 
 //var coordinate = ["lat": 2.2, "long": 2.4]

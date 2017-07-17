@@ -13,10 +13,14 @@ import CoreLocation
 // TO DO: add checks that location is enabled and accurate location found!
 // change filter, enable location services always
 // reset data values
+// segue to finish screen
 // disenable start button once run starts until stop is pressed
 // dont let start until location is found
+// pace
+// location update failed method -> clima comparison
+// allow user to pause
 
-class TrackRunVC: UIViewController, CLLocationManagerDelegate {
+class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
     // MARK: Properties
     // Timer
@@ -63,7 +67,8 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
+        map.delegate = self
         timerLabel.text = "0:00"
         setUpLocationManager()
     }
@@ -98,7 +103,10 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate {
             if storeCoordinates {
                 coordinates.append(location)
                 updateDistance()
-                addPin()
+                map.add(createPolyLine())
+                if coordinates.count == 1 {
+                    addPin()
+                }
             }
                 
             //  Zoom in map to user location
@@ -110,18 +118,39 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate {
         }
             
     }
-        
+    
+    // MARK: Map
     func addPin() {
             // Create coordinate
         let pin = MKPointAnnotation()
-        let pinNumber = coordinates.count
-        pin.title = "Pin #\(pinNumber)"
-            
-        let locationCoordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(coordinates[pinNumber - 1].coordinate.latitude, coordinates[pinNumber - 1].coordinate.longitude)
-        pin.coordinate = locationCoordinate
+        pin.title = "Start"
+        
+        pin.coordinate = CLLocationCoordinate2DMake(coordinates[coordinates.count - 1].coordinate.latitude, coordinates[coordinates.count - 1].coordinate.longitude)
         self.map.addAnnotation(pin)
     }
-        
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let polyline = overlay as? MKPolyline else {
+            return MKOverlayRenderer(overlay: overlay)
+        }
+        let polyLineRenderer = MKPolylineRenderer(overlay: polyline)
+        polyLineRenderer.strokeColor = UIColor.gray
+        polyLineRenderer.lineWidth = 5
+        return polyLineRenderer
+    }
+    
+    func createPolyLine() -> MKPolyline {
+        if coordinates.count < 2 {
+            return MKPolyline()
+        }
+        let mapCoordinates : [CLLocationCoordinate2D] = coordinates.map { coordinate in
+            return CLLocationCoordinate2D(latitude: coordinate.coordinate.latitude, longitude: coordinate.coordinate.longitude)
+        }
+        return MKPolyline(coordinates: mapCoordinates, count: mapCoordinates.count)
+    }
+    
+    
+   // MARK: Distance
     func updateDistance() {
         if coordinates.count > 1 {
             let lastLocation = coordinates[coordinates.count - 2]
@@ -138,6 +167,8 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate {
             distanceLabel.text = "Distance(mi)1: " + String(format: "%.2f", distance2InMiles)
         }
     }
+    
+    
     
     // MARK: Timer
     func startTimer() {
