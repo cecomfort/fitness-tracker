@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E80BFBA01F1AA6C100C68DC8 /* TrackRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFB9F1F1AA6C100C68DC8 /* TrackRunVC.swift */; };
+		E80BFBA01F1AA6C100C68DC8 /* DemoTrackRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFB9F1F1AA6C100C68DC8 /* DemoTrackRunVC.swift */; };
 		E80BFBA81F1ADFC100C68DC8 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFBA71F1ADFC100C68DC8 /* Stopwatch.swift */; };
+		E80BFBAA1F1C2D7600C68DC8 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFBA91F1C2D7600C68DC8 /* Run.swift */; };
+		E80BFBAC1F1C2D8300C68DC8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFBAB1F1C2D8300C68DC8 /* Location.swift */; };
+		E80BFBAE1F1C34E100C68DC8 /* RunSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFBAD1F1C34E100C68DC8 /* RunSummaryVC.swift */; };
 		E86D3A161F0DA15900DE63C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */; };
-		E86D3A181F0DA15900DE63C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A171F0DA15900DE63C7 /* ViewController.swift */; };
+		E86D3A181F0DA15900DE63C7 /* TrackRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */; };
 		E86D3A1B1F0DA15900DE63C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86D3A191F0DA15900DE63C7 /* Main.storyboard */; };
 		E86D3A1D1F0DA15900DE63C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E86D3A1C1F0DA15900DE63C7 /* Assets.xcassets */; };
 		E86D3A201F0DA15900DE63C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86D3A1E1F0DA15900DE63C7 /* LaunchScreen.storyboard */; };
@@ -42,11 +45,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E80BFB9F1F1AA6C100C68DC8 /* TrackRunVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackRunVC.swift; sourceTree = "<group>"; };
+		E80BFB9F1F1AA6C100C68DC8 /* DemoTrackRunVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTrackRunVC.swift; sourceTree = "<group>"; };
 		E80BFBA71F1ADFC100C68DC8 /* Stopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stopwatch.swift; path = ../Stopwatch.swift; sourceTree = "<group>"; };
+		E80BFBA91F1C2D7600C68DC8 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		E80BFBAB1F1C2D8300C68DC8 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		E80BFBAD1F1C34E100C68DC8 /* RunSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunSummaryVC.swift; sourceTree = "<group>"; };
 		E86D3A121F0DA15900DE63C7 /* fitness tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fitness tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E86D3A171F0DA15900DE63C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRunVC.swift; sourceTree = "<group>"; };
 		E86D3A1A1F0DA15900DE63C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E86D3A1C1F0DA15900DE63C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E86D3A1F1F0DA15900DE63C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -118,8 +124,6 @@
 				E8834F601F1579100047BC27 /* Model */,
 				E8834F611F15791A0047BC27 /* View */,
 				E8834F621F1579250047BC27 /* Controller */,
-				E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */,
-				E86D3A171F0DA15900DE63C7 /* ViewController.swift */,
 				E86D3A211F0DA15900DE63C7 /* Info.plist */,
 			);
 			path = "fitness tracker";
@@ -149,6 +153,8 @@
 				E8834F651F15A7BE0047BC27 /* YogaPractice.swift */,
 				E80BFBA71F1ADFC100C68DC8 /* Stopwatch.swift */,
 				E8834F691F16F0B40047BC27 /* DataStore.swift */,
+				E80BFBA91F1C2D7600C68DC8 /* Run.swift */,
+				E80BFBAB1F1C2D8300C68DC8 /* Location.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -166,7 +172,10 @@
 		E8834F621F1579250047BC27 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E80BFB9F1F1AA6C100C68DC8 /* TrackRunVC.swift */,
+				E80BFB9F1F1AA6C100C68DC8 /* DemoTrackRunVC.swift */,
+				E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */,
+				E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */,
+				E80BFBAD1F1C34E100C68DC8 /* RunSummaryVC.swift */,
 				E8B80A501F18432200F915E9 /* WorkoutCell.swift */,
 				E8B80A4E1F1841D500F915E9 /* WorkoutLogTVC.swift */,
 				E8834F631F157AB10047BC27 /* LogPracticeTVC.swift */,
@@ -318,13 +327,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8834F661F15A7BE0047BC27 /* YogaPractice.swift in Sources */,
+				E80BFBAC1F1C2D8300C68DC8 /* Location.swift in Sources */,
 				E8B80A511F18432200F915E9 /* WorkoutCell.swift in Sources */,
 				E8834F641F157AB10047BC27 /* LogPracticeTVC.swift in Sources */,
+				E80BFBAA1F1C2D7600C68DC8 /* Run.swift in Sources */,
+				E80BFBAE1F1C34E100C68DC8 /* RunSummaryVC.swift in Sources */,
 				E8B80A4F1F1841D500F915E9 /* WorkoutLogTVC.swift in Sources */,
 				E80BFBA81F1ADFC100C68DC8 /* Stopwatch.swift in Sources */,
-				E86D3A181F0DA15900DE63C7 /* ViewController.swift in Sources */,
+				E86D3A181F0DA15900DE63C7 /* TrackRunVC.swift in Sources */,
 				E8834F6A1F16F0B40047BC27 /* DataStore.swift in Sources */,
-				E80BFBA01F1AA6C100C68DC8 /* TrackRunVC.swift in Sources */,
+				E80BFBA01F1AA6C100C68DC8 /* DemoTrackRunVC.swift in Sources */,
 				E86D3A161F0DA15900DE63C7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

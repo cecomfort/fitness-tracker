@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationUsageDescription</key>
-	<string>We need your location to track distance traveled.</string>
+	<string>Enable location services to track your running distance.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to track your distance traveled.</string>
+	<string>Enable location services to track your running distance.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

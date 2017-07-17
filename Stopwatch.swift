@@ -9,7 +9,7 @@
 import Foundation
 
 class Stopwatch {
-    var time = 0
+    var time : Int16 = 0 // in seconds
     
     func incrementTime() {
         time += 1
