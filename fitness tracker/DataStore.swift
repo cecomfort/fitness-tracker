@@ -31,14 +31,16 @@ class DataStore: NSObject, NSCoding {
         
         if let practices = decoder.decodeObject(forKey: "yogaPractices") as? [YogaPractice] {
             self.yogaPractices = practices
-        } else if let trackedRuns = decoder.decodeObject(forKey: "runs") as? [Run] {
+        }
+        if let trackedRuns = decoder.decodeObject(forKey: "runs") as? [Run] {
             self.runs = trackedRuns
         }
     }
     
     func encode(with coder: NSCoder) {
+        print("In encode")
         coder.encode(yogaPractices, forKey: PropertyKey.yogaPractices)
-//        coder.encode(runs, forKey: PropertyKey.runs)
+        coder.encode(runs, forKey: PropertyKey.runs)
     }
     
     static var filePath: String {
@@ -61,13 +63,14 @@ class DataStore: NSObject, NSCoding {
     
     func addRun(item: Run) {
         self.runs.append(item)
+        print("In addRun, run count is \(self.runs.count)")
         NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
     }
     
     private static func loadData() -> DataStore {
         if let data = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataStore {
-            print("Runs stored:")
-            print(data.runs.count)
+            print("Runs stored: \(data.runs.count)")
+            print("Yoga practices stored: \(data.yogaPractices.count)")
             return data
         } else {
             return DataStore() // no workout data saved

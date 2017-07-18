@@ -8,8 +8,9 @@
 
 import Foundation
 //: NSObject, NSCoding
+// to save a run must have 1 location saved! (or change load map)
 
-class Run {
+class Run: NSObject, NSCoding {
     
     // MARK: Properties
     var date : Date
@@ -53,10 +54,13 @@ class Run {
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
-        guard let date = aDecoder.decodeObject(forKey: PropertyKey.duration) as? Date else {
+        
+        guard let date = aDecoder.decodeObject(forKey: PropertyKey.date) as? Date else {
             print("Unable to decode date for run")
             return nil
         }
+        
+//        let date = NSDate()
         
         guard let locations = aDecoder.decodeObject(forKey: PropertyKey.locations) as? [[String:Double]] else {
             print("Unable to decode locations for run")
@@ -84,6 +88,50 @@ class Run {
         let remainderInSeconds = pace.truncatingRemainder(dividingBy: 1) * 60
         print("remainderInsecs: \(remainderInSeconds)")
         return "\(Int(pace))'\(Int(remainderInSeconds))\""
+    }
+    
+    func calculateMaxMinOfCoordinates() -> [String : Double] {
+//        var maxLat = locations.first?["lat"]
+//        var minLat = locations.first?["lat"]
+//        var maxLong = locations.first?["long"]
+//        var minLong = locations.first?["long"]
+        
+        if var maxLat = locations.first?["lat"], var minLat = locations.first?["lat"], var maxLong = locations.first?["long"], var minLong = locations.first?["long"] {
+            for location in locations {
+                if location["lat"]! > maxLat {
+                    maxLat = location["lat"]!
+                } else if location["lat"]! < minLat {
+                    minLat = location["lat"]!
+                } else if location["long"]! > maxLong {
+                    maxLong = location["long"]!
+                } else if location["long"]! < minLong {
+                    minLong = location["long"]!
+                }
+            }
+            return ["minLat" : minLat, "maxLat" : maxLat, "minLong" : minLong, "maxLong" : maxLong]
+        } else {
+            return Dictionary()
+        }
+        
+        // If there are no locations saved, return an empty dictionary
+//        if minLat == nil || maxLat == nil {
+//            return Dictionary()
+//        }
+//        
+//        for location in locations {
+//            if location["lat"]! > maxLat! {
+//                maxLat = location["lat"]
+//            } else if location["lat"]! < minLat! {
+//                minLat = location["lat"]
+//            } else if location["long"]! > maxLong! {
+//                maxLong = location["long"]
+//            } else if location["long"]! < minLong! {
+//                minLong = location["long"]
+//            }
+//        }
+        
+//        return ["minLat" : minLat!, "maxLat" : maxLat!, "minLong" : minLong!, "maxLong" : maxLong!]
+        
     }
     
 }

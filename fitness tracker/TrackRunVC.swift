@@ -99,11 +99,11 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1]
-        print("In location manager method")
-        print(location.horizontalAccuracy)
+//        print("In location manager method")
+//        print(location.horizontalAccuracy)
         // check to see if location is valid
         if location.horizontalAccuracy > 0 && location.horizontalAccuracy < 50 { //20
-            print("location valid")
+//            print("location valid")
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
             
@@ -216,6 +216,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         
         if let newRun = Run(date: date, mileage: distance1.converted(to: .miles).value, duration: stopwatch.time, locations: locations) {
             store.addRun(item: newRun)
+            print("New Run count: \(store.runs.count)")
             run = newRun
         } else {
             // Add alert
