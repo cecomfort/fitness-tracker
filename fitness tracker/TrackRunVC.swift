@@ -10,12 +10,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
-// TO DO: add checks that location is enabled and accurate location found!
+// TO DO: add checks that location is enabled and accurate location found!. dont let start until location is found
 // change filter, enable location services always
 // reset data values
 // segue to finish screen
 // disenable start button once run starts until stop is pressed
-// dont let start until location is found
 // pace
 // location update failed method -> clima comparison
 // allow user to pause
@@ -23,16 +22,19 @@ import CoreLocation
 class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
     // MARK: Properties
+    var store = DataStore.sharedInstance
+    var date = Date() // need time actually started run?
+    
     // Timer
     var timer = Timer()
     let stopwatch = Stopwatch()
-        
+    
     // Mileage
     let locationManager = CLLocationManager()
     var coordinates: [CLLocation] = []
     var distance1 = Measurement(value: 0, unit: UnitLength.meters)
     var distance2 : Double = 0
-    var run = Run()
+//    var run = Run()
     var storeCoordinates = false
         
     // Outlets
@@ -60,6 +62,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             stopTimer()
         } else { // stopLabel = "Finish
             locationManager.stopUpdatingLocation()
+            saveRun()
             storeCoordinates = false
             resetTimer()
         }
@@ -94,9 +97,11 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1]
-            
+        print("In location manager method")
+        print(location.horizontalAccuracy)
         // check to see if location is valid
         if location.horizontalAccuracy > 0 && location.horizontalAccuracy < 20 {
+            print("location valid")
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
             
@@ -116,7 +121,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             map.setRegion(region, animated: true)
             self.map.showsUserLocation = true
         }
-            
+    
     }
     
     // MARK: Map
@@ -196,6 +201,21 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     func updateTimerLabel() {
         stopwatch.incrementTime()
         timerLabel.text = stopwatch.convertTimeToString()
+    }
+    
+    // MARK: Save run data
+    func saveRun() {
+        var locations : [[String:Double]] = []
+        for coordinate in coordinates {
+            locations.append(["lat": coordinate.coordinate.latitude, "long": coordinate.coordinate.longitude])
+        }
+        
+        if let run = Run(date: date, mileage: distance1.converted(to: .miles).value, duration: stopwatch.time, locations: locations) {
+            store.addRun(item: run)
+        } else {
+            // Add alert
+            print("Unable to store run at this time")
+        }
     }
 }
 //saveRun()
