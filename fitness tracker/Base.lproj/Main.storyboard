@@ -391,6 +391,7 @@
                         <outlet property="startLabel" destination="Gb5-tM-tMy" id="M3l-aj-VtH"/>
                         <outlet property="stopLabel" destination="YLp-PX-uAf" id="E3c-13-PcN"/>
                         <outlet property="timerLabel" destination="3R0-Ie-skg" id="8il-3x-8b6"/>
+                        <segue destination="NbE-GU-ybY" kind="show" identifier="showRunSummary" id="LTc-H5-WUp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -475,7 +476,6 @@
                         <outlet property="paceLabel" destination="tfz-pS-bAt" id="euK-OS-V00"/>
                         <outlet property="startStopLabel" destination="f07-Kv-eaw" id="pOi-b9-vd9"/>
                         <outlet property="timerLabel" destination="LTV-YW-WwJ" id="AbI-c2-XFo"/>
-                        <segue destination="NbE-GU-ybY" kind="show" identifier="showRunSummary" id="EbB-A2-eT7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcg-Az-hoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -537,10 +537,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Run Summary" id="Cf8-fl-p4l"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="vWU-t5-cnS" id="kuh-sp-oDs"/>
+                        <outlet property="durationLabel" destination="v0H-Hx-KG3" id="FA4-Fs-FXB"/>
+                        <outlet property="mapView" destination="cdh-5h-8HC" id="ic2-Ax-bHX"/>
+                        <outlet property="mileageLabel" destination="Wfb-Ej-QG3" id="SJc-bI-Fhw"/>
+                        <outlet property="paceLabel" destination="gal-Me-Enf" id="Pns-Rn-g1r"/>
+                        <outlet property="splitsLabel" destination="rVC-eZ-DI2" id="XXY-WL-gmr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7T8-0i-7be" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4904.8000000000002" y="-101.19940029985008"/>
+            <point key="canvasLocation" x="4778" y="-904"/>
         </scene>
         <!--Running2-->
         <scene sceneID="qrJ-4l-tzn">

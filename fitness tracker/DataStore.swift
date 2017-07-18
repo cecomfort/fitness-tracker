@@ -38,7 +38,7 @@ class DataStore: NSObject, NSCoding {
     
     func encode(with coder: NSCoder) {
         coder.encode(yogaPractices, forKey: PropertyKey.yogaPractices)
-        coder.encode(runs, forKey: PropertyKey.runs)
+//        coder.encode(runs, forKey: PropertyKey.runs)
     }
     
     static var filePath: String {

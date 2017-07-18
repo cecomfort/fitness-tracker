@@ -10,10 +10,19 @@ import UIKit
 import MapKit
 
 class RunSummaryVC: UIViewController {
-    var run: Run!
+    var run: Run?
 
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var mileageLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var paceLabel: UILabel!
+    @IBOutlet weak var splitsLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateDisplay()
         configureView()
 
         // Do any additional setup after loading the view.
@@ -26,6 +35,15 @@ class RunSummaryVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateDisplay() {
+        if let newRun = run {
+//            dateLabel.text = newRun.date.??
+            mileageLabel.text = String(format: "%.2f", newRun.mileage) + " mi"
+            durationLabel.text = String(newRun.duration) // needs formatting!!
+            
+        }
     }
     
 

@@ -34,7 +34,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     var coordinates: [CLLocation] = []
     var distance1 = Measurement(value: 0, unit: UnitLength.meters)
     var distance2 : Double = 0
-//    var run = Run()
+    var run : Run?
     var storeCoordinates = false
         
     // Outlets
@@ -65,6 +65,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             saveRun()
             storeCoordinates = false
             resetTimer()
+            performSegue(withIdentifier: "showRunSummary", sender: self)
         }
     }
         
@@ -210,16 +211,26 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             locations.append(["lat": coordinate.coordinate.latitude, "long": coordinate.coordinate.longitude])
         }
         
-        if let run = Run(date: date, mileage: distance1.converted(to: .miles).value, duration: stopwatch.time, locations: locations) {
-            store.addRun(item: run)
+        if let newRun = Run(date: date, mileage: distance1.converted(to: .miles).value, duration: stopwatch.time, locations: locations) {
+            store.addRun(item: newRun)
+            run = newRun
         } else {
             // Add alert
             print("Unable to store run at this time")
         }
     }
+    
+    // MARK: Prepare for Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showRunSummary" {
+            let destinationVC = segue.destination as! RunSummaryVC
+            if let newRun = run {
+                destinationVC.run = newRun
+            }
+        }
+    }
 }
-//saveRun()
-//performSegue(withIdentifier: "showRunSummary", sender: self)
+
 
 
 //for newLocation in locations {
@@ -247,14 +258,6 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
 //    //        locationManager.startUpdatingLocation()
 //}
 
-//private func saveRun() {
-//    //        run.distance = distance.value
-//    run.distance = distance
-//    run.duration = stopwatch.time
-//    run.timestamp = Date()
-//    
-//    // add init
-//    for location in locationCoordinates {
 
 //@IBAction func startStopTimer(_ sender: Any) {
 //    if startStopLabel.currentTitle == "Start" {
