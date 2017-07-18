@@ -39,9 +39,12 @@ class RunSummaryVC: UIViewController {
     
     func updateDisplay() {
         if let newRun = run {
-//            dateLabel.text = newRun.date.??
+            dateLabel.text = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short) // also .none style if only want to display date or time
             mileageLabel.text = String(format: "%.2f", newRun.mileage) + " mi"
             durationLabel.text = String(newRun.duration) // needs formatting!!
+            
+            let stopwatch = Stopwatch(time: newRun.duration)
+            durationLabel.text = stopwatch.convertTimeToString()
             
         }
     }

@@ -11,6 +11,10 @@ import Foundation
 class Stopwatch {
     var time : Int = 0 // in seconds
     
+    init(time : Int = 0) {
+        self.time = time
+    }
+    
     func incrementTime() {
         time += 1
     }

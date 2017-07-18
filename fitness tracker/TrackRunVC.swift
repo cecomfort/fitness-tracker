@@ -89,7 +89,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         locationManager.activityType = .fitness
             
         // get location updates every 10 meters traveled
-        locationManager.distanceFilter = 10
+        locationManager.distanceFilter = 8
             
         // looks for GPS coordinates of iphone. This method is asynchronous!
         locationManager.startUpdatingLocation()
@@ -101,7 +101,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         print("In location manager method")
         print(location.horizontalAccuracy)
         // check to see if location is valid
-        if location.horizontalAccuracy > 0 && location.horizontalAccuracy < 20 {
+        if location.horizontalAccuracy > 0 && location.horizontalAccuracy < 50 { //20
             print("location valid")
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
