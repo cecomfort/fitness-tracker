@@ -102,7 +102,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         print("In location manager method")
         print(location.horizontalAccuracy)
         // check to see if location is valid
-        if location.horizontalAccuracy > 0 { //&& location.horizontalAccuracy < 100 { //20
+        if location.horizontalAccuracy > 0 && location.horizontalAccuracy < 50 { //20
             print("location valid")
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
@@ -179,6 +179,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     
     // MARK: Timer
     func startTimer() {
+        stopwatch.start()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TrackRunVC.updateTimerLabel), userInfo: nil, repeats: true)
         startLabel.setTitle("Start", for: .normal)
         stopLabel.setTitle("Stop", for: .normal)
@@ -187,6 +188,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     }
     
     func stopTimer() {
+        stopwatch.stop()
         timer.invalidate()
         startLabel.setTitle("Continue", for: .normal)
         stopLabel.setTitle("Finish", for: .normal)
@@ -201,7 +203,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     }
     
     func updateTimerLabel() {
-        stopwatch.incrementTime()
+        stopwatch.updateTime()
         timerLabel.text = stopwatch.convertTimeToString()
     }
     

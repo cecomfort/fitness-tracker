@@ -15,7 +15,10 @@ class DemoTrackRunVC: UIViewController, CLLocationManagerDelegate {
     // MARK: Properties
     // Timer
     var timer = Timer()
-    let stopwatch = Stopwatch()
+//    let stopwatch = Stopwatch()
+    var startTime: Double = 0
+    var time: Double = 0
+    var elapsed: Double = 0
     
     // Outlets
     @IBOutlet weak var timerLabel: UILabel!
@@ -38,7 +41,11 @@ class DemoTrackRunVC: UIViewController, CLLocationManagerDelegate {
         
     }
     
-
+    func resetTimer() {
+        startTime = 0
+        time = 0
+        elapsed = 0
+    }
     
     // need?
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,11 +61,15 @@ class DemoTrackRunVC: UIViewController, CLLocationManagerDelegate {
             
            
             
+            startTime = Date().timeIntervalSinceReferenceDate - elapsed
             
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DemoTrackRunVC.updateTimerLabel), userInfo: nil, repeats: true)
             startStopLabel.setTitle("Pause", for: .normal)
             finishLabel.isHidden = true
         } else if startStopLabel.currentTitle == "Pause" {
+            
+            elapsed = Date().timeIntervalSinceReferenceDate - startTime
+            
             timer.invalidate()
             startStopLabel.setTitle("Start", for: .normal)
             finishLabel.isHidden = false
@@ -66,14 +77,17 @@ class DemoTrackRunVC: UIViewController, CLLocationManagerDelegate {
     }
     
     func updateTimerLabel() {
-        stopwatch.incrementTime()
+        time = Date().timeIntervalSinceReferenceDate - startTime
+        let stopwatch = Stopwatch(time: Int(time))
+        
+//        stopwatch.updateTime()
         timerLabel.text = stopwatch.convertTimeToString()
     }
 
     
     @IBAction func finishRun(_ sender: Any) {
-        stopwatch.reset()
-        timerLabel.text = stopwatch.convertTimeToString()
+//        stopwatch.reset()
+//        timerLabel.text = stopwatch.convertTimeToString()
         finishLabel.isHidden = true
         
      

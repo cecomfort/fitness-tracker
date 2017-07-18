@@ -10,13 +10,23 @@ import Foundation
 
 class Stopwatch {
     var time : Int = 0 // in seconds
+    var startTime: Double = 0
+    var elapsedTime: Double = 0
     
     init(time : Int = 0) {
         self.time = time
     }
     
-    func incrementTime() {
-        time += 1
+    func start() {
+        startTime = Date().timeIntervalSinceReferenceDate - elapsedTime
+    }
+    
+    func stop() {
+        elapsedTime = Date().timeIntervalSinceReferenceDate - startTime
+    }
+    
+    func updateTime() {
+        time = Int(Date().timeIntervalSinceReferenceDate - startTime)
     }
     
     func convertTimeToString() -> String {
@@ -34,5 +44,7 @@ class Stopwatch {
     
     func reset() {
         time = 0
+        startTime = 0
+        elapsedTime = 0
     }
 }
