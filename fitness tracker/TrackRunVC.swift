@@ -36,6 +36,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     var run : Run?
     var storeCoordinates = false
     var distanceInMiles = Measurement(value: 0, unit: UnitLength.miles)
+    var splitTimes = [Int]()
         
     // Outlets
     @IBOutlet weak var map: MKMapView!
@@ -111,6 +112,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
                 coordinates.append(location)
                 updateDistance()
                 updatePace()
+                updateSplits()
                 map.add(createPolyLine())
                 if coordinates.count == 1 {
                     addPin()
@@ -172,10 +174,18 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     
     func updatePace() {
         if distance.value >= 0.1 {
-            let pace = Double(stopwatch.time) / (60 * distanceInMiles.value)
+            let pace = Run.pace(mileage: distanceInMiles.value, duration: stopwatch.time)
             paceLabel.text = Run.paceToString(pace: pace)
         } else {
             paceLabel.text = "0'0\""
+        }
+    }
+    
+    // splits: if Int(mileage) > splits.count { splits.append(currentTime) } // split for every mile
+    func updateSplits() {
+        if Int(distanceInMiles.value) > splitTimes.count {
+            splitTimes.append(stopwatch.time)
+            print("Added split!: \(splitTimes.last)")
         }
     }
     
@@ -218,7 +228,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             locations.append(["lat": coordinate.coordinate.latitude, "long": coordinate.coordinate.longitude])
         }
         
-        if let newRun = Run(date: date, mileage: distance.converted(to: .miles).value, duration: stopwatch.time, locations: locations) {
+        if let newRun = Run(date: date, mileage: distance.converted(to: .miles).value, duration: stopwatch.time, locations: locations, splitTimes: splitTimes) {
 //            store.addRun(item: newRun)
             run = newRun
         } else {

@@ -17,6 +17,7 @@ class Run: NSObject, NSCoding {
     var mileage : Double
     var duration : Int
     var locations : [[String:Double]] = []
+    var splitTimes : [Int]
 //    var splits : [Double] //or method
 // max long and lat
     //var coordinate = ["lat": 2.2, "long": 2.4]
@@ -29,10 +30,11 @@ class Run: NSObject, NSCoding {
         static let date = "date"
         static let duration = "duration"
         static let locations = "locations"
+        static let splits = "splits"
     }
     
     // MARK: Initialization
-    init?(date: Date, mileage: Double, duration: Int, locations: [Dictionary<String, Double>]) {
+    init?(date: Date, mileage: Double, duration: Int, locations: [Dictionary<String, Double>], splitTimes: [Int]) {
         
         // Initialization should fail if there is are no locations saved
 //        if locations.isEmpty {
@@ -43,6 +45,7 @@ class Run: NSObject, NSCoding {
         self.mileage = mileage
         self.duration = duration
         self.locations = locations
+        self.splitTimes = splitTimes
     }
     
     // MARK: NSCoding
@@ -51,6 +54,7 @@ class Run: NSObject, NSCoding {
         aCoder.encode(mileage, forKey: PropertyKey.mileage)
         aCoder.encode(duration, forKey: PropertyKey.duration)
         aCoder.encode(locations, forKey: PropertyKey.locations)
+        aCoder.encode(splitTimes, forKey: PropertyKey.splits)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -67,26 +71,35 @@ class Run: NSObject, NSCoding {
             return nil
         }
         
+        guard let splits = aDecoder.decodeObject(forKey: PropertyKey.splits) as? [Int] else {
+            print("Unable to decode splits for run")
+            return nil
+        }
+        
         let duration = aDecoder.decodeInteger(forKey: PropertyKey.duration)
         let mileage = aDecoder.decodeDouble(forKey: PropertyKey.mileage)
         
-        self.init(date: date, mileage: mileage, duration: duration, locations: locations)
+        self.init(date: date, mileage: mileage, duration: duration, locations: locations, splitTimes: splits)
+    }
+    
+    func avgPace() -> Double {
+        return Run.pace(mileage: mileage, duration: duration)
     }
     
     // MARK: Run methods
     // TODO: round mileage to two decimal places before calculations?
-    func pace() -> Double { // in min/mile
-        print("duration: \(Double(duration))")
-        
-        print("\(60 * mileage)")
+    static func pace(mileage: Double, duration: Int) -> Double { // in min/mile
+//        print("duration: \(Double(duration))")
+//        
+//        print("\(60 * mileage)")
         return Double(duration) / (60 * mileage)
     }
     
     static func paceToString(pace: Double) -> String {
-        print("pace: \(pace)")
-        print("remainder: \(pace.truncatingRemainder(dividingBy: 1))")
+//        print("pace: \(pace)")
+//        print("remainder: \(pace.truncatingRemainder(dividingBy: 1))")
         let remainderInSeconds = pace.truncatingRemainder(dividingBy: 1) * 60
-        print("remainderInsecs: \(remainderInSeconds)")
+//        print("remainderInsecs: \(remainderInSeconds)")
 //        return "\(Int(pace))'\(Int(remainderInSeconds))\""
         return String(format: "%d'%02d\"", Int(pace), Int(remainderInSeconds))
     }
@@ -107,6 +120,33 @@ class Run: NSObject, NSCoding {
             return ["minLat" : minLat, "maxLat" : maxLat, "minLong" : minLong, "maxLong" : maxLong]
         } else {
             return Dictionary()
+        }
+    }
+    
+    func splits() -> [Double] {
+//        var splits = splitTimes
+        var mileNum = 0.0
+        var splits = splitTimes.map { splitTime -> Double in
+            mileNum += 1.0
+            return Run.pace(mileage: mileNum, duration: splitTime)
+        }
+        
+        let mileageRemainder = mileage.truncatingRemainder(dividingBy: 1)
+        var timeRemainder = duration // case of no splits
+        
+        if splitTimes.count > 0 { // case theres splits
+            timeRemainder = duration - splitTimes.last!
+        }
+        let lastSplit = Run.pace(mileage: mileageRemainder, duration: timeRemainder)
+        splits.append(lastSplit)
+        
+        return splits
+    }
+    
+    func splitsToString() -> [String] {
+        let splits = self.splits()
+        return splits.map { split -> String in
+            return Run.paceToString(pace: split)
         }
     }
     

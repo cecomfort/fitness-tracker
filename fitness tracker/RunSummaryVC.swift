@@ -12,7 +12,7 @@ import MapKit
 // splits: if Int(mileage) > splits.count { splits.append(currentTime) } // split for every mile
 
 class RunSummaryVC: UIViewController, MKMapViewDelegate {
-    var run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [])
+    var run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -39,10 +39,13 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate {
             dateLabel.text = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short) // also .none style if only want to display date or time
             mileageLabel.text = String(format: "%.2f", newRun.mileage) + " mi"
             durationLabel.text = String(newRun.duration) // needs formatting!!
-            paceLabel.text = Run.paceToString(pace: newRun.pace())
+            paceLabel.text = Run.paceToString(pace: newRun.avgPace())
             
             let stopwatch = Stopwatch(time: newRun.duration)
             durationLabel.text = stopwatch.convertTimeToString()
+            
+            let splits = newRun.splitsToString()
+            splitsLabel.text = "\(splits)"
             
         }
     }
