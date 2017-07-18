@@ -32,18 +32,18 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     // Mileage
     let locationManager = CLLocationManager()
     var coordinates: [CLLocation] = []
-    var distance1 = Measurement(value: 0, unit: UnitLength.meters)
-    var distance2 : Double = 0
+    var distance = Measurement(value: 0, unit: UnitLength.meters)
     var run : Run?
     var storeCoordinates = false
+    var distanceInMiles = Measurement(value: 0, unit: UnitLength.miles)
         
     // Outlets
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var distanceInMilesLabel: UILabel!
     @IBOutlet weak var startLabel: UIButton!
     @IBOutlet weak var stopLabel: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var paceLabel: UILabel!
         
         // MARK: Actions
     @IBAction func startRun(_ sender: Any) {
@@ -110,6 +110,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             if storeCoordinates {
                 coordinates.append(location)
                 updateDistance()
+                updatePace()
                 map.add(createPolyLine())
                 if coordinates.count == 1 {
                     addPin()
@@ -163,15 +164,18 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             let lastLocation = coordinates[coordinates.count - 2]
             let newLocation = coordinates[coordinates.count - 1]
             let delta : CLLocationDistance = newLocation.distance(from: lastLocation)
-            distance2 += delta
-            distance1 = distance1 + Measurement(value: delta, unit: UnitLength.meters)
-                
-            let distance2InMiles = distance2 * 0.000621371192
-            let distnace1InMiles = distance1.converted(to: UnitLength.miles)
-                
-            distanceInMilesLabel.text = "Distance(mi)2: " + String(format: "%.2f", distnace1InMiles.value)
-                
-            distanceLabel.text = "Distance(mi)1: " + String(format: "%.2f", distance2InMiles)
+            distance = distance + Measurement(value: delta, unit: UnitLength.meters)
+            distanceInMiles = distance.converted(to: UnitLength.miles)
+            distanceLabel.text = "Distance(mi): " + String(format: "%.2f", distanceInMiles.value)
+        }
+    }
+    
+    func updatePace() {
+        if distance.value >= 0.1 {
+            let pace = Double(stopwatch.time) / (60 * distanceInMiles.value)
+            paceLabel.text = Run.paceToString(pace: pace)
+        } else {
+            paceLabel.text = "0'0\""
         }
     }
     
@@ -214,7 +218,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             locations.append(["lat": coordinate.coordinate.latitude, "long": coordinate.coordinate.longitude])
         }
         
-        if let newRun = Run(date: date, mileage: distance1.converted(to: .miles).value, duration: stopwatch.time, locations: locations) {
+        if let newRun = Run(date: date, mileage: distance.converted(to: .miles).value, duration: stopwatch.time, locations: locations) {
 //            store.addRun(item: newRun)
             run = newRun
         } else {
@@ -223,7 +227,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         }
     }
     
-    // MARK: Prepare for Segue
+    // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRunSummary" {
             let destinationVC = segue.destination as! RunSummaryVC

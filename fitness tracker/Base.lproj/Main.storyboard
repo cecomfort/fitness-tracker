@@ -331,17 +331,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance1(mi): 0.00 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDQ-ic-FHD">
-                                <rect key="frame" x="25" y="487" width="324" height="57"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance(mi): 0.00 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDQ-ic-FHD">
+                                <rect key="frame" x="25" y="530" width="324" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
-                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance2(mi): 0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTQ-LF-xUw">
-                                <rect key="frame" x="25" y="535" width="324" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -370,7 +363,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time: 0:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3R0-Ie-skg">
-                                <rect key="frame" x="69" y="458" width="194" height="21"/>
+                                <rect key="frame" x="90" y="438" width="194" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -380,14 +373,21 @@
                                 <rect key="frame" x="25" y="86" width="324" height="255"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pace: 0'00&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoa-ct-80X">
+                                <rect key="frame" x="71" y="481" width="232" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Track Run" id="5V6-jQ-qGW"/>
                     <connections>
-                        <outlet property="distanceInMilesLabel" destination="bTQ-LF-xUw" id="0wi-GD-9Ic"/>
                         <outlet property="distanceLabel" destination="EDQ-ic-FHD" id="coU-7U-N5d"/>
                         <outlet property="map" destination="BTf-pJ-mfL" id="7Gu-jg-2SS"/>
+                        <outlet property="paceLabel" destination="aoa-ct-80X" id="iPY-d8-g7Y"/>
                         <outlet property="startLabel" destination="Gb5-tM-tMy" id="M3l-aj-VtH"/>
                         <outlet property="stopLabel" destination="YLp-PX-uAf" id="E3c-13-PcN"/>
                         <outlet property="timerLabel" destination="3R0-Ie-skg" id="8il-3x-8b6"/>
@@ -556,7 +556,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nc0-4L-Qcq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Running2" id="Ubx-ug-vjd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ob4-pk-aFX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ob4-pk-aFX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -575,7 +575,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OYP-PA-7vy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Yoga" id="oYa-V7-UrT"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vOx-Ey-z1O">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vOx-Ey-z1O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -672,7 +672,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R3e-9X-36P" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Log" id="BmW-vy-PEy"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hVs-P1-FbL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hVs-P1-FbL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
