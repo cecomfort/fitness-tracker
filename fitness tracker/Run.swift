@@ -69,6 +69,22 @@ class Run {
         self.init(date: date, mileage: mileage, duration: duration, locations: locations)
     }
     
+    // MARK: Run methods
+    // TODO: round mileage to two decimal places before calculations?
+    func pace() -> Double { // in min/mile
+        print("duration: \(Double(duration))")
+        
+        print("\(60 * mileage)")
+        return Double(duration) / (60 * mileage)
+    }
+    
+    static func paceToString(pace: Double) -> String {
+        print("pace: \(pace)")
+        print("remainder: \(pace.truncatingRemainder(dividingBy: 1))")
+        let remainderInSeconds = pace.truncatingRemainder(dividingBy: 1) * 60
+        print("remainderInsecs: \(remainderInSeconds)")
+        return "\(Int(pace))'\(Int(remainderInSeconds))\""
+    }
     
 }
 
