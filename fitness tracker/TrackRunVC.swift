@@ -215,8 +215,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         }
         
         if let newRun = Run(date: date, mileage: distance1.converted(to: .miles).value, duration: stopwatch.time, locations: locations) {
-            store.addRun(item: newRun)
-            print("New Run count: \(store.runs.count)")
+//            store.addRun(item: newRun)
             run = newRun
         } else {
             // Add alert
