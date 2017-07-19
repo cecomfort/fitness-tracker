@@ -87,6 +87,10 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         
         // location updates may be pasued if the user does not move a significant distance over a period of time
         locationManager.activityType = .fitness
+        
+        locationManager.allowsBackgroundLocationUpdates = true
+        // default value true
+        locationManager.pausesLocationUpdatesAutomatically = false
             
         // get location updates every 10 meters traveled
         // locationManager.distanceFilter = 8
