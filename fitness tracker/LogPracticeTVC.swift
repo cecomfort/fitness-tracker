@@ -9,8 +9,12 @@
 import UIKit
 import os.log
 
-class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
+class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     var store = DataStore.sharedInstance
+    let datePicker = UIDatePicker()
+    let pickerView = UIPickerView()
+    let durationData = [["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], [":"], ["00", "15", "30", "45"]]
+    
     
     @IBOutlet weak var date: UITextField!
     @IBOutlet weak var style: UITextField!
@@ -22,18 +26,72 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var notes: UITextView!
 
     @IBAction func save(_ sender: Any) {
-        print(date.text!)
-        print(style.text!)
-        print(duration.text!)
-        
+        // date: datePicker.date
         if let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!) {
-            print(newPractice.style)
             store.addPractice(item: newPractice)
             clearTextFields()
         }
     }
     
+    // MARK: PickerView Methods to select class duration
+    func createPickerView() {
+        pickerView.delegate = self
+        duration.inputView = pickerView
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePickingDuration))
+        toolbar.setItems([doneButton], animated: true)
+        duration.inputAccessoryView = toolbar
+    }
     
+    func donePickingDuration() {
+        self.view.endEditing(true)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return durationData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return durationData[component].count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return durationData[component][row]
+    }
+    
+    // Update textfield
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let hours = durationData[0][pickerView.selectedRow(inComponent: 0)]
+        let minutes = durationData[2][pickerView.selectedRow(inComponent: 2)]
+        duration.text = hours + ":" + minutes
+    }
+    
+    
+    // MARK: Date Picker Methods to select date & time
+    func createDatePicker() {
+        // set date picker format
+//        datePicker.datePickerMode = .date
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePickingDate))
+        toolbar.setItems([doneButton], animated: true)
+        date.inputAccessoryView = toolbar
+        date.inputView = datePicker // linking date text field to date picker
+    }
+    
+    func donePickingDate() {
+        // TODO: short format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        
+        date.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+
     // better way to do this? -> loop?
     func clearTextFields() {
         date.text = ""
@@ -90,23 +148,9 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-   
         
-//        let newPractice = YogaPractice(date: "08.08.18", style: "Yin", duration: "1 hr")
-//        print("before saving")
-//        print(newPractice!.style)
-//        
-//        store.addPractice(item: newPractice!)
-//        guard let pratices = NSKeyedUnarchiver.unarchiveObject(withFile:DataStore.filePath) as? [YogaPractice] else { return }
-//        print(pratices)
-        
-        
-//        print("DPR: in viewDidLoad")
-//        NSKeyedArchiver.archiveRootObject("this is a test", toFile: filePath)
-//        
-//
-//        guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? String else { return }
-//        print(data)
+        createDatePicker()
+        createPickerView()
         
         
         // modify background image
