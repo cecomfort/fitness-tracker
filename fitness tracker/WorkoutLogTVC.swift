@@ -63,7 +63,8 @@ class WorkoutLogTVC: UITableViewController {
         
         if indexPath.row < store.yogaPractices.count {
             let practice = store.yogaPractices[indexPath.row]
-            cell.dateLabel.text = practice.date
+            cell.dateLabel.text = DateFormatter.localizedString(from: practice.date, dateStyle: .medium, timeStyle: .short)
+
             cell.typeLabel.text = practice.style
             cell.durationLabel.text = practice.duration
         } else { // run workout

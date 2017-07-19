@@ -9,13 +9,12 @@ import os.log
 class YogaPractice: NSObject, NSCoding {
     
     //MARK: Properties
-    var date: String // date
+    var date: Date
     var style: String
-    var duration: String // time/int interval
-//    var time: String? // time
-//    var instructor: String?
-//    var focus: String?
-//    var notes: String?
+    var duration: String
+    var instructor: String?
+    var focus: String?
+    var notes: String?
 //    var cardioLevel: Int?
 //    var strengthBuildingLevel: Int?
 //    var stretchingLevel: Int?
@@ -31,19 +30,22 @@ class YogaPractice: NSObject, NSCoding {
         static let style = "style"
         static let duration = "duration"
 //        static let time = "time"
-//        static let instructor = "instructor"
-//        static let focus = "focus"
-//        static let notes = "notes"
+        static let instructor = "instructor"
+        static let focus = "focus"
+        static let notes = "notes"
 //        static let cardioLevel = "cardioLevel"
 //        static let strengthBuildingLevel = "strengthBuildingLevel"
 //        static let stretchingLevel = "stretchingLevel"
     }
 
     //MARK: Initialization
-    init?(date: String, style: String, duration: String) {
+    init?(date: Date, style: String, duration: String, instructor: String?, focus: String?, notes: String?) {
         self.date = date
         self.style = style
         self.duration = duration
+        self.instructor = instructor
+        self.focus = focus
+        self.notes = notes
     }
 //    init?(date: String, style: String, duration: Double, time: String?, instructor: String?, focus: String?, notes: String?, cardioLevel: Int?, strengthBuildingLevel: Int?, stretchingLevel: Int?) {
 //        
@@ -92,9 +94,9 @@ class YogaPractice: NSObject, NSCoding {
         aCoder.encode(style, forKey: PropertyKey.style)
         aCoder.encode(duration, forKey: PropertyKey.duration)
 //        aCoder.encode(time, forKey: PropertyKey.time)
-//        aCoder.encode(instructor, forKey: PropertyKey.instructor)
-//        aCoder.encode(focus, forKey: PropertyKey.focus)
-//        aCoder.encode(notes, forKey: PropertyKey.notes)
+        aCoder.encode(instructor, forKey: PropertyKey.instructor)
+        aCoder.encode(focus, forKey: PropertyKey.focus)
+        aCoder.encode(notes, forKey: PropertyKey.notes)
 //        aCoder.encode(cardioLevel, forKey: PropertyKey.cardioLevel)
 //        aCoder.encode(strengthBuildingLevel, forKey: PropertyKey.strengthBuildingLevel)
 //        aCoder.encode(stretchingLevel, forKey: PropertyKey.stretchingLevel)
@@ -103,7 +105,7 @@ class YogaPractice: NSObject, NSCoding {
     required convenience init?(coder aDecoder: NSCoder) {
         
         // Date, Style, and Duration is required. If we cannot decode them, the initializer should fail.
-        guard let date = aDecoder.decodeObject(forKey: PropertyKey.date) as? String else {
+        guard let date = aDecoder.decodeObject(forKey: PropertyKey.date) as? Date else {
             os_log("Unable to decode the date for the yoga practice.", log: OSLog.default, type: .debug)
             return nil
         }
@@ -123,9 +125,9 @@ class YogaPractice: NSObject, NSCoding {
         
         // Optional properties get a conditional cast
 //        let time = aDecoder.decodeObject(forKey: PropertyKey.instructor) as? String
-//        let instructor = aDecoder.decodeObject(forKey: PropertyKey.instructor) as? String
-//        let focus = aDecoder.decodeObject(forKey: PropertyKey.focus) as? String
-//        let notes = aDecoder.decodeObject(forKey: PropertyKey.notes) as? String
+        let instructor = aDecoder.decodeObject(forKey: PropertyKey.instructor) as? String
+        let focus = aDecoder.decodeObject(forKey: PropertyKey.focus) as? String
+        let notes = aDecoder.decodeObject(forKey: PropertyKey.notes) as? String
 //        let cardioLevel = aDecoder.decodeObject(forKey: PropertyKey.cardioLevel) as? Int
 //        let strengthBuildingLevel = aDecoder.decodeObject(forKey: PropertyKey.strengthBuildingLevel) as? Int
 //        let stretchingLevel = aDecoder.decodeObject(forKey: PropertyKey.stretchingLevel) as? Int
@@ -135,7 +137,7 @@ class YogaPractice: NSObject, NSCoding {
         
         // Must call designated initializer.
 //        self.init(date: date, style: style, duration: duration, time: time, instructor: instructor, focus: focus, notes: notes, cardioLevel: cardioLevel, strengthBuildingLevel: strengthBuildingLevel, stretchingLevel: stretchingLevel)
-        self.init(date: date, style: style, duration: duration)
+        self.init(date: date, style: style, duration: duration, instructor: instructor, focus: focus, notes: notes)
         
     }
 //    let date : String

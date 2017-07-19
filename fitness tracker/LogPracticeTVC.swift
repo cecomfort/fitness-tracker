@@ -26,8 +26,7 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     @IBOutlet weak var notes: UITextView!
 
     @IBAction func save(_ sender: Any) {
-        // date: datePicker.date
-        if let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!) {
+        if let newPractice = YogaPractice(date: datePicker.date, style: style.text!, duration: duration.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!) {
             store.addPractice(item: newPractice)
             clearTextFields()
         }
@@ -83,12 +82,7 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     }
     
     func donePickingDate() {
-        // TODO: short format
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        
-        date.text = dateFormatter.string(from: datePicker.date)
+        date.text = DateFormatter.localizedString(from: datePicker.date, dateStyle: .medium, timeStyle: .short)
         self.view.endEditing(true)
     }
 
