@@ -12,35 +12,43 @@ class DataStore: NSObject, NSCoding {
     
     static let sharedInstance = loadData()
     
-    var yogaPractices: [YogaPractice] = []
-    var runs: [Run] = []
+    var yogaPractices: [YogaPractice] { return self.workouts.filter { $0 is YogaPractice } as! [YogaPractice] }
+    var runs: [Run] { return self.workouts.filter { $0 is Run } as! [Run] }
+    var workouts : [Any] = []
     
     struct PropertyKey {
         static let yogaPractices = "yogaPractices"
         static let runs = "runs"
+        static let workouts = "workouts"
     }
     
     private override init() {
-        self.yogaPractices = []
-        self.runs = []
+//        self.yogaPractices = []
+//        self.runs = []
+        self.workouts = []
     }
     
     required init(coder decoder: NSCoder) {
         
 //        self.yogaPractices = (decoder.decodeObject(forKey: "yogaPractices") as? [YogaPractice])!
         
-        if let practices = decoder.decodeObject(forKey: "yogaPractices") as? [YogaPractice] {
-            self.yogaPractices = practices
+//        if let practices = decoder.decodeObject(forKey: "yogaPractices") as? [YogaPractice] {
+//            self.yogaPractices = practices
+//        }
+//        if let trackedRuns = decoder.decodeObject(forKey: "runs") as? [Run] {
+//            self.runs = trackedRuns
+//        }
+        if let workouts = decoder.decodeObject(forKey: "workouts") as? [Any] {
+            self.workouts = workouts
         }
-        if let trackedRuns = decoder.decodeObject(forKey: "runs") as? [Run] {
-            self.runs = trackedRuns
-        }
+        
     }
     
     func encode(with coder: NSCoder) {
         print("In encode")
-        coder.encode(yogaPractices, forKey: PropertyKey.yogaPractices)
-        coder.encode(runs, forKey: PropertyKey.runs)
+//        coder.encode(yogaPractices, forKey: PropertyKey.yogaPractices)
+//        coder.encode(runs, forKey: PropertyKey.runs)
+        coder.encode(workouts, forKey: PropertyKey.workouts)
     }
     
     static var filePath: String {
@@ -51,18 +59,20 @@ class DataStore: NSObject, NSCoding {
     }
     
     func addPractice(item: YogaPractice) {
-        self.yogaPractices.append(item)
+//        self.yogaPractices.append(item)
+        self.workouts.append(item)
         NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
     }
     
     // make same for yoga and running?
     func deletePractice(index: Int) {
-        self.yogaPractices.remove(at: index)
-        NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
+//        self.yogaPractices.remove(at: index)
+//        NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
     }
     
     func addRun(item: Run) {
-        self.runs.append(item)
+//        self.runs.append(item)
+        self.workouts.append(item)
         print("In addRun, run count is \(self.runs.count)")
         NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
     }
@@ -71,6 +81,7 @@ class DataStore: NSObject, NSCoding {
         if let data = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataStore {
             print("Runs stored: \(data.runs.count)")
             print("Yoga practices stored: \(data.yogaPractices.count)")
+            print("Workouts stored: \(data.workouts.count)")
             return data
         } else {
             return DataStore() // no workout data saved

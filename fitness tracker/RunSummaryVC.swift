@@ -13,6 +13,7 @@ import MapKit
 
 class RunSummaryVC: UIViewController, MKMapViewDelegate {
     var run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
+//    var run = Run?()
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -32,7 +33,10 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate {
         // Do any additional setup after loading the view.
     }
     
-
+//    override func viewWillDisappear(_ animated: true) {
+//        run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
+//    }
+    
     
     func updateDisplay() {
         if let newRun = run {
@@ -105,6 +109,8 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate {
         
         mapView.addAnnotations([startPin])
     }
+    
+
 
     /*
     // MARK: - Navigation

@@ -597,7 +597,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutCell" rowHeight="54" id="Ah8-WN-ApT" customClass="WorkoutCell" customModule="fitness_tracker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutCell" rowHeight="54" id="Ah8-WN-ApT" customClass="WorkoutCell" customModule="fitness_tracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ah8-WN-ApT" id="rpv-zs-G6S">
@@ -631,6 +631,44 @@
                                     <outlet property="dateLabel" destination="5Ab-NK-nCa" id="8ew-xa-oOt"/>
                                     <outlet property="durationLabel" destination="dGS-Jg-p51" id="cYN-qg-bgc"/>
                                     <outlet property="typeLabel" destination="cl7-MV-xxO" id="E7p-9y-5W1"/>
+                                    <segue destination="uyk-RF-pYY" kind="show" identifier="showPracticeDetails" id="HnI-7b-zym"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RunCell" rowHeight="76" id="dfo-VJ-PG2" customClass="RunCell" customModule="fitness_tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="82" width="375" height="76"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dfo-VJ-PG2" id="odP-I3-YVC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFe-eB-dAm">
+                                            <rect key="frame" x="19" y="27" width="36" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mileage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xt8-Bc-ZiE">
+                                            <rect key="frame" x="139" y="27" width="69" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQF-un-xvD">
+                                            <rect key="frame" x="266" y="27" width="66" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="yFe-eB-dAm" id="gSM-EP-1kE"/>
+                                    <outlet property="durationLabel" destination="wQF-un-xvD" id="29d-2o-Ysp"/>
+                                    <outlet property="typeLabel" destination="Xt8-Bc-ZiE" id="G0S-pK-5T2"/>
+                                    <segue destination="NbE-GU-ybY" kind="show" identifier="showRunDetails" id="LEN-Ve-7Mx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -640,13 +678,38 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Fitness Log" id="2pA-wg-eTW"/>
-                    <connections>
-                        <segue destination="NbE-GU-ybY" kind="show" identifier="showRunDetails" id="kAo-0O-O9E"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VKp-CN-u3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3900" y="-764"/>
+            <point key="canvasLocation" x="3900" y="-764.16791604197908"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="Ke7-os-E2b">
+            <objects>
+                <tableViewController id="uyk-RF-pYY" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cVb-7m-XHV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="evH-T7-PUy">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="evH-T7-PUy" id="i3Z-gQ-ETW">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uyk-RF-pYY" id="mEA-xW-sZA"/>
+                            <outlet property="delegate" destination="uyk-RF-pYY" id="inc-g1-veO"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qod-Ok-ICm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4824" y="-719"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="I5P-mS-5e6">
@@ -713,6 +776,6 @@
         <image name="temple" width="1944" height="1296"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kAo-0O-O9E"/>
+        <segue reference="LEN-Ve-7Mx"/>
     </inferredMetricsTieBreakers>
 </document>

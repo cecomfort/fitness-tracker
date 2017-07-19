@@ -50,39 +50,60 @@ class WorkoutLogTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return store.yogaPractices.count + store.runs.count
+//        return store.yogaPractices.count + store.runs.count
+        return store.workouts.count
     }
     
 
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "WorkoutCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? WorkoutCell
-            else {
-                fatalError("The dequeued cell is not an instance of a WorkoutCell.")
-        }
-        
-        if indexPath.row < store.yogaPractices.count {
-            let practice = store.yogaPractices[indexPath.row]
-            cell.dateLabel.text = DateFormatter.localizedString(from: practice.date, dateStyle: .medium, timeStyle: .short)
+//        let cellIdentifier = "WorkoutCell"
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? WorkoutCell
+//            else {
+//                fatalError("The dequeued cell is not an instance of a WorkoutCell.")
+//        }
+//        
 
-            cell.typeLabel.text = practice.style
-            cell.durationLabel.text = practice.duration
-        } else { // run workout
-            let run = store.runs[indexPath.row - store.yogaPractices.count]
+        if let run = store.workouts[indexPath.row] as? Run, let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath) as? RunCell {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath) as? RunCell
             cell.dateLabel.text = DateFormatter.localizedString(from: run.date, dateStyle: .medium, timeStyle: .short)
             cell.typeLabel.text = String(format: "%.2f", run.mileage) + " mi"
             cell.durationLabel.text = Stopwatch(time: run.duration).convertTimeToString()
+            return cell
+        } else if let practice = store.workouts[indexPath.row] as? YogaPractice, let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutCell", for: indexPath) as? WorkoutCell {
+            cell.dateLabel.text = DateFormatter.localizedString(from: practice.date, dateStyle: .medium, timeStyle: .short)
+            
+            cell.typeLabel.text = practice.style
+            cell.durationLabel.text = practice.duration
+            return cell
         }
-//        let practice = store.yogaPractices[indexPath.row]
-//        print(practice.date)
-//        print(practice.style)
-//        print(practice.duration)
-//        
-//        cell.dateLabel.text = practice.date
-//        cell.typeLabel.text = practice.style
-//        cell.durationLabel.text = practice.duration
-
-        return cell
+        fatalError("The dequeued cell is not an instance of a RunCell or WorkoutCell.")
+           
+    
+//        let cell2 = tableView.dequeueReusableCell(withIdentifier: "WorkoutCell", for: indexPath) as? WorkoutCell
+//        return cell2!
+//
+//        if indexPath.row < store.yogaPractices.count {
+//            let practice = store.yogaPractices[indexPath.row]
+//            cell.dateLabel.text = DateFormatter.localizedString(from: practice.date, dateStyle: .medium, timeStyle: .short)
+//
+//            cell.typeLabel.text = practice.style
+//            cell.durationLabel.text = practice.duration
+//        } else { // run workout
+//            let run = store.runs[indexPath.row - store.yogaPractices.count]
+//            cell.dateLabel.text = DateFormatter.localizedString(from: run.date, dateStyle: .medium, timeStyle: .short)
+//            cell.typeLabel.text = String(format: "%.2f", run.mileage) + " mi"
+//            cell.durationLabel.text = Stopwatch(time: run.duration).convertTimeToString()
+//        }
+////        let practice = store.yogaPractices[indexPath.row]
+////        print(practice.date)
+////        print(practice.style)
+////        print(practice.duration)
+////        
+////        cell.dateLabel.text = practice.date
+////        cell.typeLabel.text = practice.style
+////        cell.durationLabel.text = practice.duration
+//
+//        return cell
      }
     
     // MARK: Delete Workout 
@@ -128,17 +149,30 @@ class WorkoutLogTVC: UITableViewController {
     
     
     // MARK: Navigation
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row >= store.yogaPractices.count {
-            selectedIndex = indexPath.row
-            performSegue(withIdentifier: "showRunDetails", sender: self)
-        }
+//    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) {
+//        selectedIndex = indexPath.row
+//        
+////        if indexPath.row >= store.yogaPractices.count {
+////            selectedIndex = indexPath.row
+////            performSegue(withIdentifier: "showRunDetails", sender: self)
+////        }
+//    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedIndex = indexPath.row
+        return indexPath
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRunDetails" {
             let destinationVC = segue.destination as! RunSummaryVC
-            destinationVC.run = store.runs[selectedIndex - store.yogaPractices.count]
+//            destinationVC.run = store.runs[selectedIndex - store.yogaPractices.count]
+            if let run = store.workouts[selectedIndex] as? Run {
+                print("Run selected!")
+                destinationVC.run = run
+            }
+//            destinationVC.run = store.workouts[selectedIndex] as? Run
+//            store.workouts[indexPath.row] as? Run
         }
     }
 
