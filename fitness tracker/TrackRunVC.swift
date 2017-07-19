@@ -229,7 +229,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         }
         
         if let newRun = Run(date: date, mileage: distance.converted(to: .miles).value, duration: stopwatch.time, locations: locations, splitTimes: splitTimes) {
-//            store.addRun(item: newRun)
+            store.addRun(item: newRun)
             run = newRun
         } else {
             // Add alert

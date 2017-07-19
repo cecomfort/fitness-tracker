@@ -49,7 +49,7 @@ class WorkoutLogTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return store.yogaPractices.count
+        return store.yogaPractices.count + store.runs.count
     }
     
 
@@ -59,19 +59,32 @@ class WorkoutLogTVC: UITableViewController {
             else {
                 fatalError("The dequeued cell is not an instance of a WorkoutCell.")
         }
-        let practice = store.yogaPractices[indexPath.row]
-        print(practice.date)
-        print(practice.style)
-        print(practice.duration)
         
-        cell.dateLabel.text = practice.date
-        cell.typeLabel.text = practice.style
-        cell.durationLabel.text = practice.duration
+        if indexPath.row < store.yogaPractices.count {
+            let practice = store.yogaPractices[indexPath.row]
+            cell.dateLabel.text = practice.date
+            cell.typeLabel.text = practice.style
+            cell.durationLabel.text = practice.duration
+        } else { // run workout
+            let run = store.runs[indexPath.row - store.yogaPractices.count]
+            cell.dateLabel.text = DateFormatter.localizedString(from: run.date, dateStyle: .medium, timeStyle: .short)
+            cell.typeLabel.text = String(format: "%.2f", run.mileage) + " mi"
+            cell.durationLabel.text = Stopwatch(time: run.duration).convertTimeToString()
+        }
+//        let practice = store.yogaPractices[indexPath.row]
+//        print(practice.date)
+//        print(practice.style)
+//        print(practice.duration)
+//        
+//        cell.dateLabel.text = practice.date
+//        cell.typeLabel.text = practice.style
+//        cell.durationLabel.text = practice.duration
 
         return cell
      }
     
-    // MARK: Delete Workout
+    // MARK: Delete Workout 
+    // TODO: Update for deleting workout!!!
  
     // swipe to delete table view cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -110,7 +123,14 @@ class WorkoutLogTVC: UITableViewController {
     func cancelDeleteWorkout(alertAction: UIAlertAction!) {
         deleteWorkoutIndexPath = nil
     }
-
+    
+    
+    // MARK: Navigation
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row >= store.yogaPractices.count {
+            
+        }
+    }
 
 
     
