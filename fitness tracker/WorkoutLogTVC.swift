@@ -12,8 +12,9 @@ class WorkoutLogTVC: UITableViewController {
     
     
     //MARK: Properties
-     var store = DataStore.sharedInstance
-     var deleteWorkoutIndexPath: IndexPath? = nil
+    var store = DataStore.sharedInstance
+    var deleteWorkoutIndexPath: IndexPath? = nil
+    var selectedIndex = 0
     
 //    @IBOutlet weak var dateLabel: UILabel!
 //    @IBOutlet weak var typeLabel: UILabel!
@@ -128,7 +129,15 @@ class WorkoutLogTVC: UITableViewController {
     // MARK: Navigation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row >= store.yogaPractices.count {
-            
+            selectedIndex = indexPath.row
+            performSegue(withIdentifier: "showRunDetails", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showRunDetails" {
+            let destinationVC = segue.destination as! RunSummaryVC
+            destinationVC.run = store.runs[selectedIndex - store.yogaPractices.count]
         }
     }
 
