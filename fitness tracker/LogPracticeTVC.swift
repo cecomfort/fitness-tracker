@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate {
     var store = DataStore.sharedInstance
     let datePicker = UIDatePicker()
     let pickerView = UIPickerView()
@@ -19,14 +19,19 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     @IBOutlet weak var date: UITextField!
     @IBOutlet weak var style: UITextField!
     @IBOutlet weak var duration: UITextField!
-    @IBOutlet weak var timeOfDay: UITextField!
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var instructor: UITextField!
     @IBOutlet weak var focus: UITextField!
     @IBOutlet weak var notes: UITextView!
+    @IBOutlet weak var cardioLevel: RatingControl!
+    @IBOutlet weak var strengthBuildingLevel: RatingControl!
+    @IBOutlet weak var flexibilityLevel: RatingControl!
 
     @IBAction func save(_ sender: Any) {
-        if let newPractice = YogaPractice(date: datePicker.date, style: style.text!, duration: duration.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!) {
+        if let newPractice = YogaPractice(date: datePicker.date, style: style.text!, duration: duration.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!, cardioLevel: cardioLevel.rating, strengthBuildingLevel: strengthBuildingLevel.rating, flexibilityLevel: flexibilityLevel.rating) {
+            print("cardio: \(cardioLevel.rating)")
+            print("strength: \(strengthBuildingLevel.rating)")
+            print("flex: \(flexibilityLevel.rating)")
             store.addPractice(item: newPractice)
             clearTextFields()
         }
@@ -95,6 +100,9 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         instructor.text = ""
         focus.text = ""
         notes.text = ""
+        cardioLevel.rating = 0
+        strengthBuildingLevel.rating = 0
+        flexibilityLevel.rating = 0
     }
     
 
@@ -163,7 +171,11 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         view.addGestureRecognizer(tap)
         
         // enable done button in keyboard
-        self.date.delegate = self
+        self.style.delegate = self
+        self.location.delegate = self
+        self.instructor.delegate = self
+        self.focus.delegate = self
+        self.notes.delegate = self // TODO Needed?? Done button not working!
     }
     
     // Enable done button functionality
@@ -199,9 +211,38 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
 
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
+//        cell.backgroundColor = UIColor.clear
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.2)
     }
     
+    // change section headers
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor(white: 1, alpha: 0.6)
+//        headerView.backgroundColor = UIColor.white
+        
+        let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width:
+            tableView.bounds.size.width, height: tableView.bounds.size.height))
+//        headerLabel.font = UIFont(name: "Verdana", size: 20)
+        headerLabel.textColor = UIColor.black
+        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        
+        
+        
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Class Details"
+        } else if section == 1 {
+            return "Ratings"
+        } else {
+            return "Notes"
+        }
+    }
   
 
     /*
