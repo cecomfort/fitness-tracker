@@ -91,7 +91,6 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         date.text = ""
         style.text = ""
         duration.text = ""
-        timeOfDay.text = ""
         location.text = ""
         instructor.text = ""
         focus.text = ""

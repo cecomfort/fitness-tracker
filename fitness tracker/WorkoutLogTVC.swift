@@ -62,7 +62,7 @@ class WorkoutLogTVC: UITableViewController {
 //                fatalError("The dequeued cell is not an instance of a WorkoutCell.")
 //        }
 //        
-
+        // guard -> else continue, guard -> fatal error 
         if let run = store.workouts[indexPath.row] as? Run, let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath) as? RunCell {
 //            let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath) as? RunCell
             cell.dateLabel.text = DateFormatter.localizedString(from: run.date, dateStyle: .medium, timeStyle: .short)
