@@ -104,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E80BFBF01F204C1E00C68DC8 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E80BFBEB1F1FF28100C68DC8 /* RunCell.swift */,
+				E8B80A501F18432200F915E9 /* WorkoutCell.swift */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
 		E86D3A091F0DA15900DE63C7 = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +178,7 @@
 		E8834F611F15791A0047BC27 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E80BFBF01F204C1E00C68DC8 /* Custom Cells */,
 				E86D3A1C1F0DA15900DE63C7 /* Assets.xcassets */,
 				E86D3A191F0DA15900DE63C7 /* Main.storyboard */,
 				E86D3A1E1F0DA15900DE63C7 /* LaunchScreen.storyboard */,
@@ -179,12 +189,10 @@
 		E8834F621F1579250047BC27 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E80BFBEB1F1FF28100C68DC8 /* RunCell.swift */,
 				E80BFB9F1F1AA6C100C68DC8 /* DemoTrackRunVC.swift */,
 				E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */,
 				E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */,
 				E80BFBAD1F1C34E100C68DC8 /* RunSummaryVC.swift */,
-				E8B80A501F18432200F915E9 /* WorkoutCell.swift */,
 				E8B80A4E1F1841D500F915E9 /* WorkoutLogTVC.swift */,
 				E8834F631F157AB10047BC27 /* LogPracticeTVC.swift */,
 				E80BFBED1F200A1700C68DC8 /* RatingControl.swift */,

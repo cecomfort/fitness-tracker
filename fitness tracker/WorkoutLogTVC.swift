@@ -69,14 +69,14 @@ class WorkoutLogTVC: UITableViewController {
             cell.typeLabel.text = String(format: "%.2f", run.mileage) + " mi"
             cell.durationLabel.text = Stopwatch(time: run.duration).convertTimeToString()
             return cell
-        } else if let practice = store.workouts[indexPath.row] as? YogaPractice, let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutCell", for: indexPath) as? WorkoutCell {
+        } else if let practice = store.workouts[indexPath.row] as? YogaPractice, let cell = tableView.dequeueReusableCell(withIdentifier: "YogaPracticeCell", for: indexPath) as? YogaPracticeCell {
             cell.dateLabel.text = DateFormatter.localizedString(from: practice.date, dateStyle: .medium, timeStyle: .short)
             
             cell.typeLabel.text = practice.style
             cell.durationLabel.text = practice.duration
             return cell
         }
-        fatalError("The dequeued cell is not an instance of a RunCell or WorkoutCell.")
+        fatalError("The dequeued cell is not an instance of a RunCell or YogaPracticeCell.")
            
     
 //        let cell2 = tableView.dequeueReusableCell(withIdentifier: "WorkoutCell", for: indexPath) as? WorkoutCell

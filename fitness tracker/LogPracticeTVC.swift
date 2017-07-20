@@ -153,6 +153,8 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         createDatePicker()
         createPickerView()
         
+        style.isUserInteractionEnabled = false
+        
         
         // modify background image
         let imageView = UIImageView(frame: self.view.frame)

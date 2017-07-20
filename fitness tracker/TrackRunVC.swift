@@ -187,7 +187,6 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     func updateSplits() {
         if Int(distanceInMiles.value) > splitTimes.count {
             splitTimes.append(stopwatch.time)
-            print("Added split!: \(splitTimes.last)")
         }
     }
     

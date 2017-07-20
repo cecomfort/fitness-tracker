@@ -11,7 +11,7 @@ import MapKit
 
 // splits: if Int(mileage) > splits.count { splits.append(currentTime) } // split for every mile
 
-class RunSummaryVC: UIViewController, MKMapViewDelegate {
+class RunSummaryVC: UIViewController, MKMapViewDelegate { // UITableViewDelegate, UITableViewDataSource
     var run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
 //    var run = Run?()
     

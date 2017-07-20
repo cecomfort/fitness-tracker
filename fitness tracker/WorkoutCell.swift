@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WorkoutCell: UITableViewCell {
+class YogaPracticeCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
