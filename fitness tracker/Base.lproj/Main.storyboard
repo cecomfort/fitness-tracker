@@ -612,7 +612,7 @@
                                     <outlet property="dateLabel" destination="5Ab-NK-nCa" id="8ew-xa-oOt"/>
                                     <outlet property="durationLabel" destination="dGS-Jg-p51" id="cYN-qg-bgc"/>
                                     <outlet property="typeLabel" destination="cl7-MV-xxO" id="E7p-9y-5W1"/>
-                                    <segue destination="sri-Ua-7I6" kind="show" id="xG8-Ei-NCQ"/>
+                                    <segue destination="sri-Ua-7I6" kind="show" identifier="showYogaPracticeDetails" id="xG8-Ei-NCQ"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RunCell" rowHeight="76" id="dfo-VJ-PG2" customClass="RunCell" customModule="fitness_tracker" customModuleProvider="target">

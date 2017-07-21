@@ -10,9 +10,11 @@ import UIKit
 import os.log
 
 // TODO: Can duration be a date?
+// TODO: Clear date picker
 
 class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate {
-    var store = DataStore.sharedInstance
+    
+    var yogaPractice : YogaPractice?
     let datePicker = UIDatePicker() 
     let pickerView = UIPickerView()
     let durationData = [["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], [":"], ["00", "15", "30", "45"]]
@@ -24,20 +26,6 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var instructor: UITextField!
     @IBOutlet weak var focus: UITextField!
-//    @IBOutlet weak var notes: UITextView!
-//    @IBOutlet weak var cardioLevel: RatingControl!
-//    @IBOutlet weak var strengthBuildingLevel: RatingControl!
-//    @IBOutlet weak var flexibilityLevel: RatingControl!
-
-//    @IBAction func save(_ sender: Any) {
-//        if let newPractice = YogaPractice(date: datePicker.date, style: style.text!, duration: duration.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!, cardioLevel: cardioLevel.rating, strengthBuildingLevel: strengthBuildingLevel.rating, flexibilityLevel: flexibilityLevel.rating) {
-//            print("cardio: \(cardioLevel.rating)")
-//            print("strength: \(strengthBuildingLevel.rating)")
-//            print("flex: \(flexibilityLevel.rating)")
-//            store.addPractice(item: newPractice)
-//            clearTextFields()
-//        }
-//    }
     
     // MARK: PickerView Methods to select class duration
     func createPickerView() {
@@ -93,38 +81,8 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         self.view.endEditing(true)
     }
 
-//    @IBAction func addPractice(_ sender: Any) {
-//        print(date.text!)
-//        print(style.text!)
-//        print(duration.text!)
-//    }
-//    @IBAction func save(_ sender: UIBarButtonItem) {
-//        print(date.text!)
-//        print(style.text!)
-//        print(duration.text!)
-//
-////        if date.text != "" && style.text != "" && duration.text != "" {
-////            let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!)
-////            store.addPractice(item: newPractice)
-////        }
-//        
-//        if let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!) {
-//            store.addPractice(item: newPractice)
-//        }
-//    }
-    
-//    @IBAction func addPractice(_ sender: Any) {
 
-//        if date.text != "" && style.text != "" && duration.text != "" {
-//            let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: duration.text!)
-//            store.addPractice(item: newPractice)
-//        }
-        
-//        if let newPractice = YogaPractice(date: "07.17.7", style: style.text!, duration: "1 hr") {
-//            store.addPractice(item: newPractice)
-//        }
-//        let newPractice = YogaPractice(date: date.text!, style: style.text!, duration: Double(duration.text!)!, time: timeOfDay.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!, cardioLevel: 4, strengthBuildingLevel: 4, stretchingLevel: 4)
-//        
+
 //        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(newPractice, toFile: YogaPractice.ArchiveURL.path)
 //        if isSuccessfulSave {
 //            os_log("Practice successfully saved.", log: OSLog.default, type: .debug)
@@ -163,7 +121,19 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         self.location.delegate = self
         self.instructor.delegate = self
         self.focus.delegate = self
-//        self.notes.delegate = self // TODO Needed?? Done button not working!
+        
+        loadYogaPracticeData()
+    }
+
+    private func loadYogaPracticeData() {
+        if let savedPractice = yogaPractice {
+            date.text = DateFormatter.localizedString(from: savedPractice.date, dateStyle: .medium, timeStyle: .short)
+            style.text = savedPractice.style
+            duration.text = savedPractice.duration
+//            location.text = savedPractice.location
+            instructor.text = savedPractice.instructor
+            focus.text = savedPractice.focus
+        }
     }
     
     // Enable done button functionality
@@ -233,7 +203,21 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
 //        }
     }
   
-
+    //    @IBOutlet weak var notes: UITextView!
+    //    @IBOutlet weak var cardioLevel: RatingControl!
+    //    @IBOutlet weak var strengthBuildingLevel: RatingControl!
+    //    @IBOutlet weak var flexibilityLevel: RatingControl!
+    
+    //    @IBAction func save(_ sender: Any) {
+    //        if let newPractice = YogaPractice(date: datePicker.date, style: style.text!, duration: duration.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!, cardioLevel: cardioLevel.rating, strengthBuildingLevel: strengthBuildingLevel.rating, flexibilityLevel: flexibilityLevel.rating) {
+    //            print("cardio: \(cardioLevel.rating)")
+    //            print("strength: \(strengthBuildingLevel.rating)")
+    //            print("flex: \(flexibilityLevel.rating)")
+    //            store.addPractice(item: newPractice)
+    //            clearTextFields()
+    //        }
+    //    }
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

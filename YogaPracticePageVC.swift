@@ -24,6 +24,7 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
     var cardioLevel = 0
     var strengthBuildingLevel = 0
     var flexibilityLevel = 0
+    var yogaPractice : YogaPractice?
     
     
     override func viewDidLoad() {
@@ -55,7 +56,6 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
             store.addPractice(item: newPractice)
             clearTextFields()
         }
-        
     }
     
     // Better way to do this? loop?
@@ -81,12 +81,14 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
         page1VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PracticeDetailsPage1") as? YogaDetailsTVC
        page2VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PracticeDetailsPage2") as? YogaNotesTVC
         
-        // Send data from parent PageViewController to child VCs
         if let firstVC = page1VC, let secondVC = page2VC {
-//            firstVC.parentText = "foo"
-//            secondVC.parentText = "bar"
-            
             yogaVCs = [firstVC, secondVC]
+            
+            // Send data from parent PageViewController to child VCs
+            if let savedPractice = yogaPractice {
+                firstVC.yogaPractice = savedPractice
+                secondVC.yogaPractice = savedPractice
+            }
         }
     }
     
@@ -130,7 +132,6 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
             }
         }
     }
-    
     
     // MARK: Data source functions.
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

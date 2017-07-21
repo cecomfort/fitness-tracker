@@ -6,6 +6,8 @@
 import Foundation
 import os.log
 
+// TODO: Add location, make ratings not optionals, add checks before initalization
+
 class YogaPractice: NSObject, NSCoding {
     
     // MARK: Properties

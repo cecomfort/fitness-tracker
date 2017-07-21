@@ -173,6 +173,12 @@ class WorkoutLogTVC: UITableViewController {
             }
 //            destinationVC.run = store.workouts[selectedIndex] as? Run
 //            store.workouts[indexPath.row] as? Run
+        } else if segue.identifier == "showYogaPracticeDetails" {
+            let desinationVC = segue.destination as? YogaPracticePageVC
+            if let yogaPractice = store.workouts[selectedIndex] as? YogaPractice {
+                print("Yoga practice selected!")
+                desinationVC?.yogaPractice = yogaPractice
+            }
         }
     }
 

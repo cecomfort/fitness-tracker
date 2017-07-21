@@ -10,6 +10,7 @@ import UIKit
 
 // TODO: Enable Done button on text field
 // TODO: Selected cells are highlighted :(
+// TODO: Stars arent loading :(
 
 class YogaNotesTVC: UITableViewController {
     
@@ -17,6 +18,7 @@ class YogaNotesTVC: UITableViewController {
     @IBOutlet weak var strengthBuildingLevel: RatingControl!
     @IBOutlet weak var flexibilityLevel: RatingControl!
     @IBOutlet weak var notesTextField: UITextView!
+    var yogaPractice : YogaPractice?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,8 @@ class YogaNotesTVC: UITableViewController {
         //Looks for single or multiple taps.
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 //        view.addGestureRecognizer(tap)
+        
+        loadYogaPracticeData()
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -67,6 +71,18 @@ class YogaNotesTVC: UITableViewController {
             return "Notes"
         }
     }
-
-
+    
+//    @IBOutlet weak var cardioLevel: RatingControl!
+//    @IBOutlet weak var strengthBuildingLevel: RatingControl!
+//    @IBOutlet weak var flexibilityLevel: RatingControl!
+//    @IBOutlet weak var notesTextField: UITextView!
+    
+    private func loadYogaPracticeData() {
+        if let savedPractice = yogaPractice {
+            cardioLevel.rating = savedPractice.cardioLevel!
+            strengthBuildingLevel.rating = savedPractice.strengthBuildingLevel!
+            flexibilityLevel.rating = savedPractice.flexibilityLevel!
+            notesTextField.text = savedPractice.notes
+        }
+    }
 }
