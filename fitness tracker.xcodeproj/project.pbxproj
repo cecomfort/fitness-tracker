@@ -15,6 +15,8 @@
 		E80BFBB01F1DC3C100C68DC8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80BFBAF1F1DC3C100C68DC8 /* MapKit.framework */; };
 		E80BFBEC1F1FF28100C68DC8 /* RunCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFBEB1F1FF28100C68DC8 /* RunCell.swift */; };
 		E80BFBEE1F200A1700C68DC8 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFBED1F200A1700C68DC8 /* RatingControl.swift */; };
+		E80BFC361F2166DB00C68DC8 /* YogaPracticePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFC351F2166DB00C68DC8 /* YogaPracticePageVC.swift */; };
+		E80BFC381F216BB000C68DC8 /* YogaNotesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFC371F216BB000C68DC8 /* YogaNotesTVC.swift */; };
 		E86D3A161F0DA15900DE63C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */; };
 		E86D3A181F0DA15900DE63C7 /* TrackRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */; };
 		E86D3A1B1F0DA15900DE63C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86D3A191F0DA15900DE63C7 /* Main.storyboard */; };
@@ -22,7 +24,7 @@
 		E86D3A201F0DA15900DE63C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86D3A1E1F0DA15900DE63C7 /* LaunchScreen.storyboard */; };
 		E86D3A2B1F0DA15A00DE63C7 /* fitness_trackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A2A1F0DA15A00DE63C7 /* fitness_trackerTests.swift */; };
 		E86D3A361F0DA15A00DE63C7 /* fitness_trackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A351F0DA15A00DE63C7 /* fitness_trackerUITests.swift */; };
-		E8834F641F157AB10047BC27 /* LogPracticeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8834F631F157AB10047BC27 /* LogPracticeTVC.swift */; };
+		E8834F641F157AB10047BC27 /* YogaDetailsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8834F631F157AB10047BC27 /* YogaDetailsTVC.swift */; };
 		E8834F661F15A7BE0047BC27 /* YogaPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8834F651F15A7BE0047BC27 /* YogaPractice.swift */; };
 		E8834F6A1F16F0B40047BC27 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8834F691F16F0B40047BC27 /* DataStore.swift */; };
 		E8ABA4FF1F0F105E002AF422 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ABA4FE1F0F105E002AF422 /* CoreLocation.framework */; };
@@ -56,6 +58,8 @@
 		E80BFBAF1F1DC3C100C68DC8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E80BFBEB1F1FF28100C68DC8 /* RunCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunCell.swift; sourceTree = "<group>"; };
 		E80BFBED1F200A1700C68DC8 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		E80BFC351F2166DB00C68DC8 /* YogaPracticePageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YogaPracticePageVC.swift; path = ../YogaPracticePageVC.swift; sourceTree = "<group>"; };
+		E80BFC371F216BB000C68DC8 /* YogaNotesTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YogaNotesTVC.swift; sourceTree = "<group>"; };
 		E86D3A121F0DA15900DE63C7 /* fitness tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fitness tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRunVC.swift; sourceTree = "<group>"; };
@@ -69,7 +73,7 @@
 		E86D3A311F0DA15A00DE63C7 /* fitness trackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fitness trackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86D3A351F0DA15A00DE63C7 /* fitness_trackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fitness_trackerUITests.swift; sourceTree = "<group>"; };
 		E86D3A371F0DA15A00DE63C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8834F631F157AB10047BC27 /* LogPracticeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogPracticeTVC.swift; sourceTree = "<group>"; };
+		E8834F631F157AB10047BC27 /* YogaDetailsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YogaDetailsTVC.swift; sourceTree = "<group>"; };
 		E8834F651F15A7BE0047BC27 /* YogaPractice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YogaPractice.swift; sourceTree = "<group>"; };
 		E8834F691F16F0B40047BC27 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		E8ABA4FE1F0F105E002AF422 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -111,6 +115,26 @@
 				E8B80A501F18432200F915E9 /* WorkoutCell.swift */,
 			);
 			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		E80BFC391F216D9800C68DC8 /* Yoga */ = {
+			isa = PBXGroup;
+			children = (
+				E80BFC371F216BB000C68DC8 /* YogaNotesTVC.swift */,
+				E8834F631F157AB10047BC27 /* YogaDetailsTVC.swift */,
+				E80BFC351F2166DB00C68DC8 /* YogaPracticePageVC.swift */,
+			);
+			name = Yoga;
+			sourceTree = "<group>";
+		};
+		E80BFC3A1F216DA000C68DC8 /* Running */ = {
+			isa = PBXGroup;
+			children = (
+				E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */,
+				E80BFBAD1F1C34E100C68DC8 /* RunSummaryVC.swift */,
+				E80BFB9F1F1AA6C100C68DC8 /* DemoTrackRunVC.swift */,
+			);
+			name = Running;
 			sourceTree = "<group>";
 		};
 		E86D3A091F0DA15900DE63C7 = {
@@ -189,12 +213,10 @@
 		E8834F621F1579250047BC27 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E80BFB9F1F1AA6C100C68DC8 /* DemoTrackRunVC.swift */,
+				E80BFC3A1F216DA000C68DC8 /* Running */,
+				E80BFC391F216D9800C68DC8 /* Yoga */,
 				E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */,
-				E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */,
-				E80BFBAD1F1C34E100C68DC8 /* RunSummaryVC.swift */,
 				E8B80A4E1F1841D500F915E9 /* WorkoutLogTVC.swift */,
-				E8834F631F157AB10047BC27 /* LogPracticeTVC.swift */,
 				E80BFBED1F200A1700C68DC8 /* RatingControl.swift */,
 			);
 			name = Controller;
@@ -353,10 +375,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E80BFBEE1F200A1700C68DC8 /* RatingControl.swift in Sources */,
+				E80BFC381F216BB000C68DC8 /* YogaNotesTVC.swift in Sources */,
 				E8834F661F15A7BE0047BC27 /* YogaPractice.swift in Sources */,
 				E80BFBAC1F1C2D8300C68DC8 /* Location.swift in Sources */,
 				E8B80A511F18432200F915E9 /* WorkoutCell.swift in Sources */,
-				E8834F641F157AB10047BC27 /* LogPracticeTVC.swift in Sources */,
+				E8834F641F157AB10047BC27 /* YogaDetailsTVC.swift in Sources */,
+				E80BFC361F2166DB00C68DC8 /* YogaPracticePageVC.swift in Sources */,
 				E80BFBAA1F1C2D7600C68DC8 /* Run.swift in Sources */,
 				E80BFBAE1F1C34E100C68DC8 /* RunSummaryVC.swift in Sources */,
 				E8B80A4F1F1841D500F915E9 /* WorkoutLogTVC.swift in Sources */,

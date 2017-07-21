@@ -9,9 +9,11 @@
 import UIKit
 import os.log
 
-class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate {
+// TODO: Can duration be a date?
+
+class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate {
     var store = DataStore.sharedInstance
-    let datePicker = UIDatePicker()
+    let datePicker = UIDatePicker() 
     let pickerView = UIPickerView()
     let durationData = [["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], [":"], ["00", "15", "30", "45"]]
     
@@ -22,20 +24,20 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var instructor: UITextField!
     @IBOutlet weak var focus: UITextField!
-    @IBOutlet weak var notes: UITextView!
-    @IBOutlet weak var cardioLevel: RatingControl!
-    @IBOutlet weak var strengthBuildingLevel: RatingControl!
-    @IBOutlet weak var flexibilityLevel: RatingControl!
+//    @IBOutlet weak var notes: UITextView!
+//    @IBOutlet weak var cardioLevel: RatingControl!
+//    @IBOutlet weak var strengthBuildingLevel: RatingControl!
+//    @IBOutlet weak var flexibilityLevel: RatingControl!
 
-    @IBAction func save(_ sender: Any) {
-        if let newPractice = YogaPractice(date: datePicker.date, style: style.text!, duration: duration.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!, cardioLevel: cardioLevel.rating, strengthBuildingLevel: strengthBuildingLevel.rating, flexibilityLevel: flexibilityLevel.rating) {
-            print("cardio: \(cardioLevel.rating)")
-            print("strength: \(strengthBuildingLevel.rating)")
-            print("flex: \(flexibilityLevel.rating)")
-            store.addPractice(item: newPractice)
-            clearTextFields()
-        }
-    }
+//    @IBAction func save(_ sender: Any) {
+//        if let newPractice = YogaPractice(date: datePicker.date, style: style.text!, duration: duration.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!, cardioLevel: cardioLevel.rating, strengthBuildingLevel: strengthBuildingLevel.rating, flexibilityLevel: flexibilityLevel.rating) {
+//            print("cardio: \(cardioLevel.rating)")
+//            print("strength: \(strengthBuildingLevel.rating)")
+//            print("flex: \(flexibilityLevel.rating)")
+//            store.addPractice(item: newPractice)
+//            clearTextFields()
+//        }
+//    }
     
     // MARK: PickerView Methods to select class duration
     func createPickerView() {
@@ -91,22 +93,6 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         self.view.endEditing(true)
     }
 
-    // better way to do this? -> loop?
-    func clearTextFields() {
-        date.text = ""
-        style.text = ""
-        duration.text = ""
-        location.text = ""
-        instructor.text = ""
-        focus.text = ""
-        notes.text = ""
-        cardioLevel.rating = 0
-        strengthBuildingLevel.rating = 0
-        flexibilityLevel.rating = 0
-    }
-    
-
-    
 //    @IBAction func addPractice(_ sender: Any) {
 //        print(date.text!)
 //        print(style.text!)
@@ -153,7 +139,7 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         createDatePicker()
         createPickerView()
         
-        style.isUserInteractionEnabled = false
+//        style.isUserInteractionEnabled = false
         
         
         // modify background image
@@ -177,7 +163,7 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         self.location.delegate = self
         self.instructor.delegate = self
         self.focus.delegate = self
-        self.notes.delegate = self // TODO Needed?? Done button not working!
+//        self.notes.delegate = self // TODO Needed?? Done button not working!
     }
     
     // Enable done button functionality
@@ -237,13 +223,14 @@ class LogPracticeTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Class Details"
-        } else if section == 1 {
-            return "Ratings"
-        } else {
-            return "Notes"
-        }
+        return "Class Details"
+//        if section == 0 {
+//            return "Class Details"
+//        } else if section == 1 {
+//            return "Ratings"
+//        } else {
+//            return "Notes"
+//        }
     }
   
 

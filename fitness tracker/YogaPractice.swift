@@ -25,6 +25,7 @@ class YogaPractice: NSObject, NSCoding {
         static let style = "style"
         static let duration = "duration"
         static let instructor = "instructor"
+        static let location = "location"
         static let focus = "focus"
         static let notes = "notes"
         static let cardioLevel = "cardioLevel"
