@@ -399,7 +399,7 @@
                         <outlet property="startLabel" destination="Gb5-tM-tMy" id="M3l-aj-VtH"/>
                         <outlet property="stopLabel" destination="YLp-PX-uAf" id="E3c-13-PcN"/>
                         <outlet property="timerLabel" destination="3R0-Ie-skg" id="8il-3x-8b6"/>
-                        <segue destination="NbE-GU-ybY" kind="show" identifier="showRunSummary" id="LTc-H5-WUp"/>
+                        <segue destination="qLo-oR-tKf" kind="show" identifier="showRunSummary" id="Kpl-RT-HzZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -493,7 +493,7 @@
         <!--Run Summary-->
         <scene sceneID="Fgn-02-muL">
             <objects>
-                <viewController id="NbE-GU-ybY" customClass="RunSummaryVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="runSummary" id="NbE-GU-ybY" customClass="RunSummaryVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eal-Z2-wbZ"/>
                         <viewControllerLayoutGuide type="bottom" id="4gN-aL-5oC"/>
@@ -534,33 +534,51 @@
             </objects>
             <point key="canvasLocation" x="4765.6000000000004" y="-2305.0974512743628"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="tjK-I5-MzK">
+        <!--Run SplitsVC-->
+        <scene sceneID="fSh-NG-yXb">
             <objects>
-                <tableViewController id="J6x-Ok-kEG" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JLH-qR-Y3N">
+                <viewController storyboardIdentifier="splits" id="aiX-G0-jsK" customClass="RunSplitsVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dew-qn-A5p"/>
+                        <viewControllerLayoutGuide type="bottom" id="aP6-ty-hvB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GLG-o2-PQr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AIP-S2-9v4">
+                                <rect key="frame" x="0.0" y="73" width="375" height="594"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutInfoCell" id="1hO-fn-EHp" customClass="WorkoutInfoCell" customModule="fitness_tracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1hO-fn-EHp" id="PeZ-kR-fvy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="splitsCell" id="wFJ-Q5-nAr" customClass="WorkoutInfoCell" customModule="fitness_tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wFJ-Q5-nAr" id="LxP-xy-zYO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="J6x-Ok-kEG" id="YRt-rJ-MTU"/>
-                            <outlet property="delegate" destination="J6x-Ok-kEG" id="E73-3z-eIp"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LaS-fc-rag" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <connections>
+                        <outlet property="splitsTableView" destination="AIP-S2-9v4" id="4PA-Kl-Aaf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zf1-ft-3bz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5540" y="-2309"/>
+            <point key="canvasLocation" x="5692" y="-2305.0974512743628"/>
+        </scene>
+        <!--Run Summary-->
+        <scene sceneID="TjV-ch-N86">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Run Summary" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qLo-oR-tKf" customClass="RunPageVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qj0-UH-qFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4854" y="-1550"/>
         </scene>
         <!--Running2-->
         <scene sceneID="qrJ-4l-tzn">
@@ -760,7 +778,6 @@
         <image name="temple" width="1944" height="1296"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LEN-Ve-7Mx"/>
         <segue reference="xG8-Ei-NCQ"/>
     </inferredMetricsTieBreakers>
 </document>

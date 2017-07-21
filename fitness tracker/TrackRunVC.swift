@@ -261,7 +261,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRunSummary" {
-            let destinationVC = segue.destination as! RunSummaryVC
+            let destinationVC = segue.destination as! RunPageVC
             if let newRun = run {
                 destinationVC.run = newRun
             }
