@@ -27,14 +27,23 @@ class RunSplitsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutInfoCell", for: indexPath) as! WorkoutInfoCell
-        let descriptionLabels = ["Mile 1", "Mile 2", "Mile 3", "Mile 4"]
+        let descriptionLabels = generateDescriptionLabels()
         let valueLabels = splits
         
+        
         cell.descriptionLabel.text = descriptionLabels[indexPath.row]
-        cell.valueLabel.text = String(valueLabels[indexPath.row])
+        cell.valueLabel.text = Run.paceToString(pace: valueLabels[indexPath.row])
         
         return cell
         
+    }
+    
+    func generateDescriptionLabels() -> [String] {
+        var miles : [String] = []
+        for i in 1...splits.count {
+            miles.append("Mile \(i)")
+        }
+        return miles
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

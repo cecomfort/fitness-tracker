@@ -165,8 +165,10 @@ class WorkoutLogTVC: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showRunDetails" {
-            let destinationVC = segue.destination as! RunSummaryVC
+       // if segue.identifier == "showRunDetails" {
+       //     let destinationVC = segue.destination as! RunSummaryVC
+        if segue.identifier == "showRunDetailsWithSplits" {
+            let destinationVC = segue.destination as! RunPageVC
 //            destinationVC.run = store.runs[selectedIndex - store.yogaPractices.count]
             if let run = store.workouts[selectedIndex] as? Run {
                 print("Run selected!")

@@ -532,7 +532,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7T8-0i-7be" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4765.6000000000004" y="-2305.0974512743628"/>
+            <point key="canvasLocation" x="4849" y="-1577"/>
         </scene>
         <!--Run SplitsVC-->
         <scene sceneID="fSh-NG-yXb">
@@ -578,7 +578,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" title="Run Summary" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qLo-oR-tKf" customClass="RunPageVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qj0-UH-qFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4854" y="-1550"/>
+            <point key="canvasLocation" x="4802" y="-2305"/>
         </scene>
         <!--Running2-->
         <scene sceneID="qrJ-4l-tzn">
@@ -679,7 +679,7 @@
                                     <outlet property="dateLabel" destination="yFe-eB-dAm" id="gSM-EP-1kE"/>
                                     <outlet property="durationLabel" destination="wQF-un-xvD" id="29d-2o-Ysp"/>
                                     <outlet property="typeLabel" destination="Xt8-Bc-ZiE" id="G0S-pK-5T2"/>
-                                    <segue destination="NbE-GU-ybY" kind="show" identifier="showRunDetails" id="LEN-Ve-7Mx"/>
+                                    <segue destination="qLo-oR-tKf" kind="show" identifier="showRunDetailsWithSplits" id="Z4w-h8-IJQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -778,6 +778,7 @@
         <image name="temple" width="1944" height="1296"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Z4w-h8-IJQ"/>
         <segue reference="xG8-Ei-NCQ"/>
     </inferredMetricsTieBreakers>
 </document>
