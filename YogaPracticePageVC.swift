@@ -121,16 +121,22 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         if let dateInput = page1VC?.datePicker.date {
             date = dateInput
-        } else if let cardioInput = page2VC?.cardioLevel.rating {
+            print("date: \(dateInput)")
+        }
+        if let cardioInput = page2VC?.cardioLevel.rating {
             cardioLevel = cardioInput
+            print("cardio level: \(cardioLevel)")
+        }
             if let strengthBuildingInput = page2VC?.strengthBuildingLevel.rating {
                 strengthBuildingLevel = strengthBuildingInput
+                print("strengthBuildingLevel: \(strengthBuildingLevel)")
             }
             
             if let flexibilityInput = page2VC?.flexibilityLevel.rating {
                 flexibilityLevel = flexibilityInput
+                print("flexibilityLevel: \(flexibilityLevel)")
             }
-        }
+//        }
     }
     
     // MARK: Data source functions.

@@ -9,23 +9,23 @@
 import UIKit
 import MapKit
 
-// splits: if Int(mileage) > splits.count { splits.append(currentTime) } // split for every mile
+// TODO: Remove extra line at bottom 
 
-class RunSummaryVC: UIViewController, MKMapViewDelegate { // UITableViewDelegate, UITableViewDataSource
+class RunSummaryVC: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource { 
     var run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
 //    var run = Run?()
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var mileageLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var paceLabel: UILabel!
-    @IBOutlet weak var splitsLabel: UILabel!
+    @IBOutlet weak var summaryTableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateDisplay()
+        
+        summaryTableView.delegate = self
+        summaryTableView.dataSource = self
+        summaryTableView.register(UINib(nibName: "WorkoutInfoCell", bundle: nil), forCellReuseIdentifier: "WorkoutInfoCell")
+        configureTableView()
         
         mapView.delegate = self
         loadMapData()
@@ -37,22 +37,6 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate { // UITableViewDelegate
 //        run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
 //    }
     
-    
-    func updateDisplay() {
-        if let newRun = run {
-            dateLabel.text = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short) // also .none style if only want to display date or time
-            mileageLabel.text = String(format: "%.2f", newRun.mileage) + " mi"
-            durationLabel.text = String(newRun.duration) // needs formatting!!
-            paceLabel.text = Run.paceToString(pace: newRun.avgPace())
-            
-            let stopwatch = Stopwatch(time: newRun.duration)
-            durationLabel.text = stopwatch.convertTimeToString()
-            
-            let splits = newRun.splitsToString()
-            splitsLabel.text = "\(splits)"
-            
-        }
-    }
     
     // MARK: - Map
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -121,7 +105,56 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate { // UITableViewDelegate
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func determineCellValues() -> [String] {
+        if let newRun = run {
+            let date = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short)
+            let mileage = String(format: "%.2f", newRun.mileage) + " mi"
+            let pace = Run.paceToString(pace: newRun.avgPace())
+            let duration = Stopwatch(time: newRun.duration).convertTimeToString()
+            return [date, mileage, duration, pace]
+        } else {
+            return ["","","",""]
+        }
+    }
 
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutInfoCell", for: indexPath) as! WorkoutInfoCell
+        let descriptionLabels = ["Date", "Mileage", "Duration", "Pace"]
+        let valueLabels = determineCellValues()
+        
+        cell.descriptionLabel.text = descriptionLabels[indexPath.row]
+        cell.valueLabel.text = valueLabels[indexPath.row] 
+        
+        return cell
 
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func configureTableView() {
+        summaryTableView.rowHeight = 70
+        summaryTableView.tableFooterView = UIView()
+//        UITableViewAutomaticDimension
+//        summaryTableView.estimatedRowHeight = 70 // pixels
+    }
 }
+
+//func updateDisplay() {
+//    if let newRun = run {
+//        dateLabel.text = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short) // also .none style if only want to display date or time
+//        mileageLabel.text = String(format: "%.2f", newRun.mileage) + " mi"
+//        paceLabel.text = Run.paceToString(pace: newRun.avgPace())
+//        
+//        let stopwatch = Stopwatch(time: newRun.duration)
+//        durationLabel.text = stopwatch.convertTimeToString()
+//        
+//        let splits = newRun.splitsToString()
+//        splitsLabel.text = "\(splits)"
+//        
+//    }
+//}
 
