@@ -130,7 +130,7 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
             date.text = DateFormatter.localizedString(from: savedPractice.date, dateStyle: .medium, timeStyle: .short)
             style.text = savedPractice.style
             duration.text = savedPractice.duration
-//            location.text = savedPractice.location
+            location.text = savedPractice.location
             instructor.text = savedPractice.instructor
             focus.text = savedPractice.focus
         }

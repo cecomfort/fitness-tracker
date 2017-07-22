@@ -9,7 +9,7 @@
 import UIKit
 
 // TODO: Anyway to ensure saving?
-// TODO: Add location to yoga model
+// TODO: check date is not a future date
 // TODO: Loop to reset fields?
 
 class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
@@ -40,19 +40,27 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
     
     @IBAction func saveYogaPractice(_ sender: Any) {
         print("Saving!")
-//        let data = page1VC?.duration.text
-//        print(data)
-        
+
         let style = page1VC?.style.text
         let duration = page1VC?.duration.text
         let location = page1VC?.location.text
         let instructor = page1VC?.instructor.text
         let focus = page1VC?.focus.text
-        let notes = page2VC?.notesTextField.text
+        let notes = page2VC?.notesTextField.text 
         
         // Date may be nil, so check that first
-        if let dateInput = date, let newPractice = YogaPractice(date: dateInput, style: style!, duration: duration!, instructor: instructor, focus: focus, notes: notes, cardioLevel: cardioLevel, strengthBuildingLevel: strengthBuildingLevel, flexibilityLevel: flexibilityLevel) {
-            print("Trying to save!")
+//        if let dateInput = date, let newPractice = YogaPractice(date: dateInput, style: style!, duration: duration!, instructor: instructor, location: location, focus: focus, notes: notes, cardioLevel: cardioLevel, strengthBuildingLevel: strengthBuildingLevel, flexibilityLevel: flexibilityLevel) {
+//            print("Trying to save!")
+//            store.addPractice(item: newPractice)
+//            clearTextFields()
+//        }
+//      
+
+        if date == nil || style == "" || duration == "" {
+            print("Date, style, and duration fields must be complete.")
+        } else if duration == "0:00" {
+            print("Duration must be greater than 0.")
+        } else if let dateInput = date, let newPractice = YogaPractice(date: dateInput, style: style!, duration: duration!, instructor: instructor, location: location, focus: focus, notes: notes, cardioLevel: cardioLevel, strengthBuildingLevel: strengthBuildingLevel, flexibilityLevel: flexibilityLevel) {
             store.addPractice(item: newPractice)
             clearTextFields()
         }
@@ -60,7 +68,9 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
     
     // Better way to do this? loop?
     func clearTextFields() {
+        // disenable save, make yoga details current vc
         page1VC?.style.text = ""
+        page1VC?.date.text = ""
         page1VC?.duration.text = ""
         page1VC?.location.text = ""
         page1VC?.instructor.text = ""
