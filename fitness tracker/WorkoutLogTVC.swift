@@ -24,6 +24,7 @@ class WorkoutLogTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(store.yogaPractices.count)
+        configureTableView()
 //        print(store.yogaPractices)
         
         // Load any saved data
@@ -36,6 +37,13 @@ class WorkoutLogTVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func configureTableView() {
+        tableView.rowHeight = 70
+        tableView.tableFooterView = UIView()
+        //        UITableViewAutomaticDimension
+        //        summaryTableView.estimatedRowHeight = 70 // pixels
     }
     
     //MARK: Table View Data Source
@@ -52,7 +60,11 @@ class WorkoutLogTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 //        return store.yogaPractices.count + store.runs.count
-        return store.workouts.count
+        if store.workouts.count < 10 {
+            return 10
+        } else {
+            return store.workouts.count
+        }
     }
     
 
@@ -64,17 +76,20 @@ class WorkoutLogTVC: UITableViewController {
 //        }
 //        
         // guard -> else continue, guard -> fatal error 
-        if let run = store.workouts[indexPath.row] as? Run, let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath) as? RunCell {
+        if indexPath.row >= store.workouts.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BlankCell", for: indexPath) 
+            return cell
+        } else if let run = store.workouts[indexPath.row] as? Run, let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath) as? RunCell {
 //            let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath) as? RunCell
-            cell.dateLabel.text = DateFormatter.localizedString(from: run.date, dateStyle: .medium, timeStyle: .short)
+            cell.dateLabel.text = DateFormatter.localizedString(from: run.date, dateStyle: .medium, timeStyle: .none)
             cell.typeLabel.text = String(format: "%.2f", run.mileage) + " mi"
-            cell.durationLabel.text = Stopwatch(time: run.duration).convertTimeToString()
+            cell.durationLabel.text = Stopwatch(time: run.duration).convertTimeToHourString() + " hr"
             return cell
         } else if let practice = store.workouts[indexPath.row] as? YogaPractice, let cell = tableView.dequeueReusableCell(withIdentifier: "YogaPracticeCell", for: indexPath) as? YogaPracticeCell {
-            cell.dateLabel.text = DateFormatter.localizedString(from: practice.date, dateStyle: .medium, timeStyle: .short)
+            cell.dateLabel.text = DateFormatter.localizedString(from: practice.date, dateStyle: .medium, timeStyle: .none)
             
             cell.typeLabel.text = practice.style
-            cell.durationLabel.text = practice.duration
+            cell.durationLabel.text = practice.duration + " hr"
             return cell
         }
         fatalError("The dequeued cell is not an instance of a RunCell or YogaPracticeCell.")

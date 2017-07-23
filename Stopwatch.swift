@@ -42,6 +42,12 @@ class Stopwatch {
         }
     }
     
+    func convertTimeToHourString() -> String {
+        let hours = time / 3600
+        let minutes = (time - (hours * 3600)) / 60
+        return String(format: "%d:%02d", hours, minutes)
+    }
+    
     func reset() {
         time = 0
         startTime = 0
