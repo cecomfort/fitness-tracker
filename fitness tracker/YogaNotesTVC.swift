@@ -10,7 +10,6 @@ import UIKit
 
 // TODO: Enable Done button on text field
 // TODO: Selected cells are highlighted :(
-// dynamic loading and clearing of cells?
 // disenable fields and save btn if loading practice
 
 class YogaNotesTVC: UITableViewController {

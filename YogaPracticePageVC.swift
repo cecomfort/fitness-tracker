@@ -11,6 +11,7 @@ import UIKit
 // TODO: Anyway to ensure saving?
 // TODO: check date is not a future date
 // TODO: Loop to reset fields?
+// TODOL add alerts
 
 class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 

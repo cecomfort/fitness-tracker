@@ -7,10 +7,6 @@
 //
 
 import UIKit
-import os.log
-
-// TODO: Can duration be a date?
-// TODO: Clear date picker
 
 class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate {
     

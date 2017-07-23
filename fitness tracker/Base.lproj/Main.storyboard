@@ -580,11 +580,11 @@
             </objects>
             <point key="canvasLocation" x="4802" y="-2305"/>
         </scene>
-        <!--Running2-->
+        <!--Running-->
         <scene sceneID="qrJ-4l-tzn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nc0-4L-Qcq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Running2" id="Ubx-ug-vjd"/>
+                    <tabBarItem key="tabBarItem" title="Running" image="Running" selectedImage="Running" id="Ubx-ug-vjd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ob4-pk-aFX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -705,10 +705,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Nc0-4L-Qcq" kind="relationship" relationship="viewControllers" id="xjH-u7-Zrj"/>
                         <segue destination="R3e-9X-36P" kind="relationship" relationship="viewControllers" id="ToO-K8-atG"/>
-                        <segue destination="jcA-d8-SnJ" kind="relationship" relationship="viewControllers" id="S7k-9M-whV"/>
+                        <segue destination="Nc0-4L-Qcq" kind="relationship" relationship="viewControllers" id="xjH-u7-Zrj"/>
                         <segue destination="oGW-rI-0Qd" kind="relationship" relationship="viewControllers" id="OxS-2K-nJV"/>
+                        <segue destination="etK-2G-cAn" kind="relationship" relationship="viewControllers" id="WEg-1E-6MQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hkB-Bj-gm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -719,7 +719,7 @@
         <scene sceneID="aNT-TT-uos">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R3e-9X-36P" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Log" id="BmW-vy-PEy"/>
+                    <tabBarItem key="tabBarItem" title="Log" image="Log" selectedImage="Log" id="BmW-vy-PEy"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hVs-P1-FbL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -753,11 +753,30 @@
             </objects>
             <point key="canvasLocation" x="2834" y="-101"/>
         </scene>
+        <!--Goals-->
+        <scene sceneID="skt-AY-Fhe">
+            <objects>
+                <viewController id="etK-2G-cAn" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g7w-8I-iND"/>
+                        <viewControllerLayoutGuide type="bottom" id="l2A-Vc-3nX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t2A-7W-vxn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Goals" image="Goals2" selectedImage="Goals2" id="zGh-8C-28Y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W29-xZ-CSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1982" y="-725"/>
+        </scene>
         <!--Yoga-->
         <scene sceneID="VCT-yb-8Qq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oGW-rI-0Qd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Yoga" id="Bam-7I-gnW"/>
+                    <tabBarItem key="tabBarItem" title="Yoga" image="Yoga2" selectedImage="Yoga4" id="Bam-7I-gnW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O23-Fq-2BE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -774,11 +793,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Goals2" width="25" height="25"/>
+        <image name="Log" width="25" height="25"/>
+        <image name="Running" width="25" height="25"/>
+        <image name="Yoga2" width="32" height="32"/>
+        <image name="Yoga4" width="25" height="25"/>
         <image name="background_1" width="320" height="568"/>
         <image name="temple" width="1944" height="1296"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="xKz-Ka-bKz"/>
         <segue reference="Z4w-h8-IJQ"/>
-        <segue reference="xG8-Ei-NCQ"/>
     </inferredMetricsTieBreakers>
 </document>

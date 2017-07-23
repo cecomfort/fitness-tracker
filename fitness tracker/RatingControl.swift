@@ -49,18 +49,18 @@ import UIKit
         
         // Load Button Images
         let bundle = Bundle(for: type(of: self))
-        let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
-        let emptyStar = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)
-        let highlightedStar = UIImage(named:"highlightedStar", in: bundle, compatibleWith: self.traitCollection)
+        let filledLotus = UIImage(named: "filledLotus", in: bundle, compatibleWith: self.traitCollection)
+        let emptyLotus = UIImage(named:"emptyLotus", in: bundle, compatibleWith: self.traitCollection)
+        let highlightedLotus = UIImage(named:"highlightedLotus", in: bundle, compatibleWith: self.traitCollection)
         
         for _ in 0..<starCount {
         let button = UIButton()
             
             // Set the button images
-            button.setImage(emptyStar, for: .normal)
-            button.setImage(filledStar, for: .selected)
-            button.setImage(highlightedStar, for: .highlighted)
-            button.setImage(highlightedStar, for: [.highlighted, .selected])
+            button.setImage(emptyLotus, for: .normal)
+            button.setImage(filledLotus, for: .selected)
+            button.setImage(highlightedLotus, for: .highlighted)
+            button.setImage(highlightedLotus, for: [.highlighted, .selected])
         
         
         // constraints -> define the button as a fixed-size object in your layout (44 point x 44 point).
