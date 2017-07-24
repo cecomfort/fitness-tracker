@@ -26,7 +26,8 @@ class Goal: NSObject, NSCoding {
     init?(endDate: Date, mileGoal: Int, practiceGoal: Int) {
         
         // Initialization should fail if end date is not a future date
-        if endDate < Date() {
+        let calendar = Calendar.current
+        if calendar.isDateInYesterday(endDate) {
             return nil
         }
         
