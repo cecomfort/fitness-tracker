@@ -36,16 +36,26 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
         Any) {
 
         if let newGoal = Goal(endDate: endDatePicker.date, mileGoal: milesGoal, practiceGoal: practiceGoal) {
-            // segue to goal page
             if store.saveGoal(item: newGoal) {
-                print("Goal set and saved!")
-                print(newGoal.endDate)
+                // segue to goal page
+                print("Set and saved")
             } else {
-                print("An error occured. Cannot save goal at this time.")
+                createAlert(title: "Unable to Save", message: "An error occurred. Please try again at a later time.")
             }
         } else {
-            print("End date must be a future date")
+            createAlert(title: "Unable to Save", message: "End date must be a future date.")
         }
+    }
+    
+    // MARK: Alert Method
+    func createAlert(title:String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: Date Picker Methods
@@ -84,21 +94,7 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
         }
     }
     
-    
-    
-    
-    
-    
-    
-//    func donePickingDate() {
-//        date.text = DateFormatter.localizedString(from: datePicker.date, dateStyle: .medium, timeStyle: .short)
-//        self.view.endEditing(true)
-//    }
-
-
-
-
-    // MARK: - Table view data sourcedfds
+ // MARK: - Table view data sourcedfds
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {
 //        // #warning Incomplete implementation, return the number of sections
