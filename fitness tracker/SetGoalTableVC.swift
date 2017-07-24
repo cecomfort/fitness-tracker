@@ -31,10 +31,20 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    @IBAction func saveGoal(_ sender: Any) {
-        print(endDatePicker.date)
-        print("Practice goal: \(practiceGoal)")
-        print("Miles goal: \(milesGoal)")
+    @IBAction func saveGoal(_ sender: Any) { 
+        if let newGoal = Goal(endDate: endDatePicker.date, mileGoal: milesGoal, practiceGoal: practiceGoal) {
+            // save!
+        } else {
+            print("End date must be a future date")
+        }
+            
+//            endDatePicker.date > Date() {
+//            print(endDatePicker.date)
+//            print("Practice goal: \(practiceGoal)")
+//            print("Miles goal: \(milesGoal)")
+//        } else {
+//            print("End date must be a future date.")
+//        }
     }
     
     // MARK: Date Picker Methods

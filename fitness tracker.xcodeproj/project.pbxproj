@@ -22,6 +22,7 @@
 		E80BFC441F2290A200C68DC8 /* RunSplitsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFC431F2290A200C68DC8 /* RunSplitsVC.swift */; };
 		E80BFC461F22993100C68DC8 /* RunPageVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFC451F22993100C68DC8 /* RunPageVCViewController.swift */; };
 		E80BFC861F26574A00C68DC8 /* SetGoalTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFC851F26574A00C68DC8 /* SetGoalTableVC.swift */; };
+		E80BFC881F26769500C68DC8 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BFC871F26769500C68DC8 /* Goal.swift */; };
 		E86D3A161F0DA15900DE63C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */; };
 		E86D3A181F0DA15900DE63C7 /* TrackRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */; };
 		E86D3A1B1F0DA15900DE63C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86D3A191F0DA15900DE63C7 /* Main.storyboard */; };
@@ -70,6 +71,7 @@
 		E80BFC431F2290A200C68DC8 /* RunSplitsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunSplitsVC.swift; sourceTree = "<group>"; };
 		E80BFC451F22993100C68DC8 /* RunPageVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunPageVCViewController.swift; path = ../RunPageVCViewController.swift; sourceTree = "<group>"; };
 		E80BFC851F26574A00C68DC8 /* SetGoalTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetGoalTableVC.swift; sourceTree = "<group>"; };
+		E80BFC871F26769500C68DC8 /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		E86D3A121F0DA15900DE63C7 /* fitness tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fitness tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRunVC.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				E80BFBA71F1ADFC100C68DC8 /* Stopwatch.swift */,
 				E8834F691F16F0B40047BC27 /* DataStore.swift */,
 				E80BFBA91F1C2D7600C68DC8 /* Run.swift */,
+				E80BFC871F26769500C68DC8 /* Goal.swift */,
 				E80BFBAB1F1C2D8300C68DC8 /* Location.swift */,
 				E80BFBED1F200A1700C68DC8 /* RatingControl.swift */,
 			);
@@ -403,6 +406,7 @@
 				E80BFBAE1F1C34E100C68DC8 /* RunSummaryVC.swift in Sources */,
 				E8B80A4F1F1841D500F915E9 /* WorkoutLogTVC.swift in Sources */,
 				E80BFBA81F1ADFC100C68DC8 /* Stopwatch.swift in Sources */,
+				E80BFC881F26769500C68DC8 /* Goal.swift in Sources */,
 				E80BFBEC1F1FF28100C68DC8 /* RunCell.swift in Sources */,
 				E86D3A181F0DA15900DE63C7 /* TrackRunVC.swift in Sources */,
 				E80BFC461F22993100C68DC8 /* RunPageVCViewController.swift in Sources */,
