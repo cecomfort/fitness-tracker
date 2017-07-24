@@ -13,6 +13,7 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
     let practicePickerData = Array(1...35)
     var milesGoal = 1
     var practiceGoal = 1
+    var store = DataStore.sharedInstance
     
     
     @IBOutlet weak var endDatePicker: UIDatePicker!
@@ -31,30 +32,20 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    @IBAction func saveGoal(_ sender: Any) {
-        let calendar = Calendar.current
-        
-        if calendar.isDateInYesterday(endDatePicker.date) {
-            print("End date must be a future date.")
+    @IBAction func saveGoal(_ sender:
+        Any) {
+
+        if let newGoal = Goal(endDate: endDatePicker.date, mileGoal: milesGoal, practiceGoal: practiceGoal) {
+            // segue to goal page
+            if store.saveGoal(item: newGoal) {
+                print("Goal set and saved!")
+                print(newGoal.endDate)
+            } else {
+                print("An error occured. Cannot save goal at this time.")
+            }
         } else {
-            print(endDatePicker.date)
-            print("Practice goal: \(practiceGoal)")
-            print("Miles goal: \(milesGoal)")
-            
+            print("End date must be a future date")
         }
-//        if let newGoal = Goal(endDate: endDatePicker.date, mileGoal: milesGoal, practiceGoal: practiceGoal) {
-//            // save!
-//        } else {
-//            print("End date must be a future date")
-//        }
-        
-//            if endDatePicker.date >= Date() {
-//            print(endDatePicker.date)
-//            print("Practice goal: \(practiceGoal)")
-//            print("Miles goal: \(milesGoal)")
-//        } else {
-//            print("End date must be a future date.")
-//        }
     }
     
     // MARK: Date Picker Methods

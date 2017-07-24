@@ -15,11 +15,13 @@ class DataStore: NSObject, NSCoding {
     var yogaPractices: [YogaPractice] { return self.workouts.filter { $0 is YogaPractice } as! [YogaPractice] }
     var runs: [Run] { return self.workouts.filter { $0 is Run } as! [Run] }
     var workouts : [Any] = []
+    var goal : Goal?
     
     struct PropertyKey {
-        static let yogaPractices = "yogaPractices"
-        static let runs = "runs"
+//        static let yogaPractices = "yogaPractices"
+//        static let runs = "runs"
         static let workouts = "workouts"
+        static let goal = "goal"
     }
     
     private override init() {
@@ -40,6 +42,14 @@ class DataStore: NSObject, NSCoding {
 //        }
         if let workouts = decoder.decodeObject(forKey: "workouts") as? [Any] {
             self.workouts = workouts
+        } else {
+            print("Could not load workouts")
+        }
+        
+        if let goal = decoder.decodeObject(forKey: "goal") as? Goal {
+            self.goal = goal
+        } else {
+            print("Cound not load goal")
         }
         
     }
@@ -49,6 +59,7 @@ class DataStore: NSObject, NSCoding {
 //        coder.encode(yogaPractices, forKey: PropertyKey.yogaPractices)
 //        coder.encode(runs, forKey: PropertyKey.runs)
         coder.encode(workouts, forKey: PropertyKey.workouts)
+        coder.encode(goal, forKey: PropertyKey.goal)
     }
     
     static var filePath: String {
@@ -77,11 +88,23 @@ class DataStore: NSObject, NSCoding {
         NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
     }
     
+    func saveGoal(item: Goal) -> Bool {
+        self.goal = item
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
+        return isSuccessfulSave
+    }
+    
     private static func loadData() -> DataStore {
         if let data = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataStore {
             print("Runs stored: \(data.runs.count)")
             print("Yoga practices stored: \(data.yogaPractices.count)")
             print("Workouts stored: \(data.workouts.count)")
+            
+            if data.goal != nil {
+                print("Goal set!")
+            } else {
+                print("no current goal set")
+            }
             return data
         } else {
             return DataStore() // no workout data saved
