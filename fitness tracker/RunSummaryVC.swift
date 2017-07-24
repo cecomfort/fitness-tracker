@@ -30,9 +30,33 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate, UITableViewDelegate, UI
         mapView.delegate = self
         loadMapData()
 //        addPins()
-        // Do any additional setup after loading the view.
+        
+//        let imageView = UIImageView(frame: self.view.frame)
+//        let image = UIImage(named: "run1")!
+//        imageView.image = image
+//        imageView.contentMode = .scaleAspectFill
+//        
+//        self.view.addSubview(imageView)
+//        self.view.sendSubview(toBack: imageView)
+//
+        let backgroundImage = UIImage(named: "run6.jpg")
+        let imageView = UIImageView(image: backgroundImage)
+        imageView.contentMode = .scaleAspectFill
+        summaryTableView.backgroundView = imageView
+        summaryTableView.tableFooterView = UIView()
+        
+
     }
     
+    
+//    private func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: IndexPath) {
+//        cell.backgroundColor = .clear
+//    }
+    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
+//    }
+//
 //    override func viewWillDisappear(_ animated: true) {
 //        run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
 //    }
@@ -125,7 +149,9 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate, UITableViewDelegate, UI
         let valueLabels = determineCellValues()
         
         cell.descriptionLabel.text = descriptionLabels[indexPath.row]
-        cell.valueLabel.text = valueLabels[indexPath.row] 
+        cell.valueLabel.text = valueLabels[indexPath.row]
+//        cell.backgroundColor = .clear
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
         
         return cell
 
@@ -157,4 +183,6 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate, UITableViewDelegate, UI
 //        
 //    }
 //}
+
+
 

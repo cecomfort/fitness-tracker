@@ -141,9 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				E80BFC431F2290A200C68DC8 /* RunSplitsVC.swift */,
+				E80BFBAD1F1C34E100C68DC8 /* RunSummaryVC.swift */,
 				E80BFC451F22993100C68DC8 /* RunPageVCViewController.swift */,
 				E86D3A171F0DA15900DE63C7 /* TrackRunVC.swift */,
-				E80BFBAD1F1C34E100C68DC8 /* RunSummaryVC.swift */,
 				E80BFB9F1F1AA6C100C68DC8 /* DemoTrackRunVC.swift */,
 			);
 			name = Running;

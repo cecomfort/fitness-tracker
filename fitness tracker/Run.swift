@@ -96,11 +96,11 @@ class Run: NSObject, NSCoding {
     }
     
     static func paceToString(pace: Double) -> String {
-//        print("pace: \(pace)")
-//        print("remainder: \(pace.truncatingRemainder(dividingBy: 1))")
+        if pace.isNaN || pace is String {
+            return "0\'00\""
+        }
+
         let remainderInSeconds = pace.truncatingRemainder(dividingBy: 1) * 60
-//        print("remainderInsecs: \(remainderInSeconds)")
-//        return "\(Int(pace))'\(Int(remainderInSeconds))\""
         return String(format: "%d'%02d\"", Int(pace), Int(remainderInSeconds))
     }
     

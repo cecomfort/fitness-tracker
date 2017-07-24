@@ -10,7 +10,7 @@ import UIKit
 
 class RunSplitsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var splits : [Double] = [42.2, 3.3, 4.4, 3.4]
+    var splits : [Double] = [42.2, 3.3, 4.4, 3.4, 5.5, 4.5, 4.5, 3.4, 4.6]
     
     @IBOutlet weak var splitsTableView: UITableView!
     
@@ -22,6 +22,12 @@ class RunSplitsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         splitsTableView.dataSource = self
         splitsTableView.register(UINib(nibName: "WorkoutInfoCell", bundle: nil), forCellReuseIdentifier: "WorkoutInfoCell")
         configureTableView()
+        
+        let backgroundImage = UIImage(named: "run4jpg")
+        let imageView = UIImageView(image: backgroundImage)
+        imageView.contentMode = .scaleAspectFill
+        splitsTableView.backgroundView = imageView
+        splitsTableView.tableFooterView = UIView()
     }
 
 
@@ -33,6 +39,7 @@ class RunSplitsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         cell.descriptionLabel.text = descriptionLabels[indexPath.row]
         cell.valueLabel.text = Run.paceToString(pace: valueLabels[indexPath.row])
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
         
         return cell
         

@@ -31,7 +31,7 @@ class YogaNotesTVC: UITableViewController {
         
         // modify background image
         let imageView = UIImageView(frame: self.view.frame)
-        let image = UIImage(named: "mandala")!
+        let image = UIImage(named: "yoga3")!
         imageView.image = image
         imageView.contentMode = .scaleAspectFill
         
@@ -56,7 +56,7 @@ class YogaNotesTVC: UITableViewController {
         headerView.backgroundColor = UIColor(white: 1, alpha: 0.6)
         let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
-        //        headerLabel.font = UIFont(name: "Verdana", size: 20)
+        headerLabel.font = UIFont.systemFont(ofSize: 18, weight: UIFontWeightMedium);
         headerLabel.textColor = UIColor.black
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
         headerLabel.sizeToFit()

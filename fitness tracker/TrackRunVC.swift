@@ -146,8 +146,9 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             return MKOverlayRenderer(overlay: overlay)
         }
         let polyLineRenderer = MKPolylineRenderer(overlay: polyline)
-        polyLineRenderer.strokeColor = UIColor.gray
-        polyLineRenderer.lineWidth = 5
+//        UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        polyLineRenderer.strokeColor = UIColor.gray.withAlphaComponent(0.5)
+        polyLineRenderer.lineWidth = 4
         return polyLineRenderer
     }
     

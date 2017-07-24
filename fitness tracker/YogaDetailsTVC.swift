@@ -98,7 +98,7 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         
         // modify background image
         let imageView = UIImageView(frame: self.view.frame)
-        let image = UIImage(named: "mandala")!
+        let image = UIImage(named: "yoga3")!
         imageView.image = image
         imageView.contentMode = .scaleAspectFill
         
@@ -166,7 +166,7 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        cell.backgroundColor = UIColor.clear
-        cell.backgroundColor = UIColor(white: 1, alpha: 0.2)
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.25)
     }
     
     // change section headers
@@ -177,7 +177,7 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         
         let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
-//        headerLabel.font = UIFont(name: "Verdana", size: 20)
+        headerLabel.font = UIFont.systemFont(ofSize: 18, weight: UIFontWeightMedium);
         headerLabel.textColor = UIColor.black
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
         headerLabel.sizeToFit()

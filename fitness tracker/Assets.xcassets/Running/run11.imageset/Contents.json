@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "run11.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "trail.jpg",
       "scale" : "2x"
     },
     {
