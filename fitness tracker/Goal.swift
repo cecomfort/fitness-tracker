@@ -54,6 +54,15 @@ class Goal: NSObject, NSCoding {
         
         self.init(endDate: endDate, mileGoal: mileGoal, practiceGoal: practiceGoal)
     }
+
+    // Calculate the number of days left to complete goal, with the end date as the last day
+    func daysLeft() -> Int {
+        let calendar = Calendar.current
+        let currentDate = calendar.startOfDay(for: Date())
+        let finishDate = calendar.startOfDay(for: endDate)
+        let components = calendar.dateComponents([.day], from: currentDate, to: finishDate)
+        return components.day! + 1
+    }
     
 
 }

@@ -36,6 +36,7 @@
 		E8ABA4FF1F0F105E002AF422 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ABA4FE1F0F105E002AF422 /* CoreLocation.framework */; };
 		E8B80A4F1F1841D500F915E9 /* WorkoutLogTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B80A4E1F1841D500F915E9 /* WorkoutLogTVC.swift */; };
 		E8B80A511F18432200F915E9 /* YogaPracticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B80A501F18432200F915E9 /* YogaPracticeCell.swift */; };
+		E8EBD0C31F269B550081CC30 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBD0C21F269B550081CC30 /* GoalVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		E8ABA4FE1F0F105E002AF422 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E8B80A4E1F1841D500F915E9 /* WorkoutLogTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutLogTVC.swift; sourceTree = "<group>"; };
 		E8B80A501F18432200F915E9 /* YogaPracticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YogaPracticeCell.swift; sourceTree = "<group>"; };
+		E8EBD0C21F269B550081CC30 /* GoalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 				E80BFC391F216D9800C68DC8 /* Yoga */,
 				E86D3A151F0DA15900DE63C7 /* AppDelegate.swift */,
 				E80BFC851F26574A00C68DC8 /* SetGoalTableVC.swift */,
+				E8EBD0C21F269B550081CC30 /* GoalVC.swift */,
 				E8B80A4E1F1841D500F915E9 /* WorkoutLogTVC.swift */,
 			);
 			name = Controller;
@@ -404,6 +407,7 @@
 				E80BFC361F2166DB00C68DC8 /* YogaPracticePageVC.swift in Sources */,
 				E80BFBAA1F1C2D7600C68DC8 /* Run.swift in Sources */,
 				E80BFBAE1F1C34E100C68DC8 /* RunSummaryVC.swift in Sources */,
+				E8EBD0C31F269B550081CC30 /* GoalVC.swift in Sources */,
 				E8B80A4F1F1841D500F915E9 /* WorkoutLogTVC.swift in Sources */,
 				E80BFBA81F1ADFC100C68DC8 /* Stopwatch.swift in Sources */,
 				E80BFC881F26769500C68DC8 /* Goal.swift in Sources */,

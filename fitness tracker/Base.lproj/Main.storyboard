@@ -744,7 +744,7 @@
                         <segue destination="Nc0-4L-Qcq" kind="relationship" relationship="viewControllers" id="xjH-u7-Zrj"/>
                         <segue destination="oGW-rI-0Qd" kind="relationship" relationship="viewControllers" id="OxS-2K-nJV"/>
                         <segue destination="R3e-9X-36P" kind="relationship" relationship="viewControllers" id="ToO-K8-atG"/>
-                        <segue destination="OYa-pN-i0a" kind="relationship" relationship="viewControllers" id="wdk-9J-f0e"/>
+                        <segue destination="kiO-QO-SLX" kind="relationship" relationship="viewControllers" id="308-C9-BZI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hkB-Bj-gm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -792,7 +792,7 @@
         <!--Goal Progress-->
         <scene sceneID="skt-AY-Fhe">
             <objects>
-                <viewController id="etK-2G-cAn" sceneMemberID="viewController">
+                <viewController id="etK-2G-cAn" customClass="GoalVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g7w-8I-iND"/>
                         <viewControllerLayoutGuide type="bottom" id="l2A-Vc-3nX"/>
@@ -800,9 +800,51 @@
                     <view key="view" contentMode="scaleToFill" id="t2A-7W-vxn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Days Left:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4B-ad-rRH">
+                                <rect key="frame" x="53" y="112" width="244" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="___ Miles to go" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4l-Yf-inE">
+                                <rect key="frame" x="44" y="189" width="253" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="___ Practices to go" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Oe-8d-mug">
+                                <rect key="frame" x="44" y="266" width="253" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="___ % Cardio, ___ % SB, __ % F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmI-10-oh6">
+                                <rect key="frame" x="36" y="351" width="296" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Goal Progress" id="Mbj-pH-FWa"/>
+                    <navigationItem key="navigationItem" title="Goal Progress" id="Mbj-pH-FWa">
+                        <barButtonItem key="rightBarButtonItem" title="New Goal" id="g0l-5r-4Mc">
+                            <connections>
+                                <segue destination="OYa-pN-i0a" kind="show" id="c5V-Z3-5e5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dayCountLabel" destination="C4B-ad-rRH" id="Iq2-pd-jhn"/>
+                        <outlet property="mileCountLabel" destination="M4l-Yf-inE" id="qsX-TB-dIT"/>
+                        <outlet property="practiceCountLabel" destination="3Oe-8d-mug" id="yaw-mE-o2y"/>
+                        <outlet property="workoutBreakdownLabel" destination="lmI-10-oh6" id="sQw-4H-BbZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W29-xZ-CSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -910,7 +952,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dx7-Hi-juB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1384.8" y="-612.14392803598207"/>
+            <point key="canvasLocation" x="2980" y="164"/>
         </scene>
         <!--Yoga-->
         <scene sceneID="VCT-yb-8Qq">
