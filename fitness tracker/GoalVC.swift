@@ -11,6 +11,7 @@ import UIKit
 // show hours left when under 24 hrs?
 // better to have store instead of goal?
 // show something if no goal
+// Progress Bar not updating -> need CG Graphic to rebuid 
 
 class GoalVC: UIViewController {
     

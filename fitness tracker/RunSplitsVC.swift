@@ -23,7 +23,7 @@ class RunSplitsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         splitsTableView.register(UINib(nibName: "WorkoutInfoCell", bundle: nil), forCellReuseIdentifier: "WorkoutInfoCell")
         configureTableView()
         
-        let backgroundImage = UIImage(named: "run4jpg")
+        let backgroundImage = UIImage(named: "run11")
         let imageView = UIImageView(image: backgroundImage)
         imageView.contentMode = .scaleAspectFill
         splitsTableView.backgroundView = imageView

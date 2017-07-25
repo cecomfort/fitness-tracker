@@ -42,6 +42,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     @IBOutlet weak var stopLabel: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
+    @IBOutlet weak var displayBackground: UIView!
         
         // MARK: Actions
     @IBAction func startRun(_ sender: Any) {
@@ -71,6 +72,8 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        displayBackground.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        
         map.delegate = self
         timerLabel.text = "0:00"
         setUpLocationManager()
@@ -93,8 +96,8 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         locationManager.pausesLocationUpdatesAutomatically = false
             
         // get location updates every 10 meters traveled
-        // locationManager.distanceFilter = 8
-            
+        locationManager.distanceFilter = 10
+        
         // looks for GPS coordinates of iphone. This method is asynchronous!
         locationManager.startUpdatingLocation()
     }
@@ -105,10 +108,21 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
 //        print("In location manager method")
 //        print(location.horizontalAccuracy)
         // check to see if location is valid
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        
+        //  Zoom in map to user location
+        let span : MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        let userLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let region : MKCoordinateRegion = MKCoordinateRegionMake(userLocation, span)
+        map.setRegion(region, animated: true)
+        self.map.showsUserLocation = true
+        
+        
         if location.horizontalAccuracy > 0 && location.horizontalAccuracy < 50 { //20
 //            print("location valid")
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
+//            let latitude = location.coordinate.latitude
+//            let longitude = location.coordinate.longitude
             
             if storeCoordinates {
                 coordinates.append(location)
@@ -121,12 +135,12 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
                 }
             }
                 
-            //  Zoom in map to user location
-            let span : MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-            let userLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-            let region : MKCoordinateRegion = MKCoordinateRegionMake(userLocation, span)
-            map.setRegion(region, animated: true)
-            self.map.showsUserLocation = true
+//            //  Zoom in map to user location
+//            let span : MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+//            let userLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+//            let region : MKCoordinateRegion = MKCoordinateRegionMake(userLocation, span)
+//            map.setRegion(region, animated: true)
+//            self.map.showsUserLocation = true
         }
     
     }

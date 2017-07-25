@@ -68,6 +68,8 @@ class Goal: NSObject, NSCoding {
     }
     
     func percentMilesComplete() -> Double {
+        print("Mile goal: \(mileGoal)")
+        print("Num of Miles: \(numOfMilesCompleted())")
         print("Percent")
         print(calculatePercent(dividend: numOfMilesCompleted(), divisor: Double(mileGoal)))
         return calculatePercent(dividend: numOfMilesCompleted(), divisor: Double(mileGoal))

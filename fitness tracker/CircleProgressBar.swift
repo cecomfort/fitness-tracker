@@ -48,12 +48,12 @@ import UIKit
         // running
         drawCircle(radius: diameter / 2, startAngle: 0, endAngle: 2 * π, color: runIncompleteColor)
         //        drawCircle(radius: diameter / 2, startAngle: 3 * π / 2, endAngle: π, color: ruCompletenColor)
-        drawCircle(radius: diameter / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentMilesComplete, color: ruCompletenColor)
+        drawCircle(radius: diameter / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentMilesComplete - π/2, color: ruCompletenColor)
         
         // yoga
         drawCircle(radius: (diameter - 40) / 2, startAngle: 0, endAngle:  2 * π, color: yogaPracticeIncompleteColor)
         //         drawCircle(radius: (diameter - 40) / 2, startAngle: 0, endAngle:  2 * π, color: yogaPracticeCompleteColor)
-        drawCircle(radius: (diameter - 40) / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentPracticesComplete, color: yogaPracticeCompleteColor)
+        drawCircle(radius: (diameter - 40) / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentPracticesComplete - π/2, color: yogaPracticeCompleteColor)
         
     }
 
