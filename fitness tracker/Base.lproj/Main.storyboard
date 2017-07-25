@@ -378,14 +378,17 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </mapView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BUZ-QA-14y">
-                                        <rect key="frame" x="175" y="-6" width="37" height="40"/>
+                                        <rect key="frame" x="166" y="-6" width="46" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWX-t4-DEU">
                                         <rect key="frame" x="144" y="-29" width="86" height="86"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button" image="round-play-button (2)"/>
+                                        <state key="normal" title="start" image="startButton"/>
+                                        <connections>
+                                            <action selector="startStopRun:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eTd-GZ-fwH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="tintColor" red="1" green="0.95265911901118394" blue="0.51760689768668167" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -421,10 +424,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.28627450980392155" green="0.30588235294117649" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Track Run" id="5V6-jQ-qGW"/>
+                    <navigationItem key="navigationItem" title="Track Run" id="5V6-jQ-qGW">
+                        <barButtonItem key="rightBarButtonItem" title="Finish" id="MOR-dw-DSQ">
+                            <connections>
+                                <action selector="saveRun:" destination="BYZ-38-t0r" id="nuD-MA-jr5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="displayBackground" destination="TRT-GA-lK0" id="2JX-Uz-6GW"/>
                         <outlet property="distanceLabel" destination="EDQ-ic-FHD" id="coU-7U-N5d"/>
+                        <outlet property="finishButton" destination="MOR-dw-DSQ" id="YC7-rw-FQb"/>
                         <outlet property="map" destination="BTf-pJ-mfL" id="7Gu-jg-2SS"/>
                         <outlet property="paceLabel" destination="aoa-ct-80X" id="iPY-d8-g7Y"/>
                         <outlet property="startLabel" destination="Gb5-tM-tMy" id="M3l-aj-VtH"/>
@@ -1041,7 +1051,7 @@
         <image name="boards2" width="472" height="960"/>
         <image name="man-practicing-yoga-posture copy" width="128" height="128"/>
         <image name="man-running copy" width="128" height="128"/>
-        <image name="round-play-button (2)" width="256" height="256"/>
+        <image name="startButton" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xKz-Ka-bKz"/>

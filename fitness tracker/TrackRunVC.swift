@@ -43,7 +43,49 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
     @IBOutlet weak var displayBackground: UIView!
+    @IBOutlet weak var finishButton: UIBarButtonItem!
         
+
+    
+    
+    @IBAction func startStopRun(_ sender: UIButton) {
+        let buttonTitle = sender.title(for: .normal)!
+        print(buttonTitle)
+        if buttonTitle == "start" {
+            sender.setTitle("stop", for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
+            
+            finishButton.isEnabled = false
+            
+            storeCoordinates = true
+            startTimer()
+            
+            if coordinates.count == 0 {
+                date = Date()
+            }
+            
+        } else if buttonTitle == "stop" {
+            sender.setTitle("start", for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "startButton"), for: .normal)
+            
+            finishButton.isEnabled = true
+            
+            storeCoordinates = false
+            stopTimer()
+        }
+
+    }
+    
+    @IBAction func saveRun(_ sender: UIBarButtonItem) {
+        print("Saving!")
+        locationManager.stopUpdatingLocation()
+        saveRunData()
+        clearRunData() // doesnt work :(
+        resetTimer()
+        performSegue(withIdentifier: "showRunSummary", sender: self)
+    }
+
+    
         // MARK: Actions
     @IBAction func startRun(_ sender: Any) {
         storeCoordinates = true
@@ -62,13 +104,13 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             stopTimer()
         } else { // stopLabel = "Finish
             locationManager.stopUpdatingLocation()
-            saveRun()
+            saveRunData()
             clearRunData()
             resetTimer()
             performSegue(withIdentifier: "showRunSummary", sender: self)
         }
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,6 +119,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         map.delegate = self
         timerLabel.text = "0:00"
         setUpLocationManager()
+        finishButton.isEnabled = false
     }
         
     // MARK: Location Services
@@ -185,7 +228,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             let delta : CLLocationDistance = newLocation.distance(from: lastLocation)
             distance = distance + Measurement(value: delta, unit: UnitLength.meters)
             distanceInMiles = distance.converted(to: UnitLength.miles)
-            distanceLabel.text = "Distance(mi): " + String(format: "%.2f", distanceInMiles.value)
+            distanceLabel.text = String(format: "%.2f", distanceInMiles.value)
         }
     }
     
@@ -211,19 +254,11 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     func startTimer() {
         stopwatch.start()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TrackRunVC.updateTimerLabel), userInfo: nil, repeats: true)
-        startLabel.setTitle("Start", for: .normal)
-        stopLabel.setTitle("Stop", for: .normal)
-//        startStopLabel.setTitle("Pause", for: .normal)
-//        finishLabel.isHidden = true
     }
     
     func stopTimer() {
         stopwatch.stop()
         timer.invalidate()
-        startLabel.setTitle("Continue", for: .normal)
-        stopLabel.setTitle("Finish", for: .normal)
-//        startStopLabel.setTitle("Start", for: .normal)
-//        finishLabel.isHidden = false
     }
     
     func resetTimer() {
@@ -238,7 +273,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     }
     
     // MARK: Save and reset run data
-    func saveRun() {
+    func saveRunData() {
         var locations : [[String:Double]] = []
         for coordinate in coordinates {
             locations.append(["lat": coordinate.coordinate.latitude, "long": coordinate.coordinate.longitude])
@@ -301,23 +336,4 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
 //    }
 //    locationCoordinates.append(newLocation)
 //}
-
-
-//@IBAction func startStopTimer(_ sender: Any) {
-//    if startStopLabel.currentTitle == "Start" {
-//        
-//        
-//        locationManager.startUpdatingLocation()
-//        
-//        
-//        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TrackRunVC.updateTimerLabel), userInfo: nil, repeats: true)
-//        startStopLabel.setTitle("Pause", for: .normal)
-//        finishLabel.isHidden = true
-//    } else if startStopLabel.currentTitle == "Pause" {
-//        timer.invalidate()
-//        startStopLabel.setTitle("Start", for: .normal)
-//        finishLabel.isHidden = false
-//    }
-//}
-
 
