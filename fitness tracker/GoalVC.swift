@@ -10,6 +10,8 @@ import UIKit
 
 // reset values every time controller loads!
 // show hours left when under 24 hrs?
+// better to have store instead of goal?
+// show something if no goal
 
 class GoalVC: UIViewController {
     
@@ -26,20 +28,16 @@ class GoalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let days = store.goal?.daysLeft() {
-            dayCountLabel.text = "\(days) day(s) to go"
+        updateDisplay()     
+    }
+    
+    private func updateDisplay() {
+        if let goal = store.goal {
+            dayCountLabel.text = "\(goal.daysLeft()) day(s) to go"
+            practiceCountLabel.text = "\(goal.practicesLeft()) practice(s) to go"
+            mileCountLabel.text = String(format: "%.2f", goal.milesLeft()) + " mile(s) to go"
+            workoutBreakdownLabel.text = "\(goal.workoutBreakdown())"
         }
-        
-        if let numOfPraticesLeft = store.goal?.practicesLeft(practices: store.yogaPractices) {
-            practiceCountLabel.text = "\(numOfPraticesLeft) practice(s) to go"
-        }
-        
-        if let numOfMilesLeft = store.goal?.milesLeft(practices: store.runs) {
-            mileCountLabel.text = String(format: "%.2f", numOfMilesLeft) + " mile(s) to go"
-        }
-
-
-       
     }
 
     override func didReceiveMemoryWarning() {

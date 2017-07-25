@@ -10,11 +10,16 @@ import Foundation
 
 class Goal: NSObject, NSCoding {
     
+    //    var yogaPractices: [YogaPractice] { return self.workouts.filter { $0 is YogaPractice } as! [YogaPractice] }
+    //    var runs: [Run] { return self.workouts.filter { $0 is Run } as! [Run] }
+    
     // MARK: Properties
     var startDate : Date
     var endDate : Date
     var mileGoal : Int
     var practiceGoal : Int
+    var runsCompleted : [Run] { return DataStore.sharedInstance.runs.filter { $0.date > startDate} }
+    var practicesCompleted : [YogaPractice] { return DataStore.sharedInstance.yogaPractices.filter { $0.date > startDate} }
     
     // MARK: Types
     struct PropertyKey {
@@ -75,10 +80,10 @@ class Goal: NSObject, NSCoding {
 //        mileNum += 1.0
 //        return Run.pace(mileage: mileNum, duration: splitTime)
 //    }
+//    var yogaPractices: [YogaPractice] { return self.workouts.filter { $0 is YogaPractice } as! [YogaPractice] }
+//    var runs: [Run] { return self.workouts.filter { $0 is Run } as! [Run] }
     
-    
-    func practicesLeft(practices: [YogaPractice]) -> Int {
-        let practicesCompleted = practices.filter { $0.date > self.startDate }
+    func practicesLeft() -> Int {
         let numOfPracticesLeft = practiceGoal - practicesCompleted.count
         if numOfPracticesLeft > 0 {
             return numOfPracticesLeft
@@ -87,8 +92,7 @@ class Goal: NSObject, NSCoding {
         }
     }
     
-    func milesLeft(practices: [Run]) -> Double {
-        let runsCompleted = practices.filter { $0.date > self.startDate }
+    func milesLeft() -> Double {
         let milesCompleted = runsCompleted.map { run -> Double in
             return run.mileage
         }
@@ -99,6 +103,29 @@ class Goal: NSObject, NSCoding {
             return numOfMilesLeft
         } else { // goal met
             return 0
+        }
+    }
+    
+    // WIll crash is practice rating is nil 
+    func workoutBreakdown() -> [String: Double] {
+        var cardioCount = 0
+        var strengthBuildingCount = 0
+        var flexibilityCount = 0
+        
+        for practice in practicesCompleted {
+            cardioCount += practice.cardioLevel!
+            strengthBuildingCount += practice.strengthBuildingLevel!
+            flexibilityCount += practice.flexibilityLevel!
+        }
+        
+        cardioCount += runsCompleted.count * 5 // A run is a 5/5 cardio workout.
+        let total = [cardioCount, strengthBuildingCount, flexibilityCount].reduce(0, +)
+        print(total)
+        
+        if total > 0 {
+            return ["cardio" : Double(cardioCount) / Double(total), "strength" : Double(strengthBuildingCount) / Double(total), "flex" : Double(flexibilityCount) / Double(total)]
+        } else {
+            return ["cardioPercentage" : 0, "strengthBuildingPercentage" : 0, "flexibilityPercentage" : 0]
         }
     }
 
