@@ -8,7 +8,6 @@
 
 import UIKit
 
-// reset values every time controller loads!
 // show hours left when under 24 hrs?
 // better to have store instead of goal?
 // show something if no goal
@@ -21,6 +20,7 @@ class GoalVC: UIViewController {
     @IBOutlet weak var mileCountLabel: UILabel!
     @IBOutlet weak var practiceCountLabel: UILabel!
     @IBOutlet weak var workoutBreakdownLabel: UILabel!
+    @IBOutlet weak var goalProgressBar: CircleProgressBar!
     
     
     
@@ -33,10 +33,17 @@ class GoalVC: UIViewController {
     
     private func updateDisplay() {
         if let goal = store.goal {
-            dayCountLabel.text = "\(goal.daysLeft()) day(s) to go"
-            practiceCountLabel.text = "\(goal.practicesLeft()) practice(s) to go"
-            mileCountLabel.text = String(format: "%.2f", goal.milesLeft()) + " mile(s) to go"
+            dayCountLabel.text = "\(goal.daysLeft()) days"
+            practiceCountLabel.text = "\(goal.practicesLeft()) practices"
+            mileCountLabel.text = String(format: "%.2f", goal.milesLeft()) + " miles"
             workoutBreakdownLabel.text = "\(goal.workoutBreakdown())"
+            
+           
+            goalProgressBar.percentPracticesComplete = CGFloat(goal.percentPracticesComplete())
+            
+            goalProgressBar.percentMilesComplete = CGFloat(goal.percentMilesComplete())
+            
+            
         }
     }
 
@@ -45,6 +52,9 @@ class GoalVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        updateDisplay()
+    }
 
     /*
     // MARK: - Navigation

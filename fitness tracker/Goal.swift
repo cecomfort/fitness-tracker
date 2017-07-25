@@ -10,9 +10,6 @@ import Foundation
 
 class Goal: NSObject, NSCoding {
     
-    //    var yogaPractices: [YogaPractice] { return self.workouts.filter { $0 is YogaPractice } as! [YogaPractice] }
-    //    var runs: [Run] { return self.workouts.filter { $0 is Run } as! [Run] }
-    
     // MARK: Properties
     var startDate : Date
     var endDate : Date
@@ -62,7 +59,22 @@ class Goal: NSObject, NSCoding {
         let mileGoal = aDecoder.decodeInteger(forKey: PropertyKey.mileGoal)
         let practiceGoal = aDecoder.decodeInteger(forKey: PropertyKey.practiceGoal)
         
-        self.init(startDate: startDate, endDate: endDate, mileGoal: mileGoal, practiceGoal: practiceGoal)
+        self.init(startDate: startDate, endDate: endDate, mileGoal: mileGoal,
+                practiceGoal: practiceGoal)
+    }
+    
+    func percentPracticesComplete() -> Double {
+        return calculatePercent(dividend: Double(practicesCompleted.count), divisor: Double(practiceGoal))
+    }
+    
+    func percentMilesComplete() -> Double {
+        print("Percent")
+        print(calculatePercent(dividend: numOfMilesCompleted(), divisor: Double(mileGoal)))
+        return calculatePercent(dividend: numOfMilesCompleted(), divisor: Double(mileGoal))
+    }
+    
+    private func calculatePercent(dividend : Double, divisor : Double) -> Double {
+        return (dividend / divisor) * 100
     }
 
     // Calculate the number of days left to complete goal, with the end date as the last day
@@ -92,6 +104,7 @@ class Goal: NSObject, NSCoding {
         }
     }
     
+    // reduce to use num of miles completed method
     func milesLeft() -> Double {
         let milesCompleted = runsCompleted.map { run -> Double in
             return run.mileage
@@ -104,6 +117,13 @@ class Goal: NSObject, NSCoding {
         } else { // goal met
             return 0
         }
+    }
+    
+    func numOfMilesCompleted() -> Double {
+        let milesCompleted = runsCompleted.map { run -> Double in
+            return run.mileage
+        }
+        return milesCompleted.reduce(0, +)
     }
     
     // WIll crash is practice rating is nil 
