@@ -68,6 +68,38 @@ class Goal: NSObject, NSCoding {
         let components = calendar.dateComponents([.day], from: currentDate, to: finishDate)
         return components.day! + 1
     }
+//    
+//    var yogaPractices: [YogaPractice] { return self.workouts.filter { $0 is YogaPractice } as! [YogaPractice] }
+//    var runs: [Run] { return self.workouts.filter { $0 is Run } as! [Run] }
+//    var splits = splitTimes.map { splitTime -> Double in
+//        mileNum += 1.0
+//        return Run.pace(mileage: mileNum, duration: splitTime)
+//    }
     
+    
+    func practicesLeft(practices: [YogaPractice]) -> Int {
+        let practicesCompleted = practices.filter { $0.date > self.startDate }
+        let numOfPracticesLeft = practiceGoal - practicesCompleted.count
+        if numOfPracticesLeft > 0 {
+            return numOfPracticesLeft
+        } else { // goal met
+            return 0
+        }
+    }
+    
+    func milesLeft(practices: [Run]) -> Double {
+        let runsCompleted = practices.filter { $0.date > self.startDate }
+        let milesCompleted = runsCompleted.map { run -> Double in
+            return run.mileage
+        }
+        let numOfMilesCompleted = milesCompleted.reduce(0, +)
+        let numOfMilesLeft = Double(mileGoal) - numOfMilesCompleted
+        
+        if numOfMilesLeft > 0 {
+            return numOfMilesLeft
+        } else { // goal met
+            return 0
+        }
+    }
 
 }

@@ -8,6 +8,9 @@
 
 import UIKit
 
+// reset values every time controller loads!
+// show hours left when under 24 hrs?
+
 class GoalVC: UIViewController {
     
     var store = DataStore.sharedInstance
@@ -24,11 +27,19 @@ class GoalVC: UIViewController {
         super.viewDidLoad()
         
         if let days = store.goal?.daysLeft() {
-            dayCountLabel.text = "\(days) days to go"
+            dayCountLabel.text = "\(days) day(s) to go"
+        }
+        
+        if let numOfPraticesLeft = store.goal?.practicesLeft(practices: store.yogaPractices) {
+            practiceCountLabel.text = "\(numOfPraticesLeft) practice(s) to go"
+        }
+        
+        if let numOfMilesLeft = store.goal?.milesLeft(practices: store.runs) {
+            mileCountLabel.text = String(format: "%.2f", numOfMilesLeft) + " mile(s) to go"
         }
 
 
-        // Do any additional setup after loading the view.
+       
     }
 
     override func didReceiveMemoryWarning() {
