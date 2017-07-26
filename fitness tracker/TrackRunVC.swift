@@ -11,7 +11,6 @@ import MapKit
 import CoreLocation
 
 // TO DO: add checks that location is enabled and accurate location found!. dont let start until location is found
-// remove polyline
 // location update failed method -> clima comparison
 // allow user to pause
 // code break at 0 dist and 0 time
@@ -21,6 +20,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     // MARK: Properties
     var store = DataStore.sharedInstance
     var date : Date? // only need a date if run is started
+    var reset = false
     
     // Timer
     var timer = Timer()
@@ -36,7 +36,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     var splitTimes = [Int]()
     
     // Map
-//    var polyline : MKPolyline = MKPolyline()
+    var polylines : [MKPolyline] = []
     
     // Outlets
     @IBOutlet weak var map: MKMapView!
@@ -58,6 +58,11 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         
         updateDistance()
         updatePace()
+        
+        for polyline in polylines {
+            map.remove(polyline)
+        }
+        polylines = []
 //        let overlays = mapView.overlays
 //        mapView.removeOverlays(overlays)
         
@@ -83,9 +88,12 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     //}
     
     override func viewWillAppear(_ animated: Bool) {
-        clearRunData()
-        finishButton.isEnabled = false
-        locationManager.startUpdatingLocation()
+        if reset {
+            clearRunData()
+            finishButton.isEnabled = false
+            locationManager.startUpdatingLocation()
+            reset = false
+        }
     }
     
     @IBAction func startStopRun(_ sender: UIButton) {
@@ -122,6 +130,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         saveRunData()
 //        clearRunData() // doesnt work :(
         resetTimer()
+        reset = true
         performSegue(withIdentifier: "showRunSummary", sender: self)
     }
 
@@ -199,7 +208,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         let userLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         let region : MKCoordinateRegion = MKCoordinateRegionMake(userLocation, span)
         map.setRegion(region, animated: true)
-        self.map.showsUserLocation = true
+        map.showsUserLocation = true
         
         
         if location.horizontalAccuracy > 0 && location.horizontalAccuracy < 50 { //20
@@ -213,9 +222,9 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
                 updatePace()
                 updateSplits()
                 map.add(createPolyLine())
-                if coordinates.count == 1 {
-                    addPin()
-                }
+//                if coordinates.count == 1 {
+//                    addPin()
+//                }
             }
                 
 //            //  Zoom in map to user location
@@ -256,7 +265,8 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         let mapCoordinates : [CLLocationCoordinate2D] = coordinates.map { coordinate in
             return CLLocationCoordinate2D(latitude: coordinate.coordinate.latitude, longitude: coordinate.coordinate.longitude)
         }
-        polyline = MKPolyline(coordinates: mapCoordinates, count: mapCoordinates.count)
+        let polyline = MKPolyline(coordinates: mapCoordinates, count: mapCoordinates.count)
+        polylines.append(polyline)
         return polyline
     }
     
