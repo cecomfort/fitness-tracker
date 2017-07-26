@@ -9,8 +9,7 @@
 import UIKit
 
 // TODO: Any way to ensure saving?
-// TODO: check date is not a future date
-// TODOL add alerts
+
 
 class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
@@ -64,9 +63,11 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
         
         
         if date == nil || style == "" || duration == "" {
-            print("Date, style, and duration fields must be complete.")
+            createAlert(title: "Unable to Save Practice", message: "Date, style, and duration fields must be complete.")
         } else if duration == "0:00" {
-            print("Duration must be greater than 0.")
+            createAlert(title: "Unable to Save Practice", message: "Duration must be greater than 0.")
+        } else if date! > Date() {
+            createAlert(title: "Unable to Save Practice", message: "Date must be in the past")
         } else if let dateInput = date, let newPractice = YogaPractice(date: dateInput, style: style!, duration: duration!, instructor: instructor, location: location, focus: focus, notes: notes, cardioLevel: cardioLevel, strengthBuildingLevel: strengthBuildingLevel, flexibilityLevel: flexibilityLevel) {
             store.addPractice(item: newPractice)
             clearTextFields()
@@ -148,5 +149,15 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
             return yogaVCs.first
         }
         return yogaVCs[nextIndex]
+    }
+    
+    func createAlert(title:String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }

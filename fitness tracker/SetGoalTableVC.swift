@@ -40,10 +40,10 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
                 // segue to goal page
                 print("Set and saved")
             } else {
-                createAlert(title: "Unable to Save", message: "An error occurred. Please try again at a later time.")
+                createAlert(title: "Unable to Save Goal", message: "An error occurred. Please try again at a later time.")
             }
         } else {
-            createAlert(title: "Unable to Save", message: "End date must be a future date.")
+            createAlert(title: "Unable to Save Goal", message: "End date must be a future date.")
         }
     }
     
