@@ -96,7 +96,7 @@ class Run: NSObject, NSCoding {
     }
     
     static func paceToString(pace: Double) -> String {
-        if pace.isNaN || pace is String {
+        if pace.isNaN || pace.isInfinite {
             return "0\'00\""
         }
 
@@ -119,7 +119,7 @@ class Run: NSObject, NSCoding {
             }
             return ["minLat" : minLat, "maxLat" : maxLat, "minLong" : minLong, "maxLong" : maxLong]
         } else {
-            return Dictionary()
+            return ["minLat" : 0, "maxLat" : 0, "minLong" : 0, "maxLong" : 0]
         }
     }
     

@@ -13,7 +13,7 @@ import CoreLocation
 // TO DO: add checks that location is enabled and accurate location found!. dont let start until location is found
 // location update failed method -> clima comparison
 // allow user to pause
-// code break at 0 dist and 0 time
+
 
 class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
@@ -116,8 +116,10 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             sender.setTitle("start", for: .normal)
             sender.setImage(#imageLiteral(resourceName: "startButton"), for: .normal)
             
-            finishButton.isEnabled = true
-            
+            if coordinates.count > 0 {
+                finishButton.isEnabled = true
+            }
+                
             storeCoordinates = false
             stopTimer()
         }
@@ -128,7 +130,6 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         print("Saving!")
         locationManager.stopUpdatingLocation()
         saveRunData()
-//        clearRunData() // doesnt work :(
         resetTimer()
         reset = true
         performSegue(withIdentifier: "showRunSummary", sender: self)
