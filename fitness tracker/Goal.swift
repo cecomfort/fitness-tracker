@@ -17,6 +17,7 @@ class Goal: NSObject, NSCoding {
     var practiceGoal : Int
     var runsCompleted : [Run] { return DataStore.sharedInstance.runs.filter { $0.date > startDate} }
     var practicesCompleted : [YogaPractice] { return DataStore.sharedInstance.yogaPractices.filter { $0.date > startDate} }
+    var achieved : Bool = false
     
     // MARK: Types
     struct PropertyKey {

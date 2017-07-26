@@ -48,7 +48,7 @@ import UIKit
         // running
         drawCircle(radius: diameter / 2, startAngle: 0, endAngle: 2 * π, color: runIncompleteColor)
         
-        if percentMilesComplete == 100.0 {
+        if percentMilesComplete >= 100.0 {
             drawCircle(radius: diameter / 2, startAngle: 0, endAngle: 2 * π, color: runCompleteColor)
         } else {
           drawCircle(radius: diameter / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentMilesComplete - π/2, color: runCompleteColor)
@@ -59,7 +59,7 @@ import UIKit
         drawCircle(radius: (diameter - 40) / 2, startAngle: 0, endAngle:  2 * π, color: yogaPracticeIncompleteColor)
         
         
-        if percentPracticesComplete == 100.0 {
+        if percentPracticesComplete >= 100.0 {
              drawCircle(radius: (diameter - 40) / 2, startAngle: 0, endAngle:  2 * π, color: yogaPracticeCompleteColor)
         } else {
              drawCircle(radius: (diameter - 40) / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentPracticesComplete - π/2, color: yogaPracticeCompleteColor)

@@ -11,8 +11,7 @@ import UIKit
 // show hours left when under 24 hrs?
 // better to have store instead of goal?
 // show something if no goal
-// Progress Bar not updating -> need CG Graphic to rebuid 
-// Update breakdown once goal is met?
+// More fun stroke fills?
 
 class GoalVC: UIViewController {
     
@@ -33,22 +32,35 @@ class GoalVC: UIViewController {
         
         updateDisplay()
         
+        isGoalMet()
+        
 //        setGoalMessage.isHidden = true
     }
     
     private func updateDisplay() {
         if let goal = store.goal {
-            dayCountLabel.text = "\(goal.daysLeft()) days"
-            practiceCountLabel.text = "\(goal.practicesLeft()) practices"
-            mileCountLabel.text = String(format: "%.2f", goal.milesLeft()) + " miles"
-            workoutBreakdownLabel.text = "\(goal.workoutBreakdown())"
+            if !goal.achieved {
+                dayCountLabel.text = "\(goal.daysLeft()) days"
+                practiceCountLabel.text = "\(goal.practicesLeft()) practices"
+                mileCountLabel.text = String(format: "%.2f", goal.milesLeft()) + " miles"
+                workoutBreakdownLabel.text = "\(goal.workoutBreakdown())"
            
-            goalProgressBar.percentPracticesComplete = CGFloat(goal.percentPracticesComplete())
-            goalProgressBar.percentMilesComplete = CGFloat(goal.percentMilesComplete())
-            goalProgressBar.setNeedsDisplay()
+                goalProgressBar.percentPracticesComplete = CGFloat(goal.percentPracticesComplete())
+                goalProgressBar.percentMilesComplete = CGFloat(goal.percentMilesComplete())
+                goalProgressBar.setNeedsDisplay()
             
-            workoutBreakdownBar.workoutBreakdown = goal.workoutBreakdown()
-            workoutBreakdownBar.setNeedsDisplay()
+                workoutBreakdownBar.workoutBreakdown = goal.workoutBreakdown()
+                workoutBreakdownBar.setNeedsDisplay()
+            }
+        }
+    }
+    
+    func isGoalMet() {
+        if let goal = store.goal {
+            if goal.practicesLeft() == 0, goal.milesLeft() == 0 {
+                goal.achieved = true
+                print("wahoo! Goal met!")
+            }
         }
     }
     
