@@ -762,7 +762,9 @@
                             <outlet property="delegate" destination="yWB-iV-owK" id="fAb-Ds-f07"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Fitness Log" id="2pA-wg-eTW"/>
+                    <navigationItem key="navigationItem" title="Fitness Log" id="2pA-wg-eTW">
+                        <barButtonItem key="backBarButtonItem" title="Log" id="48m-mn-Prr"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VKp-CN-u3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -878,7 +880,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Goal Progress" id="Mbj-pH-FWa">
-                        <barButtonItem key="rightBarButtonItem" title="New Goal" id="g0l-5r-4Mc">
+                        <barButtonItem key="rightBarButtonItem" title="Set Goal" id="g0l-5r-4Mc">
                             <connections>
                                 <segue destination="OYa-pN-i0a" kind="show" id="c5V-Z3-5e5"/>
                             </connections>
@@ -1057,7 +1059,7 @@
         <image name="startButton" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xKz-Ka-bKz"/>
-        <segue reference="Kpl-RT-HzZ"/>
+        <segue reference="xG8-Ei-NCQ"/>
+        <segue reference="Z4w-h8-IJQ"/>
     </inferredMetricsTieBreakers>
 </document>

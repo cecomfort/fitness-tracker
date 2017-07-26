@@ -9,7 +9,6 @@
 import UIKit
 
 // TODO: Selected cells are highlighted :(
-// disenable fields and save btn if loading practice
 
 class YogaNotesTVC: UITableViewController, UITextViewDelegate {
     
@@ -22,6 +21,7 @@ class YogaNotesTVC: UITableViewController, UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         notesTextField.delegate = self
         notesTextField.returnKeyType = .done

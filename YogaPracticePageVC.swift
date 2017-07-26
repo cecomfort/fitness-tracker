@@ -29,9 +29,17 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
         self.dataSource = self
         self.delegate = self
         
+        updateNavTitle()
+        
         createViewControllers()
         setUpFirstController()
         configurePageControl()
+    }
+    
+    func updateNavTitle() {
+        if yogaPractice != nil {
+            title = "Practice Summary"
+        }
     }
     
     @IBAction func saveYogaPractice(_ sender: Any) {
