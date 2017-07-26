@@ -49,6 +49,10 @@ class GoalVC: UIViewController {
             
         }
     }
+    
+    @IBAction func unwindToGoalVC(_ segue: UIStoryboardSegue) {
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

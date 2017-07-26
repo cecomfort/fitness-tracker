@@ -28,7 +28,7 @@ import UIKit
     //    @IBInspectable var outlineColor: UIColor = UIColor.blue
     @IBInspectable var yogaPracticeCompleteColor: UIColor = UIColor.magenta
     @IBInspectable var yogaPracticeIncompleteColor: UIColor = UIColor.gray
-    @IBInspectable var ruCompletenColor: UIColor = UIColor.cyan
+    @IBInspectable var runCompleteColor: UIColor = UIColor.cyan
     @IBInspectable var runIncompleteColor: UIColor = UIColor.darkGray
     
     func drawCircle(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, color : UIColor) {
@@ -47,14 +47,23 @@ import UIKit
         
         // running
         drawCircle(radius: diameter / 2, startAngle: 0, endAngle: 2 * π, color: runIncompleteColor)
-        //        drawCircle(radius: diameter / 2, startAngle: 3 * π / 2, endAngle: π, color: ruCompletenColor)
-        drawCircle(radius: diameter / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentMilesComplete - π/2, color: ruCompletenColor)
+        
+        if percentMilesComplete == 100.0 {
+            drawCircle(radius: diameter / 2, startAngle: 0, endAngle: 2 * π, color: runCompleteColor)
+        } else {
+          drawCircle(radius: diameter / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentMilesComplete - π/2, color: runCompleteColor)
+        }
+
         
         // yoga
         drawCircle(radius: (diameter - 40) / 2, startAngle: 0, endAngle:  2 * π, color: yogaPracticeIncompleteColor)
-        //         drawCircle(radius: (diameter - 40) / 2, startAngle: 0, endAngle:  2 * π, color: yogaPracticeCompleteColor)
-        drawCircle(radius: (diameter - 40) / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentPracticesComplete - π/2, color: yogaPracticeCompleteColor)
         
+        
+        if percentPracticesComplete == 100.0 {
+             drawCircle(radius: (diameter - 40) / 2, startAngle: 0, endAngle:  2 * π, color: yogaPracticeCompleteColor)
+        } else {
+             drawCircle(radius: (diameter - 40) / 2, startAngle: 3 * π / 2, endAngle: π/50 * percentPracticesComplete - π/2, color: yogaPracticeCompleteColor)
+        }
     }
 
 }

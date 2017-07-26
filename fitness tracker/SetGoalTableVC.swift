@@ -31,17 +31,20 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
     @IBAction func saveGoal(_ sender: Any) {
         if let newGoal = Goal(startDate: Date(), endDate: endDatePicker.date, mileGoal: milesGoal, practiceGoal: practiceGoal) {
             if store.saveGoal(item: newGoal) {
                 // segue to goal page
                 print("Set and saved")
+                performSegue(withIdentifier: "goBacktoGoalProgress", sender: self)
             } else {
                 createAlert(title: "Unable to Save Goal", message: "An error occurred. Please try again at a later time.")
             }
         } else {
             createAlert(title: "Unable to Save Goal", message: "End date must be a future date.")
         }
+        
     }
     
 //    @IBAction func saveGoal(_ sender:
