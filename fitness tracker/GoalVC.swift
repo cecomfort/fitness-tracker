@@ -12,6 +12,7 @@ import UIKit
 // better to have store instead of goal?
 // show something if no goal
 // Progress Bar not updating -> need CG Graphic to rebuid 
+// Update breakdown once goal is met?
 
 class GoalVC: UIViewController {
     
@@ -23,6 +24,7 @@ class GoalVC: UIViewController {
     @IBOutlet weak var workoutBreakdownLabel: UILabel!
     @IBOutlet weak var goalProgressBar: CircleProgressBar!
     
+    @IBOutlet weak var workoutBreakdownBar: WorkoutBreakdownBar!
     
     
     // WILL CRASH IF THERES NO GOAL
@@ -40,15 +42,13 @@ class GoalVC: UIViewController {
             practiceCountLabel.text = "\(goal.practicesLeft()) practices"
             mileCountLabel.text = String(format: "%.2f", goal.milesLeft()) + " miles"
             workoutBreakdownLabel.text = "\(goal.workoutBreakdown())"
-            
            
             goalProgressBar.percentPracticesComplete = CGFloat(goal.percentPracticesComplete())
-            
             goalProgressBar.percentMilesComplete = CGFloat(goal.percentMilesComplete())
-            
             goalProgressBar.setNeedsDisplay()
             
-            
+            workoutBreakdownBar.workoutBreakdown = goal.workoutBreakdown()
+            workoutBreakdownBar.setNeedsDisplay()
         }
     }
     

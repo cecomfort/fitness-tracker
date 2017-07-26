@@ -883,6 +883,7 @@
                         <outlet property="goalProgressBar" destination="Ath-YY-jnd" id="akp-kw-aYS"/>
                         <outlet property="mileCountLabel" destination="M4l-Yf-inE" id="qsX-TB-dIT"/>
                         <outlet property="practiceCountLabel" destination="3Oe-8d-mug" id="yaw-mE-o2y"/>
+                        <outlet property="workoutBreakdownBar" destination="cmB-Dg-T7g" id="XJH-1R-oaG"/>
                         <outlet property="workoutBreakdownLabel" destination="lmI-10-oh6" id="sQw-4H-BbZ"/>
                     </connections>
                 </viewController>

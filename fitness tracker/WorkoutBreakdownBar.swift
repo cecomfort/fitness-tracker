@@ -15,6 +15,7 @@ import UIKit
     @IBInspectable var cardioColor : UIColor = .magenta
     @IBInspectable var strengthBuildingColor : UIColor = .cyan
     @IBInspectable var flexibilityColor : UIColor = .yellow
+    @IBInspectable var noWorkoutsColor : UIColor = .lightGray
         
         
     private func drawRect(width: CGFloat, color: UIColor) {
@@ -36,16 +37,20 @@ import UIKit
     override func draw(_ rect: CGRect) {
         let maxWidth : CGFloat = max(bounds.width, bounds.height)
             
-        if let cardioPercentage = workoutBreakdown["cardioPercentage"], let flexPercentage = workoutBreakdown["flexibilityPercentage"] {
+        if let cardioPercentage = workoutBreakdown["cardioPercentage"], let flexPercentage = workoutBreakdown["flexibilityPercentage"], let strengthPercentage =  workoutBreakdown["strengthBuildingPercentage"] {
+            
+            if cardioPercentage == 0.0, flexPercentage == 0.0, strengthPercentage == 0.0 {
+                drawRect(width: maxWidth, color: noWorkoutsColor)
+            } else {
+                // Flexibility
+                drawRect(width: maxWidth, color: flexibilityColor)
                 
-            // Flexibility
-            drawRect(width: maxWidth, color: flexibilityColor)
+                // Strength Building
+                drawRect(width: maxWidth * CGFloat(1.0 - flexPercentage), color: strengthBuildingColor)
                 
-            // Strength Building
-            drawRect(width: maxWidth * CGFloat(1.0 - flexPercentage), color: strengthBuildingColor)
-                
-            // Cardio
-            drawRect(width: maxWidth * CGFloat(cardioPercentage), color: cardioColor)
+                // Cardio
+                drawRect(width: maxWidth * CGFloat(cardioPercentage), color: cardioColor)
+            }
         }
     }
 }

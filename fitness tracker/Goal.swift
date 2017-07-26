@@ -145,7 +145,7 @@ class Goal: NSObject, NSCoding {
         print(total)
         
         if total > 0 {
-            return ["cardio" : Double(cardioCount) / Double(total), "strength" : Double(strengthBuildingCount) / Double(total), "flex" : Double(flexibilityCount) / Double(total)]
+            return ["cardioPercentage" : Double(cardioCount) / Double(total), "strengthBuildingPercentage" : Double(strengthBuildingCount) / Double(total), "flexibilityPercentage" : Double(flexibilityCount) / Double(total)]
         } else {
             return ["cardioPercentage" : 0, "strengthBuildingPercentage" : 0, "flexibilityPercentage" : 0]
         }
