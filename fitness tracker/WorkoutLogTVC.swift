@@ -23,6 +23,8 @@ class WorkoutLogTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = editButtonItem
+        
         print(store.yogaPractices.count)
         configureTableView()
 //        print(store.yogaPractices)
@@ -151,7 +153,7 @@ class WorkoutLogTVC: UITableViewController {
     func handleDeleteWorkout(alertAction: UIAlertAction!) -> Void {
         if let indexPath = deleteWorkoutIndexPath {
             tableView.beginUpdates()
-            store.deletePractice(index: indexPath.row) // delete from file
+            store.deleteWorkout(index: indexPath.row) // delete from file
             self.tableView.deleteRows(at: [indexPath], with: .automatic) // delete cell from view
             deleteWorkoutIndexPath = nil
             tableView.endUpdates()

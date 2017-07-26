@@ -76,9 +76,9 @@ class DataStore: NSObject, NSCoding {
     }
     
     // make same for yoga and running?
-    func deletePractice(index: Int) {
-//        self.yogaPractices.remove(at: index)
-//        NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
+    func deleteWorkout(index: Int) {
+        workouts.remove(at: index)
+        NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
     }
     
     func editPractice(item: YogaPractice, index: Int) {
