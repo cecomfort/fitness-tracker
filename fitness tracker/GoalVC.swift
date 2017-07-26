@@ -29,7 +29,9 @@ class GoalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateDisplay()     
+        updateDisplay()
+        
+//        setGoalMessage.isHidden = true
     }
     
     private func updateDisplay() {

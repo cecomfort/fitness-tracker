@@ -38,6 +38,7 @@
 		E8B80A511F18432200F915E9 /* YogaPracticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B80A501F18432200F915E9 /* YogaPracticeCell.swift */; };
 		E8EBD0C31F269B550081CC30 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBD0C21F269B550081CC30 /* GoalVC.swift */; };
 		E8EBD0C51F27A6260081CC30 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBD0C41F27A6260081CC30 /* CircleProgressBar.swift */; };
+		E8FFF2CA1F29272100BA6E83 /* WorkoutBreakdownBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFF2C91F29272100BA6E83 /* WorkoutBreakdownBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		E8B80A501F18432200F915E9 /* YogaPracticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YogaPracticeCell.swift; sourceTree = "<group>"; };
 		E8EBD0C21F269B550081CC30 /* GoalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		E8EBD0C41F27A6260081CC30 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
+		E8FFF2C91F29272100BA6E83 /* WorkoutBreakdownBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutBreakdownBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				E80BFC871F26769500C68DC8 /* Goal.swift */,
 				E8EBD0C41F27A6260081CC30 /* CircleProgressBar.swift */,
 				E80BFBAB1F1C2D8300C68DC8 /* Location.swift */,
+				E8FFF2C91F29272100BA6E83 /* WorkoutBreakdownBar.swift */,
 				E80BFBED1F200A1700C68DC8 /* RatingControl.swift */,
 			);
 			name = Model;
@@ -408,6 +411,7 @@
 				E80BFBAC1F1C2D8300C68DC8 /* Location.swift in Sources */,
 				E8B80A511F18432200F915E9 /* YogaPracticeCell.swift in Sources */,
 				E8834F641F157AB10047BC27 /* YogaDetailsTVC.swift in Sources */,
+				E8FFF2CA1F29272100BA6E83 /* WorkoutBreakdownBar.swift in Sources */,
 				E80BFC361F2166DB00C68DC8 /* YogaPracticePageVC.swift in Sources */,
 				E80BFBAA1F1C2D7600C68DC8 /* Run.swift in Sources */,
 				E80BFBAE1F1C34E100C68DC8 /* RunSummaryVC.swift in Sources */,
