@@ -20,6 +20,7 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
     var yogaVCs : [UIViewController] = []
     var store = DataStore.sharedInstance
     var yogaPractice : YogaPractice?
+    var practiceIndex : Int?
     
     
     override func viewDidLoad() {
@@ -68,8 +69,14 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
             createAlert(title: "Unable to Save Practice", message: "Duration must be greater than 0.")
         } else if date! > Date() {
             createAlert(title: "Unable to Save Practice", message: "Date must be in the past")
-        } else if let dateInput = date, let newPractice = YogaPractice(date: dateInput, style: style!, duration: duration!, instructor: instructor, location: location, focus: focus, notes: notes, cardioLevel: cardioLevel, strengthBuildingLevel: strengthBuildingLevel, flexibilityLevel: flexibilityLevel) {
-            store.addPractice(item: newPractice)
+        } else if let newPractice = YogaPractice(date: date!, style: style!, duration: duration!, instructor: instructor, location: location, focus: focus, notes: notes, cardioLevel: cardioLevel, strengthBuildingLevel: strengthBuildingLevel, flexibilityLevel: flexibilityLevel) {
+            if let index = practiceIndex {
+                // Edit existing practice
+                store.editPractice(item: newPractice, index: index)
+            } else {
+                // Create new practice
+                store.addPractice(item: newPractice)
+            }
             clearTextFields()
         }
     }

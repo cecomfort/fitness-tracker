@@ -81,6 +81,11 @@ class DataStore: NSObject, NSCoding {
 //        NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
     }
     
+    func editPractice(item: YogaPractice, index: Int) {
+        workouts[index] = item
+        NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
+    }
+    
     func addRun(item: Run) {
 //        self.runs.append(item)
         self.workouts.append(item)

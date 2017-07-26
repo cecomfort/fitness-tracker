@@ -8,11 +8,10 @@
 
 import UIKit
 
-// TODO: Enable Done button on text field
 // TODO: Selected cells are highlighted :(
 // disenable fields and save btn if loading practice
 
-class YogaNotesTVC: UITableViewController {
+class YogaNotesTVC: UITableViewController, UITextViewDelegate {
     
     @IBOutlet weak var cardioLevel: RatingControl!
     @IBOutlet weak var strengthBuildingLevel: RatingControl!
@@ -24,14 +23,11 @@ class YogaNotesTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        notesTextField.delegate = self
+        notesTextField.returnKeyType = .done
+        
         notesPageVisited = true
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         // modify background image
         let imageView = UIImageView(frame: self.view.frame)
         let image = UIImage(named: "yoga3")!
@@ -48,6 +44,18 @@ class YogaNotesTVC: UITableViewController {
         
         loadYogaPracticeData()
     }
+//    
+//    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+//    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor(white: 1, alpha: 0.2)

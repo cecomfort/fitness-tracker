@@ -196,6 +196,7 @@ class WorkoutLogTVC: UITableViewController {
             if let yogaPractice = store.workouts[selectedIndex] as? YogaPractice {
                 print("Yoga practice selected!")
                 desinationVC?.yogaPractice = yogaPractice
+                desinationVC?.practiceIndex = selectedIndex
             }
         }
     }
