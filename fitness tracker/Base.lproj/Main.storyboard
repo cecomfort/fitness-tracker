@@ -965,9 +965,6 @@
                                                     <state key="normal" title="Save">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="saveGoal:" destination="OYa-pN-i0a" eventType="touchUpInside" id="ymR-6f-oQv"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -982,6 +979,14 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Goals" image="Goals2" selectedImage="Goals2" id="wwa-QM-WUM"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Set Goal" id="IZq-pU-ikh">
+                        <barButtonItem key="backBarButtonItem" title="Progress" id="EL1-b5-mwK"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Wt9-4T-pPw">
+                            <connections>
+                                <action selector="saveGoal:" destination="OYa-pN-i0a" id="PUq-He-KD2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="endDatePicker" destination="Qfn-xs-6dn" id="haK-Jh-4eh"/>

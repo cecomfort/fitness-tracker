@@ -44,6 +44,8 @@ class GoalVC: UIViewController {
             
             goalProgressBar.percentMilesComplete = CGFloat(goal.percentMilesComplete())
             
+            goalProgressBar.setNeedsDisplay()
+            
             
         }
     }
