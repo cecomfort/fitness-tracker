@@ -41,6 +41,12 @@ class WorkoutLogTVC: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        let cellBackground = UIImageView(image: #imageLiteral(resourceName: "boards2"))
+//        cellBackground.contentMode = .scaleAspectFill
+        cell.backgroundView = UIImageView(image: #imageLiteral(resourceName: "boards2"))
+    }
+    
     func configureTableView() {
         tableView.rowHeight = 70
         tableView.tableFooterView = UIView()
