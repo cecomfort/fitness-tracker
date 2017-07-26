@@ -8,9 +8,8 @@
 
 import UIKit
 
-// TODO: Anyway to ensure saving?
+// TODO: Any way to ensure saving?
 // TODO: check date is not a future date
-// TODO: Loop to reset fields?
 // TODOL add alerts
 
 class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
@@ -21,10 +20,6 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
     var page2VC : YogaNotesTVC?
     var yogaVCs : [UIViewController] = []
     var store = DataStore.sharedInstance
-    var date: Date?
-    var cardioLevel = 0
-    var strengthBuildingLevel = 0
-    var flexibilityLevel = 0
     var yogaPractice : YogaPractice?
     
     
@@ -42,21 +37,32 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
     @IBAction func saveYogaPractice(_ sender: Any) {
         print("Saving!")
 
+        let date = page1VC?.datePicker.date
         let style = page1VC?.style.text
         let duration = page1VC?.duration.text
         let location = page1VC?.location.text
         let instructor = page1VC?.instructor.text
         let focus = page1VC?.focus.text
-        let notes = page2VC?.notesTextField.text 
         
-        // Date may be nil, so check that first
-//        if let dateInput = date, let newPractice = YogaPractice(date: dateInput, style: style!, duration: duration!, instructor: instructor, location: location, focus: focus, notes: notes, cardioLevel: cardioLevel, strengthBuildingLevel: strengthBuildingLevel, flexibilityLevel: flexibilityLevel) {
-//            print("Trying to save!")
-//            store.addPractice(item: newPractice)
-//            clearTextFields()
-//        }
-//      
-
+        let notes : String
+        let cardioLevel : Int
+        let strengthBuildingLevel : Int
+        let flexibilityLevel : Int
+        
+        
+        if let page2VC = page2VC, page2VC.notesPageVisited {
+            notes = page2VC.notesTextField.text
+            cardioLevel = page2VC.cardioLevel.rating
+            strengthBuildingLevel = page2VC.strengthBuildingLevel.rating
+            flexibilityLevel = page2VC.flexibilityLevel.rating
+        } else {
+            cardioLevel = 0
+            strengthBuildingLevel = 0
+            flexibilityLevel = 0
+            notes = ""
+        }
+        
+        
         if date == nil || style == "" || duration == "" {
             print("Date, style, and duration fields must be complete.")
         } else if duration == "0:00" {
@@ -67,24 +73,11 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
         }
     }
     
-    // Better way to do this? loop?
     func clearTextFields() {
-        // disenable save, make yoga details current vc
-        page1VC?.style.text = ""
-        page1VC?.date.text = ""
-        page1VC?.duration.text = ""
-        page1VC?.location.text = ""
-        page1VC?.instructor.text = ""
-        page1VC?.focus.text = ""
-        page2VC?.notesTextField.text = ""
-        page2VC?.cardioLevel.rating = 0
-        page2VC?.strengthBuildingLevel.rating = 0
-        page2VC?.flexibilityLevel.rating = 0
-        
-        date = nil
-        cardioLevel = 0
-        strengthBuildingLevel = 0
-        flexibilityLevel = 0
+        page1VC?.resetFeilds()
+        if let page2VC = page2VC, page2VC.notesPageVisited {
+            page2VC.resetFields()
+        }
     }
     
     // MARK: Configuring VCs and Page Control
@@ -130,24 +123,6 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
     
     // Prepare for swipe segues, allowing data to pass between child VCs
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        if let dateInput = page1VC?.datePicker.date {
-            date = dateInput
-            print("date: \(dateInput)")
-        }
-        if let cardioInput = page2VC?.cardioLevel.rating {
-            cardioLevel = cardioInput
-            print("cardio level: \(cardioLevel)")
-        }
-            if let strengthBuildingInput = page2VC?.strengthBuildingLevel.rating {
-                strengthBuildingLevel = strengthBuildingInput
-                print("strengthBuildingLevel: \(strengthBuildingLevel)")
-            }
-            
-            if let flexibilityInput = page2VC?.flexibilityLevel.rating {
-                flexibilityLevel = flexibilityInput
-                print("flexibilityLevel: \(flexibilityLevel)")
-            }
-//        }
     }
     
     // MARK: Data source functions.

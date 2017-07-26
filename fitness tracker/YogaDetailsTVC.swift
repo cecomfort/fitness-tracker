@@ -268,5 +268,14 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func resetFeilds() {
+        style.text = ""
+        date.text = ""
+        duration.text = ""
+        location.text = ""
+        instructor.text = ""
+        focus.text = ""
+    }
 
 }

@@ -19,9 +19,12 @@ class YogaNotesTVC: UITableViewController {
     @IBOutlet weak var flexibilityLevel: RatingControl!
     @IBOutlet weak var notesTextField: UITextView!
     var yogaPractice : YogaPractice?
+    var notesPageVisited = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        notesPageVisited = true
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -84,5 +87,12 @@ class YogaNotesTVC: UITableViewController {
             flexibilityLevel.rating = savedPractice.flexibilityLevel!
             notesTextField.text = savedPractice.notes
         }
+    }
+    
+    func resetFields() {
+        notesTextField.text = ""
+        cardioLevel.rating = 0
+        strengthBuildingLevel.rating = 0
+        flexibilityLevel.rating = 0
     }
 }
