@@ -11,10 +11,10 @@ import MapKit
 import CoreLocation
 
 // TO DO: add checks that location is enabled and accurate location found!. dont let start until location is found
-// reset data values
-// disenable start button hjnce run starts until stop is pressed
+// remove polyline
 // location update failed method -> clima comparison
 // allow user to pause
+// code break at 0 dist and 0 time
 
 class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
@@ -34,7 +34,10 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     var storeCoordinates = false
     var distanceInMiles = Measurement(value: 0, unit: UnitLength.miles)
     var splitTimes = [Int]()
-        
+    
+    // Map
+//    var polyline : MKPolyline = MKPolyline()
+    
     // Outlets
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -46,7 +49,44 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     @IBOutlet weak var finishButton: UIBarButtonItem!
         
 
+    func clearRunData() {
+        stopwatch.reset()
+        coordinates = []
+        distance = Measurement(value: 0, unit: UnitLength.meters)
+        distanceInMiles = Measurement(value: 0, unit: UnitLength.miles)
+        splitTimes = []
+        
+        updateDistance()
+        updatePace()
+//        let overlays = mapView.overlays
+//        mapView.removeOverlays(overlays)
+        
+//        map.removeAnnotation(map.annotations as! MKAnnotation)
+//        print("distance: \(distance)")
+//        polyline.
+        //        coordinates = []
+        //        distance = Measurement(value: 0, unit: UnitLength.meters)
+        //        run = nil
+        //        date = nil
+//        storeCoordinates = false
+        //        distanceInMiles = Measurement(value: 0, unit: UnitLength.miles)
+        //        splitTimes = []
+    }
     
+    //func resetRun() {
+    //    // would rather reset at the end
+    //    //        distance = Measurement(value: 0, unit: UnitLength.meters)
+    //    //        locationCoordinates.removeAll()
+    //    //        mileageLabel.text = "0:00"
+    //    //        paceLabel.text = "0'00\""
+    //    //        locationManager.startUpdatingLocation()
+    //}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        clearRunData()
+        finishButton.isEnabled = false
+        locationManager.startUpdatingLocation()
+    }
     
     @IBAction func startStopRun(_ sender: UIButton) {
         let buttonTitle = sender.title(for: .normal)!
@@ -80,7 +120,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         print("Saving!")
         locationManager.stopUpdatingLocation()
         saveRunData()
-        clearRunData() // doesnt work :(
+//        clearRunData() // doesnt work :(
         resetTimer()
         performSegue(withIdentifier: "showRunSummary", sender: self)
     }
@@ -216,7 +256,8 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         let mapCoordinates : [CLLocationCoordinate2D] = coordinates.map { coordinate in
             return CLLocationCoordinate2D(latitude: coordinate.coordinate.latitude, longitude: coordinate.coordinate.longitude)
         }
-        return MKPolyline(coordinates: mapCoordinates, count: mapCoordinates.count)
+        polyline = MKPolyline(coordinates: mapCoordinates, count: mapCoordinates.count)
+        return polyline
     }
     
     
@@ -229,6 +270,8 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             distance = distance + Measurement(value: delta, unit: UnitLength.meters)
             distanceInMiles = distance.converted(to: UnitLength.miles)
             distanceLabel.text = String(format: "%.2f", distanceInMiles.value)
+        } else {
+            distanceLabel.text = "0.00"
         }
     }
     
@@ -288,24 +331,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         }
     }
     
-    func clearRunData() {
-//        coordinates = []
-//        distance = Measurement(value: 0, unit: UnitLength.meters)
-//        run = nil
-//        date = nil
-        storeCoordinates = false
-//        distanceInMiles = Measurement(value: 0, unit: UnitLength.miles)
-//        splitTimes = []
-    }
-        
-        //func resetRun() {
-        //    // would rather reset at the end
-        //    //        distance = Measurement(value: 0, unit: UnitLength.meters)
-        //    //        locationCoordinates.removeAll()
-        //    //        mileageLabel.text = "0:00"
-        //    //        paceLabel.text = "0'00\""
-        //    //        locationManager.startUpdatingLocation()
-        //}
+
     
     
     // MARK: Navigation
