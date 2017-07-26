@@ -12,6 +12,7 @@ import UIKit
 // better to have store instead of goal?
 // show something if no goal
 // More fun stroke fills?
+// message if goal not met & freeze workout updates 
 
 class GoalVC: UIViewController {
     
@@ -34,15 +35,31 @@ class GoalVC: UIViewController {
         
         isGoalMet()
         
+        workoutBreakdownBar.backgroundColor = .clear
+        goalProgressBar.backgroundColor = .clear
+        
 //        setGoalMessage.isHidden = true
     }
     
     private func updateDisplay() {
         if let goal = store.goal {
             if !goal.achieved {
-                dayCountLabel.text = "\(goal.daysLeft()) days"
-                practiceCountLabel.text = "\(goal.practicesLeft()) practices"
-                mileCountLabel.text = String(format: "%.2f", goal.milesLeft()) + " miles"
+                let daysLeft = goal.daysLeft()
+                if daysLeft == 1 {
+                    dayCountLabel.text = "\(daysLeft) day"
+                } else {
+                    dayCountLabel.text = "\(daysLeft) days"
+                }
+//                dayCountLabel.text = "\(goal.daysLeft()) days"
+                
+                let practicesLeft = goal.practicesLeft()
+                if practicesLeft == 1 {
+                    practiceCountLabel.text = "\(practicesLeft) practice"
+                } else { // plural
+                    practiceCountLabel.text = "\(practicesLeft) practices"
+                }
+//                practiceCountLabel.text = "\(goal.practicesLeft()) practices"
+                mileCountLabel.text = String(format: "%.2f", goal.milesLeft()) + " mi"
                 workoutBreakdownLabel.text = "\(goal.workoutBreakdown())"
            
                 goalProgressBar.percentPracticesComplete = CGFloat(goal.percentPracticesComplete())
