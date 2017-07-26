@@ -12,7 +12,7 @@
         <!--Log Practice-->
         <scene sceneID="IZT-jE-jga">
             <objects>
-                <tableViewController storyboardIdentifier="PracticeDetailsPage1" automaticallyAdjustsScrollViewInsets="NO" id="cwQ-em-Sgg" customClass="YogaDetailsTVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PracticeDetailsPage1" id="cwQ-em-Sgg" customClass="YogaDetailsTVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="static" style="plain" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6zY-Oh-wOk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -172,7 +172,7 @@
                             <outlet property="delegate" destination="cwQ-em-Sgg" id="Z0H-e3-ESx"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Log Practice" id="BTQ-c0-sB8">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="blU-FY-Fwc">
                             <connections>
@@ -191,12 +191,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4O3-UD-464" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5592.8000000000002" y="-873.01349325337333"/>
+            <point key="canvasLocation" x="5582" y="-873"/>
         </scene>
         <!--Log Practice-->
         <scene sceneID="jyd-rl-9ee">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="sri-Ua-7I6" customClass="YogaPracticePageVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Log Practice" id="GT8-Wt-MiF">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="V3l-xA-D6Q">
                             <connections>
@@ -588,7 +589,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AIP-S2-9v4">
-                                <rect key="frame" x="0.0" y="63" width="375" height="604"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -616,7 +617,9 @@
         <!--Run Summary-->
         <scene sceneID="TjV-ch-N86">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Run Summary" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qLo-oR-tKf" customClass="RunPageVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Run Summary" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qLo-oR-tKf" customClass="RunPageVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qj0-UH-qFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4802" y="-2305"/>
@@ -776,8 +779,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Nc0-4L-Qcq" kind="relationship" relationship="viewControllers" id="xjH-u7-Zrj"/>
                         <segue destination="oGW-rI-0Qd" kind="relationship" relationship="viewControllers" id="OxS-2K-nJV"/>
+                        <segue destination="Nc0-4L-Qcq" kind="relationship" relationship="viewControllers" id="xjH-u7-Zrj"/>
                         <segue destination="R3e-9X-36P" kind="relationship" relationship="viewControllers" id="ToO-K8-atG"/>
                         <segue destination="kiO-QO-SLX" kind="relationship" relationship="viewControllers" id="308-C9-BZI"/>
                     </connections>
