@@ -503,9 +503,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nc0-4L-Qcq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Running" image="Running" selectedImage="Running2" id="Ubx-ug-vjd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ob4-pk-aFX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ob4-pk-aFX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -648,7 +649,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zyp-aW-NO1">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="kiO-QO-SLX" kind="relationship" relationship="viewControllers" id="308-C9-BZI"/>
@@ -970,9 +971,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oGW-rI-0Qd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Yoga" image="Yoga2" selectedImage="Yoga4" id="Bam-7I-gnW"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O23-Fq-2BE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="O23-Fq-2BE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1018,7 +1020,7 @@
         <image name="vehicle-speedometer" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xG8-Ei-NCQ"/>
-        <segue reference="Z4w-h8-IJQ"/>
+        <segue reference="xKz-Ka-bKz"/>
+        <segue reference="Kpl-RT-HzZ"/>
     </inferredMetricsTieBreakers>
 </document>
