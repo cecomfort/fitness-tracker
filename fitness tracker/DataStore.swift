@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Future: Make add workout one method?
+
 class DataStore: NSObject, NSCoding {
     
     static let sharedInstance = loadData()
@@ -18,28 +20,15 @@ class DataStore: NSObject, NSCoding {
     var goal : Goal?
     
     struct PropertyKey {
-//        static let yogaPractices = "yogaPractices"
-//        static let runs = "runs"
         static let workouts = "workouts"
         static let goal = "goal"
     }
     
     private override init() {
-//        self.yogaPractices = []
-//        self.runs = []
         self.workouts = []
     }
     
     required init(coder decoder: NSCoder) {
-        
-//        self.yogaPractices = (decoder.decodeObject(forKey: "yogaPractices") as? [YogaPractice])!
-        
-//        if let practices = decoder.decodeObject(forKey: "yogaPractices") as? [YogaPractice] {
-//            self.yogaPractices = practices
-//        }
-//        if let trackedRuns = decoder.decodeObject(forKey: "runs") as? [Run] {
-//            self.runs = trackedRuns
-//        }
         if let workouts = decoder.decodeObject(forKey: "workouts") as? [Any] {
             self.workouts = workouts
         } else {
@@ -56,8 +45,6 @@ class DataStore: NSObject, NSCoding {
     
     func encode(with coder: NSCoder) {
         print("In encode")
-//        coder.encode(yogaPractices, forKey: PropertyKey.yogaPractices)
-//        coder.encode(runs, forKey: PropertyKey.runs)
         coder.encode(workouts, forKey: PropertyKey.workouts)
         coder.encode(goal, forKey: PropertyKey.goal)
     }
@@ -65,17 +52,14 @@ class DataStore: NSObject, NSCoding {
     static var filePath: String {
         let manager = FileManager.default
         let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-//        print("this is the url path in the documentDirectory \(url)")
         return (url!.appendingPathComponent("Data").path)
     }
     
     func addPractice(item: YogaPractice) {
-//        self.yogaPractices.append(item)
         self.workouts.append(item)
         NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
     }
     
-    // make same for yoga and running?
     func deleteWorkout(index: Int) {
         workouts.remove(at: index)
         NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
@@ -87,7 +71,6 @@ class DataStore: NSObject, NSCoding {
     }
     
     func addRun(item: Run) {
-//        self.runs.append(item)
         self.workouts.append(item)
         print("In addRun, run count is \(self.runs.count)")
         NSKeyedArchiver.archiveRootObject(self, toFile: DataStore.filePath)
@@ -117,20 +100,3 @@ class DataStore: NSObject, NSCoding {
         }
     }
 }
-
-//private func saveMeals() {
-//    let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
-//    if isSuccessfulSave {
-//        os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
-//    } else {
-//        os_log("Failed to save meals...", log: OSLog.default, type: .error)
-//    }
-//}
-//
-//private func loadMeals() -> [Meal]?  {
-//    return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as? [Meal]
-//}
-
-//MARK: Archiving Paths
-//    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-//    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("yogaPractices")

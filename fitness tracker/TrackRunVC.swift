@@ -12,7 +12,6 @@ import CoreLocation
 
 // TO DO: add checks that location is enabled and accurate location found!. dont let start until location is found
 // location update failed method -> clima comparison
-// change polyline and user location line
 
 // Future work: Allow user to pause and not track displacement of run distance
 
@@ -228,7 +227,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         }
         let polyLineRenderer = MKPolylineRenderer(overlay: polyline)
 //        UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        polyLineRenderer.strokeColor = UIColor.gray.withAlphaComponent(0.5)
+        polyLineRenderer.strokeColor = UIColor(red: 231/255, green: 127/255, blue: 123/255, alpha: 0.6)
         polyLineRenderer.lineWidth = 4
         return polyLineRenderer
     }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-// TODO: Delete Cells
 
 class WorkoutLogTVC: UITableViewController {
     
@@ -16,10 +15,6 @@ class WorkoutLogTVC: UITableViewController {
     var store = DataStore.sharedInstance
     var deleteWorkoutIndexPath: IndexPath? = nil
     var selectedIndex = 0
-    
-//    @IBOutlet weak var dateLabel: UILabel!
-//    @IBOutlet weak var typeLabel: UILabel!
-//    @IBOutlet weak var durationLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,31 +22,16 @@ class WorkoutLogTVC: UITableViewController {
         
         print(store.yogaPractices.count)
         configureTableView()
-//        print(store.yogaPractices)
-        
-        // Load any saved data
-//        if let savedPractices = loadPractices() {
-//            practices += savedPractices
-//        }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        let cellBackground = UIImageView(image: #imageLiteral(resourceName: "boards2"))
-//        cellBackground.contentMode = .scaleAspectFill
         cell.backgroundView = UIImageView(image: #imageLiteral(resourceName: "goal2"))
     }
     
     func configureTableView() {
         tableView.rowHeight = 70
         tableView.tableFooterView = UIView()
-        //        UITableViewAutomaticDimension
-        //        summaryTableView.estimatedRowHeight = 70 // pixels
     }
     
     //MARK: Table View Data Source
@@ -66,10 +46,8 @@ class WorkoutLogTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        return store.yogaPractices.count + store.runs.count
-        if store.workouts.count < 10 {
-            return 10
+        if store.workouts.count < 8 {
+            return store.workouts.count + 8
         } else {
             return store.workouts.count
         }
@@ -77,18 +55,13 @@ class WorkoutLogTVC: UITableViewController {
     
 
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cellIdentifier = "WorkoutCell"
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? WorkoutCell
-//            else {
-//                fatalError("The dequeued cell is not an instance of a WorkoutCell.")
-//        }
-//        
-        // guard -> else continue, guard -> fatal error 
-        if indexPath.row >= store.workouts.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BlankCell", for: indexPath) 
+
+        if indexPath.row >= store.workouts.count, let cell = tableView.dequeueReusableCell(withIdentifier: "BlankCell", for: indexPath) as? emptyMessageCell {
+            if store.workouts.count == 0 && indexPath.row == 1 {
+                cell.message.text = "No workouts to show at this time."
+            }
             return cell
         } else if let run = store.workouts[indexPath.row] as? Run, let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath) as? RunCell {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "RunCell", for: indexPath) as? RunCell
             cell.dateLabel.text = DateFormatter.localizedString(from: run.date, dateStyle: .medium, timeStyle: .none)
             cell.typeLabel.text = String(format: "%.2f", run.mileage) + " mi"
             cell.durationLabel.text = Stopwatch(time: run.duration).convertTimeToHourString() + " hr"
@@ -101,46 +74,14 @@ class WorkoutLogTVC: UITableViewController {
             return cell
         }
         fatalError("The dequeued cell is not an instance of a RunCell or YogaPracticeCell.")
-           
-    
-//        let cell2 = tableView.dequeueReusableCell(withIdentifier: "WorkoutCell", for: indexPath) as? WorkoutCell
-//        return cell2!
-//
-//        if indexPath.row < store.yogaPractices.count {
-//            let practice = store.yogaPractices[indexPath.row]
-//            cell.dateLabel.text = DateFormatter.localizedString(from: practice.date, dateStyle: .medium, timeStyle: .short)
-//
-//            cell.typeLabel.text = practice.style
-//            cell.durationLabel.text = practice.duration
-//        } else { // run workout
-//            let run = store.runs[indexPath.row - store.yogaPractices.count]
-//            cell.dateLabel.text = DateFormatter.localizedString(from: run.date, dateStyle: .medium, timeStyle: .short)
-//            cell.typeLabel.text = String(format: "%.2f", run.mileage) + " mi"
-//            cell.durationLabel.text = Stopwatch(time: run.duration).convertTimeToString()
-//        }
-////        let practice = store.yogaPractices[indexPath.row]
-////        print(practice.date)
-////        print(practice.style)
-////        print(practice.duration)
-////        
-////        cell.dateLabel.text = practice.date
-////        cell.typeLabel.text = practice.style
-////        cell.durationLabel.text = practice.duration
-//
-//        return cell
      }
     
-    // MARK: Delete Workout 
-    // TODO: Update for deleting workout!!!
- 
+    // MARK: Delete Workout
     // swipe to delete table view cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+        if editingStyle == UITableViewCellEditingStyle.delete && store.workouts.count > 0 {
             deleteWorkoutIndexPath = indexPath
             confirmDelete()
-//            store.deletePractice(index: indexPath.row) // delete from file
-//            self.tableView.deleteRows(at: [indexPath], with: .automatic) // delete cell from view
-            
         }
     }
     
@@ -171,34 +112,18 @@ class WorkoutLogTVC: UITableViewController {
         deleteWorkoutIndexPath = nil
     }
     
-    
-    // MARK: Navigation
-//    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) {
-//        selectedIndex = indexPath.row
-//        
-////        if indexPath.row >= store.yogaPractices.count {
-////            selectedIndex = indexPath.row
-////            performSegue(withIdentifier: "showRunDetails", sender: self)
-////        }
-//    }
-    
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         selectedIndex = indexPath.row
         return indexPath
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       // if segue.identifier == "showRunDetails" {
-       //     let destinationVC = segue.destination as! RunSummaryVC
         if segue.identifier == "showRunDetailsWithSplits" {
             let destinationVC = segue.destination as! RunPageVC
-//            destinationVC.run = store.runs[selectedIndex - store.yogaPractices.count]
             if let run = store.workouts[selectedIndex] as? Run {
                 print("Run selected!")
                 destinationVC.run = run
             }
-//            destinationVC.run = store.workouts[selectedIndex] as? Run
-//            store.workouts[indexPath.row] as? Run
         } else if segue.identifier == "showYogaPracticeDetails" {
             let desinationVC = segue.destination as? YogaPracticePageVC
             if let yogaPractice = store.workouts[selectedIndex] as? YogaPractice {
@@ -208,65 +133,4 @@ class WorkoutLogTVC: UITableViewController {
             }
         }
     }
-
-
-    
-//    private func loadPractices() -> [YogaPractice]? {
-//        return NSKeyedUnarchiver.unarchiveObject(withFile: YogaPractice.ArchiveURL.path) as? [YogaPractice]
-//    }
-
-
-
-    // MARK: - Table view data source
-
-
-
-
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

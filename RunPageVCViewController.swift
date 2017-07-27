@@ -8,14 +8,14 @@
 
 import UIKit
 
-import UIKit
+// Future: Add button to go between child VCs
 
 class RunPageVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     // MARK: Properties
     var pageControl = UIPageControl()
     var runSummaryVC : RunSummaryVC?
-    var runSplitsVC : RunSplitsVC?
+    var runRouteVC : RunRouteVC?
     var runVCs : [UIViewController] = []
     var run : Run?
     
@@ -33,21 +33,19 @@ class RunPageVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewC
     // MARK: Configuring VCs and Page Control
     func createViewControllers() {
         runSummaryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "runSummary") as? RunSummaryVC
-        runSplitsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "splits") as? RunSplitsVC
+        runRouteVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "route") as? RunRouteVC
         
         // Send data from parent PageViewController to child VCs
-        if let firstVC = runSummaryVC, let secondVC = runSplitsVC, let runInfo = run {
-            firstVC.run = runInfo
+        if let firstVC = runSummaryVC, let secondVC = runRouteVC, let runInfo = run {
             secondVC.run = runInfo
-            secondVC.splitCount = runInfo.splits().count
-//            secondVC.splits = runInfo.splits()
-            print("Splits: \(runInfo.splits())")
+            firstVC.run = runInfo
+            firstVC.splitCount = runInfo.splits().count
             runVCs = [firstVC, secondVC]
         }
     }
     
     func setUpFirstController() {
-        if let firstVC = runVCs.last {
+        if let firstVC = runVCs.first {
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
     }

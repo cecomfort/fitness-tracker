@@ -343,6 +343,7 @@
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BTf-pJ-mfL">
                                         <rect key="frame" x="0.0" y="-453" width="375" height="460"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.90588235294117647" green="0.49803921568627452" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </mapView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BUZ-QA-14y">
                                         <rect key="frame" x="164" y="-21" width="46" height="57"/>
@@ -507,7 +508,7 @@
         <!--Run Summary-->
         <scene sceneID="Fgn-02-muL">
             <objects>
-                <viewController storyboardIdentifier="runSummary" id="NbE-GU-ybY" customClass="RunSummaryVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="route" id="NbE-GU-ybY" customClass="RunRouteVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eal-Z2-wbZ"/>
                         <viewControllerLayoutGuide type="bottom" id="4gN-aL-5oC"/>
@@ -532,10 +533,10 @@
             </objects>
             <point key="canvasLocation" x="4848.8000000000002" y="-1577.3613193403301"/>
         </scene>
-        <!--Run SplitsVC-->
+        <!--Run SummaryVC-->
         <scene sceneID="fSh-NG-yXb">
             <objects>
-                <viewController storyboardIdentifier="splits" id="aiX-G0-jsK" customClass="RunSplitsVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="runSummary" id="aiX-G0-jsK" customClass="RunSummaryVC" customModule="fitness_tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dew-qn-A5p"/>
                         <viewControllerLayoutGuide type="bottom" id="aP6-ty-hvB"/>
@@ -690,13 +691,24 @@
                                     <segue destination="qLo-oR-tKf" kind="show" identifier="showRunDetailsWithSplits" id="Z4w-h8-IJQ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BlankCell" rowHeight="75" id="6f3-Uc-qx8">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BlankCell" rowHeight="75" id="6f3-Uc-qx8" customClass="emptyMessageCell" customModule="fitness_tracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="178" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6f3-Uc-qx8" id="nAO-JE-UUg">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wL6-g2-S8H">
+                                            <rect key="frame" x="18" y="0.0" width="339" height="67"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="message" destination="wL6-g2-S8H" id="VLL-Gi-86q"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -819,7 +831,7 @@
                                         <color key="value" red="0.25832430568302756" green="0.49165372489292558" blue="0.64782716477582913" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="runCompleteColor">
-                                        <color key="value" red="0.96379282994923854" green="0.53644511857508781" blue="0.50935828730784427" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="value" red="0.90588235294117647" green="0.49803921568627452" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="yogaPracticeCompleteColor">
                                         <color key="value" red="0.35581977905565693" green="0.69659657166159905" blue="0.84055351484850571" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1038,7 +1050,7 @@
         <image name="vehicle-speedometer" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Kpl-RT-HzZ"/>
         <segue reference="xG8-Ei-NCQ"/>
+        <segue reference="Z4w-h8-IJQ"/>
     </inferredMetricsTieBreakers>
 </document>

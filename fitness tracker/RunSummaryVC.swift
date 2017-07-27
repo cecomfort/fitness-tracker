@@ -1,188 +1,143 @@
 //
-//  RunSummaryVC.swift
+//  RunSplitsVC.swift
 //  fitness tracker
 //
-//  Created by Cara E Comfort on 7/16/17.
+//  Created by Cara E Comfort on 7/21/17.
 //  Copyright © 2017 Cara E Comfort. All rights reserved.
 //
 
 import UIKit
-import MapKit
 
-// TODO: Remove extra line at bottom 
-
-class RunSummaryVC: UIViewController, MKMapViewDelegate { 
-    var run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
-//    var run = Run?()
+class RunSummaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var mapView: MKMapView!
-//    @IBOutlet weak var summaryTableView: UITableView!
+//    var splits : [Double] = [42.2, 3.3, 4.4, 3.4, 5.5, 4.5, 4.5, 3.4, 4.6]
+    var run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
+    var splitCount : Int = 0
+    var descriptionLabels: [[String]] = []
+    var valueLabels: [[String]] = []
+    
+    
+    @IBOutlet weak var splitsTableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        summaryTableView.delegate = self
-//        summaryTableView.dataSource = self
-//        summaryTableView.register(UINib(nibName: "WorkoutInfoCell", bundle: nil), forCellReuseIdentifier: "WorkoutInfoCell")
-//        configureTableView()
-        
-        mapView.delegate = self
-        loadMapData()
-//        addPins()
-        
-//        let imageView = UIImageView(frame: self.view.frame)
-//        let image = UIImage(named: "run1")!
-//        imageView.image = image
-//        imageView.contentMode = .scaleAspectFill
-//        
-//        self.view.addSubview(imageView)
-//        self.view.sendSubview(toBack: imageView)
-//
-//        let backgroundImage = UIImage(named: "run6.jpg")
-//        let imageView = UIImageView(image: backgroundImage)
-//        imageView.contentMode = .scaleAspectFill
-//        summaryTableView.backgroundView = imageView
-//        summaryTableView.tableFooterView = UIView()
-        
 
-    }
-    
-    
-//    private func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: IndexPath) {
-//        cell.backgroundColor = .clear
-//    }
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
-//    }
-//
-//    override func viewWillDisappear(_ animated: true) {
-//        run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
-//    }
-    
-    
-    // MARK: - Map
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        guard let polyline = overlay as? MKPolyline else {
-            return MKOverlayRenderer(overlay: overlay)
-        }
+        generateLabelData()
+
+        splitsTableView.delegate = self
+        splitsTableView.dataSource = self
         
-        let polyLineRenderer = MKPolylineRenderer(overlay: polyline)
-        polyLineRenderer.strokeColor = UIColor.gray
-        polyLineRenderer.lineWidth = 4
-        return polyLineRenderer
+        
+        splitsTableView.register(UINib(nibName: "WorkoutInfoCell", bundle: nil), forCellReuseIdentifier: "WorkoutInfoCell")
+        configureTableView()
+        
+        let backgroundImage = UIImage(named: "run11")
+        let imageView = UIImageView(image: backgroundImage)
+        imageView.contentMode = .scaleAspectFill
+        splitsTableView.backgroundView = imageView
+        splitsTableView.tableFooterView = UIView()
     }
     
-    func createPolyLine() -> MKPolyline {
-        if let locations = run?.locations, locations.count > 0 {
-            let mapCoordinates : [CLLocationCoordinate2D] = locations.map { location in
-                return CLLocationCoordinate2D(latitude: location["lat"]!, longitude: location["long"]!)
+    func generateLabelData() {
+        // description labels
+        descriptionLabels.append(["Date", "Mileage", "Duration", "Pace"])
+        descriptionLabels.append(generateSplitDescriptionLabels())
+        
+        // value labels
+        valueLabels.append(determineDetailCellValues())
+        valueLabels.append(generateSplitValueLabels())
+        
+    }
+    
+    
+    func determineDetailCellValues() -> [String] {
+        if let newRun = run {
+            let date = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short)
+            let mileage = String(format: "%.2f", newRun.mileage) + " mi"
+            let pace = Run.paceToString(pace: newRun.avgPace())
+            let duration = Stopwatch(time: newRun.duration).convertTimeToString()
+            return [date, mileage, duration, pace]
+        } else {
+            return ["","","",""]
+        }
+    }
+
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutInfoCell", for: indexPath) as! WorkoutInfoCell
+ 
+        cell.descriptionLabel.text = descriptionLabels[indexPath.section][indexPath.row]
+        cell.valueLabel.text = valueLabels[indexPath.section][indexPath.row]
+
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.4)
+        
+        return cell
+        
+    }
+    
+    func generateSplitValueLabels() -> [String] {
+        var splitLabels : [String] = []
+        if let splits = run?.splits() {
+            for split in splits {
+                splitLabels.append(Run.paceToString(pace: split))
             }
-            return MKPolyline(coordinates: mapCoordinates, count: mapCoordinates.count)
+        }
+        print(splitLabels)
+        return splitLabels
+    }
+    
+    func generateSplitDescriptionLabels() -> [String] {
+        var miles : [String] = []
+        for i in 1...splitCount {
+            miles.append("Mile \(i)")
+        }
+        return miles
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 4
         } else {
-            return MKPolyline()
+            return splitCount
         }
     }
     
-    private func loadMapData() {
-        if let minMaxOfCoordinates = run?.calculateMaxMinOfCoordinates() {
-            let maxLat = minMaxOfCoordinates["maxLat"]
-            let minLat = minMaxOfCoordinates["minLat"]
-            let maxLong = minMaxOfCoordinates["maxLong"]
-            let minLong = minMaxOfCoordinates["minLong"]
-            let center = CLLocationCoordinate2D(latitude: (minLat! + maxLat!) / 2, longitude: (minLong! + maxLong!) / 2)
-            let span = MKCoordinateSpan(latitudeDelta: (maxLat! - minLat!) * 2.5, longitudeDelta: (maxLong! - minLong!) * 2.5)
-            let region = MKCoordinateRegion(center: center, span: span)
-
-            mapView.setRegion(region, animated: true)
-            mapView.add(createPolyLine())
-            
-            
-        } else {
-            print("no coordinates found") // alert?
+    func configureTableView() {
+        splitsTableView.rowHeight = 70
+        splitsTableView.tableFooterView = UIView()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if splitCount > 1 {
+            return 2
+        } else { // If only ran a mile, dont show splits
+            return 1
         }
-
     }
     
-    func addPins() {
-        let startPin = MKPointAnnotation()
-        startPin.title = "Start"
-        startPin.coordinate = CLLocationCoordinate2DMake((run?.locations.first?["lat"])!, (run?.locations.first?["long"])!)
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Run Details"
+        } else {
+            return "Splits"
+        }
+    }
+    
+    // change section headers
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor(white: 1, alpha: 0.7)
+
+        let headerLabel = UILabel(frame: CGRect(x: 5, y: 4, width:
+            tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.font = UIFont.systemFont(ofSize: 18, weight: UIFontWeightMedium);
+        headerLabel.textColor = UIColor.black
+        headerLabel.text = self.tableView(self.splitsTableView, titleForHeaderInSection: section)
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
         
-        // no finish pin?
-        let finishPin = MKPointAnnotation()
-        finishPin.title = "Finish"
-        finishPin.coordinate = CLLocationCoordinate2DMake((run?.locations.last?["lat"])!, (run?.locations.last?["long"])!)
-        
-        mapView.addAnnotations([startPin])
+        return headerView
     }
-    
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-//    func determineCellValues() -> [String] {
-//        if let newRun = run {
-//            let date = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short)
-//            let mileage = String(format: "%.2f", newRun.mileage) + " mi"
-//            let pace = Run.paceToString(pace: newRun.avgPace())
-//            let duration = Stopwatch(time: newRun.duration).convertTimeToString()
-//            return [date, mileage, duration, pace]
-//        } else {
-//            return ["","","",""]
-//        }
-//    }
-
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutInfoCell", for: indexPath) as! WorkoutInfoCell
-//        let descriptionLabels = ["Date", "Mileage", "Duration", "Pace"]
-//        let valueLabels = determineCellValues()
-//        
-//        cell.descriptionLabel.text = descriptionLabels[indexPath.row]
-//        cell.valueLabel.text = valueLabels[indexPath.row]
-////        cell.backgroundColor = .clear
-//        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
-//        
-//        return cell
-//
-//    }
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 4
-//    }
-    
-//    func configureTableView() {
-//        summaryTableView.rowHeight = 70
-//        summaryTableView.tableFooterView = UIView()
-////        UITableViewAutomaticDimension
-////        summaryTableView.estimatedRowHeight = 70 // pixels
-//    }
 }
-
-//func updateDisplay() {
-//    if let newRun = run {
-//        dateLabel.text = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short) // also .none style if only want to display date or time
-//        mileageLabel.text = String(format: "%.2f", newRun.mileage) + " mi"
-//        paceLabel.text = Run.paceToString(pace: newRun.avgPace())
-//        
-//        let stopwatch = Stopwatch(time: newRun.duration)
-//        durationLabel.text = stopwatch.convertTimeToString()
-//        
-//        let splits = newRun.splitsToString()
-//        splitsLabel.text = "\(splits)"
-//        
-//    }
-//}
-
-
-
