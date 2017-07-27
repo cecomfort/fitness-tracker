@@ -10,7 +10,6 @@ import UIKit
 
 class RunSummaryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-//    var splits : [Double] = [42.2, 3.3, 4.4, 3.4, 5.5, 4.5, 4.5, 3.4, 4.6]
     var run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
     var splitCount : Int = 0
     var descriptionLabels: [[String]] = []

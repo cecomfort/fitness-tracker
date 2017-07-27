@@ -12,7 +12,7 @@ import UIKit
 // better to have store instead of goal?
 // show something if no goal
 // More fun stroke fills?
-// message if goal not met & freeze workout updates 
+// message if goal not met & freeze workout updates  (check)
 
 class GoalVC: UIViewController {
     
@@ -21,8 +21,9 @@ class GoalVC: UIViewController {
     @IBOutlet weak var dayCountLabel: UILabel!
     @IBOutlet weak var mileCountLabel: UILabel!
     @IBOutlet weak var practiceCountLabel: UILabel!
-    @IBOutlet weak var workoutBreakdownLabel: UILabel!
     @IBOutlet weak var goalProgressBar: CircleProgressBar!
+    @IBOutlet weak var daysLabel: UILabel!
+    @IBOutlet weak var practicesLabel: UILabel!
     
     @IBOutlet weak var workoutBreakdownBar: WorkoutBreakdownBar!
     
@@ -43,24 +44,33 @@ class GoalVC: UIViewController {
     
     private func updateDisplay() {
         if let goal = store.goal {
-            if !goal.achieved {
+            if !goal.achieved { //, goal.endDate < Date()
+                
                 let daysLeft = goal.daysLeft()
                 if daysLeft == 1 {
-                    dayCountLabel.text = "\(daysLeft) day"
+                    daysLabel.text = "day"
                 } else {
-                    dayCountLabel.text = "\(daysLeft) days"
+                    daysLabel.text = "days"
                 }
-//                dayCountLabel.text = "\(goal.daysLeft()) days"
+
                 
                 let practicesLeft = goal.practicesLeft()
                 if practicesLeft == 1 {
-                    practiceCountLabel.text = "\(practicesLeft) practice"
-                } else { // plural
-                    practiceCountLabel.text = "\(practicesLeft) practices"
+                    practicesLabel.text = "practice"
+                } else {
+                    practicesLabel.text = "practices"
                 }
-//                practiceCountLabel.text = "\(goal.practicesLeft()) practices"
-                mileCountLabel.text = String(format: "%.2f", goal.milesLeft()) + " mi"
-                workoutBreakdownLabel.text = "\(goal.workoutBreakdown())"
+                
+                dayCountLabel.text = "\(daysLeft)"
+                practiceCountLabel.text = "\(goal.practicesLeft())"
+                
+                let milesLeft = goal.milesLeft()
+                if milesLeft <= 0 {
+                    mileCountLabel.text = "0"
+                } else {
+                    mileCountLabel.text = String(format: "%.2f", goal.milesLeft())
+                }
+//                mileCountLabel.text = String(format: "%.2f", goal.milesLeft())
            
                 goalProgressBar.percentPracticesComplete = CGFloat(goal.percentPracticesComplete())
                 goalProgressBar.percentMilesComplete = CGFloat(goal.percentMilesComplete())

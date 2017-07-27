@@ -6,6 +6,7 @@
 //  Copyright © 2017 Cara E Comfort. All rights reserved.
 //
 
+// LINK UP WORDS (DAY, PRACTICES!!!!!!!), message
 import UIKit
 
 class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerViewDelegate {
@@ -25,11 +26,20 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
         formatDatePicker()
         milesPicker.delegate = self
         practicePicker.delegate = self
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // modify background image
+        let imageView = UIImageView(frame: self.view.frame)
+        let image = #imageLiteral(resourceName: "temple")
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFill
+        
+        self.view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //        cell.backgroundColor = UIColor.clear
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.3)
     }
     
     @IBAction func saveGoal(_ sender: Any) {
@@ -46,21 +56,6 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
         }
         
     }
-    
-//    @IBAction func saveGoal(_ sender:
-//        Any) {
-//
-//        if let newGoal = Goal(startDate: Date(), endDate: endDatePicker.date, mileGoal: milesGoal, practiceGoal: practiceGoal) {
-//            if store.saveGoal(item: newGoal) {
-//                // segue to goal page
-//                print("Set and saved")
-//            } else {
-//                createAlert(title: "Unable to Save Goal", message: "An error occurred. Please try again at a later time.")
-//            }
-//        } else {
-//            createAlert(title: "Unable to Save Goal", message: "End date must be a future date.")
-//        }
-//    }
     
     // MARK: Alert Method
     func createAlert(title:String, message: String) {
