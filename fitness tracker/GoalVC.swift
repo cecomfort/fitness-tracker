@@ -8,10 +8,10 @@
 
 import UIKit
 
-// show hours left when under 24 hrs?
-// better to have store instead of goal?
+// Future: show hours left when under 24 hrs, more fun bar fills
+
+
 // show something if no goal
-// More fun stroke fills?
 // message if goal not met & freeze workout updates  (check)
 
 class GoalVC: UIViewController {
@@ -24,8 +24,10 @@ class GoalVC: UIViewController {
     @IBOutlet weak var goalProgressBar: CircleProgressBar!
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var practicesLabel: UILabel!
+    @IBOutlet weak var workoutBreakdownWithLegend: UIView!
     
     @IBOutlet weak var workoutBreakdownBar: WorkoutBreakdownBar!
+    @IBOutlet weak var messageLabel: UITextView!
     
     
     // WILL CRASH IF THERES NO GOAL
@@ -33,8 +35,10 @@ class GoalVC: UIViewController {
         super.viewDidLoad()
         
         updateDisplay()
-        
         isGoalMet()
+        updateMessage()
+        
+        messageLabel.isEditable = false
         
         workoutBreakdownBar.backgroundColor = .clear
         goalProgressBar.backgroundColor = .clear
@@ -44,8 +48,13 @@ class GoalVC: UIViewController {
     
     private func updateDisplay() {
         if let goal = store.goal {
-            if !goal.achieved { //, goal.endDate < Date()
-                
+            goalProgressBar.isHidden = false
+            workoutBreakdownWithLegend.isHidden = false
+//            title = "Goal Progress"
+            
+            // Only update goal status if it is not yet achieved and if the end date hasn't passed
+            if !goal.achieved, Date() > goal.endDate {
+                print("In updating")
                 let daysLeft = goal.daysLeft()
                 if daysLeft == 1 {
                     daysLabel.text = "day"
@@ -79,6 +88,11 @@ class GoalVC: UIViewController {
                 workoutBreakdownBar.workoutBreakdown = goal.workoutBreakdown()
                 workoutBreakdownBar.setNeedsDisplay()
             }
+        } else {
+            // No goal set
+            goalProgressBar.isHidden = true
+            workoutBreakdownWithLegend.isHidden = true
+//            title = "Welcome"
         }
     }
     
@@ -88,6 +102,20 @@ class GoalVC: UIViewController {
                 goal.achieved = true
                 print("wahoo! Goal met!")
             }
+        }
+    }
+    
+    func updateMessage() {
+        if let goal = store.goal {
+            if goal.achieved {
+                messageLabel.text = "Congrats! You met your goal. 🎉"
+            } else if goal.endDate > Date() {
+                messageLabel.text = "Your goal end date has passed. Set a new goal and try again."
+            } else { // goal in progress
+                messageLabel.text = ""
+            }
+        } else {
+            messageLabel.text = "Welcome! Set a goal and begin tracking your yoga practices and runs to see your progress."
         }
     }
     
@@ -102,16 +130,8 @@ class GoalVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         updateDisplay()
+        isGoalMet()
+        updateMessage()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

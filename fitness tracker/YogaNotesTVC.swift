@@ -8,8 +8,6 @@
 
 import UIKit
 
-// TODO: Selected cells are highlighted :(
-
 class YogaNotesTVC: UITableViewController, UITextViewDelegate {
     
     @IBOutlet weak var cardioLevel: RatingControl!
@@ -36,17 +34,11 @@ class YogaNotesTVC: UITableViewController, UITextViewDelegate {
         
         self.view.addSubview(imageView)
         self.view.sendSubview(toBack: imageView)
-    
-        
-        //Looks for single or multiple taps.
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-//        view.addGestureRecognizer(tap)
+
         
         loadYogaPracticeData()
     }
-//    
-//    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-//    }
+
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
@@ -82,11 +74,6 @@ class YogaNotesTVC: UITableViewController, UITextViewDelegate {
             return "Notes"
         }
     }
-    
-//    @IBOutlet weak var cardioLevel: RatingControl!
-//    @IBOutlet weak var strengthBuildingLevel: RatingControl!
-//    @IBOutlet weak var flexibilityLevel: RatingControl!
-//    @IBOutlet weak var notesTextField: UITextView!
     
     private func loadYogaPracticeData() {
         if let savedPractice = yogaPractice {

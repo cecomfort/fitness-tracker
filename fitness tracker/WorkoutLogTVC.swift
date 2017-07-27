@@ -57,7 +57,7 @@ class WorkoutLogTVC: UITableViewController {
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.row >= store.workouts.count, let cell = tableView.dequeueReusableCell(withIdentifier: "BlankCell", for: indexPath) as? emptyMessageCell {
-            if store.workouts.count == 0 && indexPath.row == 1 {
+            if store.workouts.count == 0 && indexPath.row == 0 {
                 cell.message.text = "No workouts to show at this time."
             }
             return cell

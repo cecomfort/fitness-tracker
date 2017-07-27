@@ -61,29 +61,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             map.remove(polyline)
         }
         polylines = []
-//        let overlays = mapView.overlays
-//        mapView.removeOverlays(overlays)
-        
-//        map.removeAnnotation(map.annotations as! MKAnnotation)
-//        print("distance: \(distance)")
-//        polyline.
-        //        coordinates = []
-        //        distance = Measurement(value: 0, unit: UnitLength.meters)
-        //        run = nil
-        //        date = nil
-//        storeCoordinates = false
-        //        distanceInMiles = Measurement(value: 0, unit: UnitLength.miles)
-        //        splitTimes = []
     }
-    
-    //func resetRun() {
-    //    // would rather reset at the end
-    //    //        distance = Measurement(value: 0, unit: UnitLength.meters)
-    //    //        locationCoordinates.removeAll()
-    //    //        mileageLabel.text = "0:00"
-    //    //        paceLabel.text = "0'00\""
-    //    //        locationManager.startUpdatingLocation()
-    //}
     
     override func viewWillAppear(_ animated: Bool) {
         if reset {

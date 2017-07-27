@@ -151,17 +151,6 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         // Dispose of any resources that can be recreated.
     }
 
-//    // MARK: - Table view data source
-//
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
 
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -190,84 +179,8 @@ class YogaDetailsTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Class Details"
-//        if section == 0 {
-//            return "Class Details"
-//        } else if section == 1 {
-//            return "Ratings"
-//        } else {
-//            return "Notes"
-//        }
     }
   
-    //    @IBOutlet weak var notes: UITextView!
-    //    @IBOutlet weak var cardioLevel: RatingControl!
-    //    @IBOutlet weak var strengthBuildingLevel: RatingControl!
-    //    @IBOutlet weak var flexibilityLevel: RatingControl!
-    
-    //    @IBAction func save(_ sender: Any) {
-    //        if let newPractice = YogaPractice(date: datePicker.date, style: style.text!, duration: duration.text!, instructor: instructor.text!, focus: focus.text!, notes: notes.text!, cardioLevel: cardioLevel.rating, strengthBuildingLevel: strengthBuildingLevel.rating, flexibilityLevel: flexibilityLevel.rating) {
-    //            print("cardio: \(cardioLevel.rating)")
-    //            print("strength: \(strengthBuildingLevel.rating)")
-    //            print("flex: \(flexibilityLevel.rating)")
-    //            store.addPractice(item: newPractice)
-    //            clearTextFields()
-    //        }
-    //    }
-    
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-
-    // Override to support conditional editing of the table view.
-//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        // Return false if you do not want the specified item to be editable.
-//        return true
-//    }
-
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func resetFeilds() {
         style.text = ""
