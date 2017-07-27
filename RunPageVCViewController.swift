@@ -38,14 +38,16 @@ class RunPageVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewC
         // Send data from parent PageViewController to child VCs
         if let firstVC = runSummaryVC, let secondVC = runSplitsVC, let runInfo = run {
             firstVC.run = runInfo
-            secondVC.splits = runInfo.splits()
+            secondVC.run = runInfo
+            secondVC.splitCount = runInfo.splits().count
+//            secondVC.splits = runInfo.splits()
             print("Splits: \(runInfo.splits())")
             runVCs = [firstVC, secondVC]
         }
     }
     
     func setUpFirstController() {
-        if let firstVC = runVCs.first {
+        if let firstVC = runVCs.last {
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
     }

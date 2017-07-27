@@ -11,21 +11,21 @@ import MapKit
 
 // TODO: Remove extra line at bottom 
 
-class RunSummaryVC: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource { 
+class RunSummaryVC: UIViewController, MKMapViewDelegate { 
     var run = Run(date: Date(), mileage: 0.0, duration: 0, locations: [], splitTimes: [])
 //    var run = Run?()
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var summaryTableView: UITableView!
+//    @IBOutlet weak var summaryTableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        summaryTableView.delegate = self
-        summaryTableView.dataSource = self
-        summaryTableView.register(UINib(nibName: "WorkoutInfoCell", bundle: nil), forCellReuseIdentifier: "WorkoutInfoCell")
-        configureTableView()
+//        summaryTableView.delegate = self
+//        summaryTableView.dataSource = self
+//        summaryTableView.register(UINib(nibName: "WorkoutInfoCell", bundle: nil), forCellReuseIdentifier: "WorkoutInfoCell")
+//        configureTableView()
         
         mapView.delegate = self
         loadMapData()
@@ -39,11 +39,11 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate, UITableViewDelegate, UI
 //        self.view.addSubview(imageView)
 //        self.view.sendSubview(toBack: imageView)
 //
-        let backgroundImage = UIImage(named: "run6.jpg")
-        let imageView = UIImageView(image: backgroundImage)
-        imageView.contentMode = .scaleAspectFill
-        summaryTableView.backgroundView = imageView
-        summaryTableView.tableFooterView = UIView()
+//        let backgroundImage = UIImage(named: "run6.jpg")
+//        let imageView = UIImageView(image: backgroundImage)
+//        imageView.contentMode = .scaleAspectFill
+//        summaryTableView.backgroundView = imageView
+//        summaryTableView.tableFooterView = UIView()
         
 
     }
@@ -130,43 +130,43 @@ class RunSummaryVC: UIViewController, MKMapViewDelegate, UITableViewDelegate, UI
     }
     */
     
-    func determineCellValues() -> [String] {
-        if let newRun = run {
-            let date = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short)
-            let mileage = String(format: "%.2f", newRun.mileage) + " mi"
-            let pace = Run.paceToString(pace: newRun.avgPace())
-            let duration = Stopwatch(time: newRun.duration).convertTimeToString()
-            return [date, mileage, duration, pace]
-        } else {
-            return ["","","",""]
-        }
-    }
+//    func determineCellValues() -> [String] {
+//        if let newRun = run {
+//            let date = DateFormatter.localizedString(from: newRun.date, dateStyle: .medium, timeStyle: .short)
+//            let mileage = String(format: "%.2f", newRun.mileage) + " mi"
+//            let pace = Run.paceToString(pace: newRun.avgPace())
+//            let duration = Stopwatch(time: newRun.duration).convertTimeToString()
+//            return [date, mileage, duration, pace]
+//        } else {
+//            return ["","","",""]
+//        }
+//    }
 
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutInfoCell", for: indexPath) as! WorkoutInfoCell
+//        let descriptionLabels = ["Date", "Mileage", "Duration", "Pace"]
+//        let valueLabels = determineCellValues()
+//        
+//        cell.descriptionLabel.text = descriptionLabels[indexPath.row]
+//        cell.valueLabel.text = valueLabels[indexPath.row]
+////        cell.backgroundColor = .clear
+//        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
+//        
+//        return cell
+//
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutInfoCell", for: indexPath) as! WorkoutInfoCell
-        let descriptionLabels = ["Date", "Mileage", "Duration", "Pace"]
-        let valueLabels = determineCellValues()
-        
-        cell.descriptionLabel.text = descriptionLabels[indexPath.row]
-        cell.valueLabel.text = valueLabels[indexPath.row]
-//        cell.backgroundColor = .clear
-        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        
-        return cell
-
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 4
+//    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    
-    func configureTableView() {
-        summaryTableView.rowHeight = 70
-        summaryTableView.tableFooterView = UIView()
-//        UITableViewAutomaticDimension
-//        summaryTableView.estimatedRowHeight = 70 // pixels
-    }
+//    func configureTableView() {
+//        summaryTableView.rowHeight = 70
+//        summaryTableView.tableFooterView = UIView()
+////        UITableViewAutomaticDimension
+////        summaryTableView.estimatedRowHeight = 70 // pixels
+//    }
 }
 
 //func updateDisplay() {

@@ -12,8 +12,9 @@ import CoreLocation
 
 // TO DO: add checks that location is enabled and accurate location found!. dont let start until location is found
 // location update failed method -> clima comparison
-// allow user to pause
+// change polyline and user location line
 
+// Future work: Allow user to pause and not track displacement of run distance
 
 class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
@@ -41,8 +42,6 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     // Outlets
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var startLabel: UIButton!
-    @IBOutlet weak var stopLabel: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
     @IBOutlet weak var displayBackground: UIView!
@@ -135,31 +134,6 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         performSegue(withIdentifier: "showRunSummary", sender: self)
     }
 
-    
-        // MARK: Actions
-    @IBAction func startRun(_ sender: Any) {
-        storeCoordinates = true
-        startTimer()
-        
-        if startLabel.currentTitle == "Continue" {
-            locationManager.startUpdatingLocation()
-        } else if startLabel.currentTitle == "Start" && coordinates.count == 0 {
-            date = Date()
-        }
-    }
-    
-    @IBAction func stopRun(_ sender: Any) {
-        if stopLabel.currentTitle == "Stop" {
-            storeCoordinates = false
-            stopTimer()
-        } else { // stopLabel = "Finish
-            locationManager.stopUpdatingLocation()
-            saveRunData()
-            clearRunData()
-            resetTimer()
-            performSegue(withIdentifier: "showRunSummary", sender: self)
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -291,7 +265,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             let pace = Run.pace(mileage: distanceInMiles.value, duration: stopwatch.time)
             paceLabel.text = Run.paceToString(pace: pace)
         } else {
-            paceLabel.text = "0'0\""
+            paceLabel.text = "0'00\""
         }
     }
     

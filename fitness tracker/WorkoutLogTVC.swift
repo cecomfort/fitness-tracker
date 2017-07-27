@@ -44,7 +44,7 @@ class WorkoutLogTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        let cellBackground = UIImageView(image: #imageLiteral(resourceName: "boards2"))
 //        cellBackground.contentMode = .scaleAspectFill
-        cell.backgroundView = UIImageView(image: #imageLiteral(resourceName: "boards1"))
+        cell.backgroundView = UIImageView(image: #imageLiteral(resourceName: "goal2"))
     }
     
     func configureTableView() {
