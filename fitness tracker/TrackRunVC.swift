@@ -145,7 +145,7 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         locationManager.pausesLocationUpdatesAutomatically = false
             
         // get location updates every 10 meters traveled
-        locationManager.distanceFilter = 10
+//        locationManager.distanceFilter = 10
         
         // looks for GPS coordinates of iphone. This method is asynchronous!
         locationManager.startUpdatingLocation()

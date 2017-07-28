@@ -55,9 +55,10 @@ class GoalVC: UIViewController {
 //            title = "Goal Progress"
             
             // Only update goal status if it is not yet achieved and if the end date hasn't passed
-            if !goal.achieved, Date() > goal.endDate {
+            if !goal.achieved, (goal.endDate > Date() || Calendar.current.isDateInToday(goal.endDate)) {
                 print("In updating")
                 let daysLeft = goal.daysLeft()
+                print("days: \(daysLeft)")
                 if daysLeft == 1 {
                     daysLabel.text = "day"
                 } else {

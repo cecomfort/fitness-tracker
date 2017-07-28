@@ -44,6 +44,9 @@ class SetGoalTableVC: UITableViewController,UIPickerViewDataSource, UIPickerView
     
     @IBAction func saveGoal(_ sender: Any) {
         if let newGoal = Goal(startDate: Date(), endDate: endDatePicker.date, mileGoal: milesGoal, practiceGoal: practiceGoal) {
+            print(endDatePicker.date)
+            print(milesGoal)
+            print(practiceGoal)
             if store.saveGoal(item: newGoal) {
                 // segue to goal page
                 print("Set and saved")
