@@ -26,8 +26,8 @@ class YogaPracticePageVC: UIPageViewController, UIPageViewControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationController?.navigationBar.barTintColor = UIColor.white
-//        tabBarController?.tabBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        tabBarController?.tabBar.barTintColor = UIColor.white
         
         self.dataSource = self
         self.delegate = self

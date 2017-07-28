@@ -29,8 +29,9 @@ class GoalVC: UIViewController {
     @IBOutlet weak var workoutBreakdownBar: WorkoutBreakdownBar!
     @IBOutlet weak var messageLabel: UITextView!
     
+    @IBOutlet weak var welcomeImage: UIImageView!
     
-    // WILL CRASH IF THERES NO GOAL
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +51,7 @@ class GoalVC: UIViewController {
         if let goal = store.goal {
             goalProgressBar.isHidden = false
             workoutBreakdownWithLegend.isHidden = false
+            welcomeImage.isHidden = true
 //            title = "Goal Progress"
             
             // Only update goal status if it is not yet achieved and if the end date hasn't passed
@@ -92,7 +94,8 @@ class GoalVC: UIViewController {
             // No goal set
             goalProgressBar.isHidden = true
             workoutBreakdownWithLegend.isHidden = true
-//            title = "Welcome"
+            welcomeImage.isHidden = false
+
         }
     }
     
@@ -108,7 +111,7 @@ class GoalVC: UIViewController {
     func updateMessage() {
         if let goal = store.goal {
             if goal.achieved {
-                messageLabel.text = "Congrats! You met your goal. 🎉"
+                messageLabel.text = "Congratulations! You met your goal. 🎉"
             } else if goal.endDate > Date() {
                 messageLabel.text = "Your goal end date has passed. Set a new goal and try again."
             } else { // goal in progress

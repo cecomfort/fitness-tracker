@@ -21,12 +21,8 @@ class RunPageVC: UIPageViewController, UIPageViewControllerDelegate, UIPageViewC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        EFEFF4
-        
-//        navigationController?.navigationBar.barTintColor = UIColor.init(red: 247/255, green: 247/255, blue: 248/255, alpha: 1)
-//        tabBarController?.tabBar.barTintColor = UIColor.init(red: 247/255, green: 247/255, blue: 248/255, alpha: 1)
-//        navigationController?.navigationBar.barTintColor = UIColor.white
-//        tabBarController?.tabBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        tabBarController?.tabBar.barTintColor = UIColor.white
 
         
         self.dataSource = self

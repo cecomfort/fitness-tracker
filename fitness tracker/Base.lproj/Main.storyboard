@@ -503,10 +503,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nc0-4L-Qcq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Running" image="Running" selectedImage="Running2" id="Ubx-ug-vjd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ob4-pk-aFX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ob4-pk-aFX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -649,7 +649,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zyp-aW-NO1">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="kiO-QO-SLX" kind="relationship" relationship="viewControllers" id="308-C9-BZI"/>
@@ -671,6 +671,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hVs-P1-FbL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -825,11 +826,15 @@
                                 </subviews>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aEW-Jb-hhY">
-                                <rect key="frame" x="37" y="79" width="300" height="115"/>
+                                <rect key="frame" x="24" y="79" width="326" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="forest" translatesAutoresizingMaskIntoConstraints="NO" id="u9u-FV-onZ">
+                                <rect key="frame" x="36" y="171" width="303" height="324"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -849,6 +854,7 @@
                         <outlet property="mileCountLabel" destination="M4l-Yf-inE" id="qsX-TB-dIT"/>
                         <outlet property="practiceCountLabel" destination="3Oe-8d-mug" id="yaw-mE-o2y"/>
                         <outlet property="practicesLabel" destination="xiK-cE-Jyf" id="s5S-CV-Lk4"/>
+                        <outlet property="welcomeImage" destination="u9u-FV-onZ" id="DdK-PI-O5s"/>
                         <outlet property="workoutBreakdownBar" destination="cmB-Dg-T7g" id="XJH-1R-oaG"/>
                         <outlet property="workoutBreakdownWithLegend" destination="Kl3-Zo-LAO" id="tJU-po-K7M"/>
                     </connections>
@@ -971,10 +977,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oGW-rI-0Qd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Yoga" image="Yoga2" selectedImage="Yoga4" id="Bam-7I-gnW"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="O23-Fq-2BE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O23-Fq-2BE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -994,6 +1000,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u1e-G0-h0P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1013,6 +1020,7 @@
         <image name="Yoga2" width="32" height="32"/>
         <image name="Yoga4" width="25" height="25"/>
         <image name="clock" width="32" height="32"/>
+        <image name="forest" width="256" height="256"/>
         <image name="goal10" width="1920" height="1280"/>
         <image name="man-practicing-yoga-posture copy" width="128" height="128"/>
         <image name="man-running copy" width="128" height="128"/>

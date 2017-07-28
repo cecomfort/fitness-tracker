@@ -115,8 +115,10 @@ class TrackRunVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationController?.navigationBar.barTintColor = UIColor.white
-//        tabBarController?.tabBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        tabBarController?.tabBar.barTintColor = UIColor.white
+        
+        
         
         displayBackground.backgroundColor = UIColor(white: 1, alpha: 0.8)
         
