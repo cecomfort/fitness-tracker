@@ -1,0 +1,15 @@
+PODS:
+  - ProgressHUD (2.4)
+  - SAConfettiView (0.1.8)
+
+DEPENDENCIES:
+  - ProgressHUD
+  - SAConfettiView
+
+SPEC CHECKSUMS:
+  ProgressHUD: 4b66b0df0e08519c5c7283a198fd2867a114c95a
+  SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
+
+PODFILE CHECKSUM: da3ce962e7cf73a9d046d47e4b4def587f964b8b
+
+COCOAPODS: 1.2.1

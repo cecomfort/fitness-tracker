@@ -112,7 +112,7 @@ class GoalVC: UIViewController {
         if let goal = store.goal {
             if goal.achieved {
                 messageLabel.text = "Congratulations! You met your goal. 🎉"
-            } else if goal.endDate > Date() {
+            } else if Date() > goal.endDate, !Calendar.current.isDateInToday(goal.endDate) {
                 messageLabel.text = "Your goal end date has passed. Set a new goal and try again."
             } else { // goal in progress
                 messageLabel.text = ""
